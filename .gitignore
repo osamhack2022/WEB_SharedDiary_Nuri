@@ -7,7 +7,7 @@ media/
 staticfiles/
 
 # SET
-.env
+# .env [Note: 대회용 만들기]
 
 ### REACT ###
 .DS_*

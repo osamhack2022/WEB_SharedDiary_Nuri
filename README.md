@@ -42,11 +42,15 @@ WEB(BE) : Project/backend
     * PostgreSQL
 * CI/CD
     * Docker-compose, Git
-
 <br/>
 <br/>
 
-### ⚙️ Installation
+### ❗ <strong>Compatibility</strong>
+* Python 3.8 이상 (Django 4.1 호환 버전)
+* ECMAScript 6 지원 브라우저
+<br/>
+<br/>
+### ⚙️ <strong>Installation</strong>
 ```bash
 $ git clone git주소
 
@@ -70,7 +74,7 @@ $ 작성중
 <br/>
 <br/>
 
-### 🔥 Crew
+### 🔥 <strong>Crew</strong>
 ```bash
 $ cd Aiden-Kwak
 $ cat 곽병혁.json
@@ -93,5 +97,10 @@ $ cat 정민기.json
 <br/>
 <br/>
 
-### 🏅 Display
+### 🏅 <strong>Product demonstration</strong>
 작성중
+<br/>
+<br/>
+
+### 📚 <strong>DevDocs</strong>
+작성에정

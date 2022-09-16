@@ -53,7 +53,7 @@ WEB(BE) : Project/backend
 
 ### ⚙️ <strong>Installation</strong>
 ```bash
-$ git clone git주소
+$ git clone "https://github.com/osamhack2022/WEB_SharedDiary_Nuri.git"
 
 // 서버 실행 안내
 $ cd Project

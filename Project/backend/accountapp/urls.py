@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import RegistrationAPIView, LoginAPIView
+from .views import RegistrationAPIView, LoginAPIView, UserRetrieveUpdateAPIView
 
 
 urlpatterns = [

@@ -44,7 +44,7 @@ def get_ipaddress():
     ip_address = socket.gethostbyname(host_name)
     return "http://"+ip_address
 
-CSRF_TRUSTED_ORIGINS = [get_ipaddress()]
+CSRF_TRUSTED_ORIGINS = [get_ipaddress(), 'http://127.0.0.1:8000']
 
 # Application definition
 

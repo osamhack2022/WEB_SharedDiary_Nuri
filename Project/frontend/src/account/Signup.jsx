@@ -3,30 +3,33 @@ import axios from "axios";
 export { Signup };
 
 function Signup() {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [info, setInfo] = useState({
+        username: '',
+        email: '',
+        password: '',
+    });
 
-    const handleUsername = e => {
-        setUsername(e.target.value)
-        
-    }
+    const {username, email, password} = info; // 비구조화할당
 
-    const handleEmail = e => {
-        setEmail(e.target.value)
-    }
+    const onChange = e => {
+        const {value,name} = e.target;
+        setInfo({
+            ...info,
+            [name]:value
+        });
+    };
 
-    const handlePassword = e => {
-        setPassword(e.target.value)
-    }
+    const url = "http://127.0.0.1:8000/accounts/signup";
+    const userdata = {
+        'username': username,
+        'email': email,
+        'password': password
+    };
+    const config = {"Content-Type": 'application/json'};
 
-    const onSubmit = () => {
-        axios
-            .post("http://127.0.0.1:8000/accounts/signup", {
-                username: username,
-                email: email,
-                password: password
-            })
+    const onSubmit = async() => {
+        await axios
+            .post(url, userdata, config)
             .then(function (res) {
                 console.log(res);
             })
@@ -34,13 +37,12 @@ function Signup() {
                 console.log(error);
             });
     }
-
     return (
         <>
             <div className="signup">
-                <input type="text" name="username" value={username} onChange={handleUsername} placeholder="username"/>
-                <input type="text" name="email" value={email} onChange={handleEmail} placeholder="email"/>
-                <input type="password" name="password" value={password} onChange={handlePassword} placeholder="password"/>
+                <input type="text" name="username" value={username} onChange={onChange} placeholder="username"/>
+                <input type="text" name="email" value={email} onChange={onChange} placeholder="email"/>
+                <input type="password" name="password" value={password} onChange={onChange} placeholder="password"/>
             </div>
             <button onClick={onSubmit}>button</button>
         </>  

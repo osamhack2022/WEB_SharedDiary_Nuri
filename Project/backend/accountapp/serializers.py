@@ -14,7 +14,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        field = '__all__'
+        fields = '__all__'
     
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)

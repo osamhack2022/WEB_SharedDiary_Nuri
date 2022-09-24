@@ -62,6 +62,15 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     def has_module_perms(self, app_label):
         return self.is_admin
 
+    def __str__(self):
+        return self.email
+
+    def get_full_name(self):
+        return self.username
+
+    def get_short_name(self):
+        return self.username
+
     @property
     def token(self):
         return self._generated_jwt_token()

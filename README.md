@@ -104,4 +104,4 @@ $ cat 정민기.json
 <br/>
 
 ### 📚 <strong>DevDocs</strong>
-작성에정
+<strong>[Backend 기술문서 바로가기](https://melodious-cornucopia-9b9.notion.site/Nuri-Backend-64f6886d357a458a87a20bedd5102936)</strong>

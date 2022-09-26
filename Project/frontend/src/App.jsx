@@ -1,34 +1,9 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Link, Navigate, useNavigate, useLocation } from 'react-router-dom';
-import {Signup} from './account';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Signup } from './account';
+import { RandingPage } from './randingpage';
+import { Header, Footer, NotFound } from './_components';
 
-function Header() {
-  return (
-    <div class="container">
-      <nav class="navbar">
-        <a><Link to="/">Home</Link></a>{" "}
-        <a><Link to="/accounts/signup">Sign Up</Link></a>{" "}
-        <a><Link to="/accounts/login">Log In</Link></a>
-      </nav>
-    </div>
-  );
-}
-
-function RandingPage() {
-  return (
-    <div className='App'>
-      RandingPage
-    </div>
-  );
-}
-
-function NotFound() {
-  return (
-    <div>
-      <p>Page Not Found</p>
-    </div>
-  );
-}
 
 function App() {
   return (

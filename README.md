@@ -70,7 +70,7 @@ $ python manage.py runserver 8081
 // 프론트엔드 실행 안내
 $ cd Project/frontend
 $ npm install
-$ 작성중
+$ npm start
 ```
 <br/>
 <br/>
@@ -92,7 +92,7 @@ $ cat 정민기.json
 {
     "name" : "Jung MinGi (alsrl123488@gmail.com)",
     "Github" : "@mingi123",
-    "Role" : ["Full Stack"]
+    "Role" : ["Full Stack", "UI/UX"]
 }
 ```
 <br/>

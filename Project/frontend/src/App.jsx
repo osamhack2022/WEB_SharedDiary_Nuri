@@ -4,7 +4,6 @@ import { Signup } from './account';
 import { RandingPage } from './randingpage';
 import { Header, Footer, NotFound } from './_components';
 
-
 function App() {
   return (
     <div className="App">
@@ -17,7 +16,6 @@ function App() {
             <Route path="*" element={<NotFound/>}/>
           </Routes>
         </BrowserRouter>
-        
       </div>
     </div>
   );

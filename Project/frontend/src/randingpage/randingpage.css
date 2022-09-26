@@ -1,0 +1,12 @@
+.RandingPage-container {
+    display: flex;
+}
+
+.RandingPage-container > .login-area {
+    width: 55vw;
+}
+
+.randing-image > img {
+    width: 20vw;
+    /* height: 100%; */
+}

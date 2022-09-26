@@ -2,7 +2,7 @@ export { NotFound };
 
 function NotFound() {
     return (
-      <div>
+      <div className="NotFound">
         <p>Page Not Found</p>
       </div>
     );

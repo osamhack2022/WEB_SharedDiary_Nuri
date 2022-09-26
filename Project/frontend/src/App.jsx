@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Signup } from './account';
 import { RandingPage } from './randingpage';
@@ -15,6 +14,7 @@ function App() {
             <Route path="/accounts/signup" element={<Signup/>}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>
+          <Footer/>
         </BrowserRouter>
       </div>
     </div>

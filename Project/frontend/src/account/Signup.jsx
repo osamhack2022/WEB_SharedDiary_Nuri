@@ -39,7 +39,7 @@ function Signup() {
     }
     return (
         <>
-            <div className="signup">
+            <div className="Signup">
                 <input type="text" name="username" value={username} onChange={onChange} placeholder="username"/>
                 <input type="text" name="email" value={email} onChange={onChange} placeholder="email"/>
                 <input type="password" name="password" value={password} onChange={onChange} placeholder="password"/>

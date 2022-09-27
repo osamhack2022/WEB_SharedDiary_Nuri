@@ -1,12 +1,10 @@
 .RandingPage-container {
     display: flex;
+    justify-content: center;
 }
-
-.RandingPage-container > .login-area {
-    width: 55vw;
+.RandingPage-container > .recommend-area {
+    width: 30vw;
 }
-
-.randing-image > img {
-    width: 20vw;
-    /* height: 100%; */
+.RandingPage-container > .diary-area {
+    width: 35vw;
 }

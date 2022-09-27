@@ -18,9 +18,9 @@ function Header() {
           </div> 
           <div className='nav-input'><input type="text" placeholder="     search"/></div> 
           <div className='nav-menu'>
-            <NavLink exact to="/" activeClassName='selected'>메인</NavLink>
-            <NavLink to="/accounts/signup" activeClassName='selected'>나의 공간</NavLink>
-            <NavLink to="/accounts/login" activeClassName='selected'>메세지</NavLink>
+            <NavLink exact={true} to="/">메인</NavLink>
+            <NavLink to="/accounts/signup">나의 공간</NavLink>
+            <NavLink to="/accounts/login">메세지</NavLink>
             <button><NavLink to="/accounts/login"><p style={{color:"white"}}>일기쓰기</p></NavLink></button>
           </div>
         </nav>

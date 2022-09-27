@@ -2,26 +2,20 @@ import randingImg from '../static/img/diary_black.jpg';
 import './randingpage.css'
 import {Login} from '../account/Login';
 import { Link } from 'react-router-dom';
+import { Diary } from '../_components';
 export { RandingPage };
 
 function RandingPage() {
     return (
       <div className='RandingPage'>
         <div className="RandingPage-container">
-          <div className="randing-image">
-            <img src={randingImg} alt="randingImg"/>
+          <div className="diary-area" style={{backgroundColor:"skyblue"}}>
+            <Diary/>
           </div>
-          <div className="login-area">
-            로그인구역만들예정
-            <Login/>
-            <p><Link to="/accounts/signup">회원가입 바로가기</Link></p>
-
+          <div className="recommend-area" style={{backgroundColor:"red"}}>
+              추천일기장 구역
           </div>
-
-
         </div>
-        RandingPage<br/>
-        랜딩페이지
       </div>
     );
   }

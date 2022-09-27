@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Signup } from './account';
+import { Signup, Login } from './account';
 import { RandingPage } from './randingpage';
 import { Header, Footer, NotFound } from './_components';
 
@@ -10,8 +10,9 @@ function App() {
         <BrowserRouter>
           <Header/>
           <Routes>
-            <Route exact path="/" element={<RandingPage/>}/>
+            <Route exact={true} path="/" element={<RandingPage/>}/>
             <Route path="/accounts/signup" element={<Signup/>}/>
+            <Route path="/accounts/login" element={<Login/>}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>
           <Footer/>

@@ -1,0 +1,33 @@
+.Header {
+    padding: 1rem;
+}
+.Header > .navbar {
+    display: flex;
+}
+.Header > .navbar > .logo-area {
+    display: flex;
+    margin-right: 1rem;
+}
+.Header > .navbar > .logo-area > .logo {
+    margin-right: .5rem;
+}
+.Header > .navbar > input {
+    border: none;
+    border-radius: .3rem;
+    background: #E9EAEB;
+    margin-right: 1rem;
+}
+.Header > .navbar > .nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Header > .navbar > .nav-menu > a {
+    margin: 0 .5rem 0 .5rem;
+}
+.Header > .navbar > .nav-menu > button {
+    padding: 5px;
+    border: none;
+    border-radius: .3rem;
+    background: #4CA771;
+}

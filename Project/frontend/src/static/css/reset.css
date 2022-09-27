@@ -4,6 +4,6 @@ body,button,input,select,table,textarea{font-size:1.2rem;font-family:'spoqa-regu
 fieldset,img{border:0}
 ol,ul{list-style:none}
 address,em{font-style:normal}
-a{text-decoration:none}
-a:hover{text-decoration:underline}
+a{text-decoration:none;color:black;}
+a:hover{text-decoration:none;}
 iframe{overflow:hidden;margin:0;padding:0;border:0}

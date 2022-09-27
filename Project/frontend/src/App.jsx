@@ -10,7 +10,7 @@ function App() {
         <BrowserRouter>
           <Header/>
           <Routes>
-            <Route path="/" element={<RandingPage/>}/>
+            <Route exact path="/" element={<RandingPage/>}/>
             <Route path="/accounts/signup" element={<Signup/>}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>

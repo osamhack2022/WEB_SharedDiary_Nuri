@@ -6,5 +6,8 @@
     width: 30vw;
 }
 .RandingPage-container > .diary-area {
-    width: 35vw;
+    width: 30vw;
+}
+.RandingPage-container > .randingpage-area {
+    margin: 0 1rem 0 1rem;
 }

@@ -1,5 +1,6 @@
 .Header {
     padding: 1rem;
+    font-size: 1rem;
 }
 .Header > .navbar {
     display: flex;
@@ -8,6 +9,10 @@
     display: flex;
     margin: 0 4rem 0 4rem;
 }
+.Header > .navbar > .logo-area > a {
+    display: flex;
+    align-items: center;
+}
 .Header > .navbar > .logo-area > a > .logo {
     margin-right: .5rem;
 }
@@ -15,13 +20,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 30vw;
 }
 .Header > .navbar > .nav-input > input {  
     border: none;
     border-radius: .3rem;
     background: #E9EAEB;
-    margin-right: 1rem;
     height: 2.5rem;
+    width: 100%;
     vertical-align: middle;
 }
 .Header > .navbar > .nav-menu {

@@ -9,10 +9,11 @@ function RandingPage() {
     return (
       <div className='RandingPage'>
         <div className="RandingPage-container">
-          <div className="diary-area" style={{backgroundColor:"skyblue"}}>
+          <div className="diary-area randingpage-area" style={{backgroundColor:"skyblue"}}>
+            <Diary/>
             <Diary/>
           </div>
-          <div className="recommend-area" style={{backgroundColor:"red"}}>
+          <div className="recommend-area randingpage-area" style={{backgroundColor:"red"}}>
               추천일기장 구역
           </div>
         </div>

@@ -1,0 +1,32 @@
+.Diary {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.Diary > .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    margin: 1rem 0 1rem 0;
+}
+.Diary > .card > .diary-img {
+    display: flex;
+    width: 100%;
+    height: 10rem;
+    
+}
+.Diary > .card > .diary-img > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.Diary > .card > .diary-content, .diary-reaction {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.Diary > .card > .diary-reaction > .icon {
+    display: flex;
+    flex-direction: row;
+}

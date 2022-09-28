@@ -8,11 +8,11 @@ function Header() {
       <div className="Header">
         <nav className="navbar">
           <div className="logo-area">
-            <Link to="/">
+            <Link to="/" class='logo-link'>
             <div className="logo"><img src={logo} alt="logo" width="20" height="20"/></div>
             <div className="logo-string">
               <p>Nuri.</p>
-              <p style={{fontSize: ".8rem"}}>사색을 공유하다</p>
+              <p style={{fontSize: ".6rem"}}>사색을 공유하다</p>
             </div>
             </Link>
           </div> 

@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
-
+디스코드 연동 테스트
 ### `npm start`
 
 Runs the app in the development mode.\

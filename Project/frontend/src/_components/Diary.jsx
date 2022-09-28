@@ -1,4 +1,5 @@
 import dev_img_diary from '../static/img/dev_test/doge-goorm.jpg';
+import dev_img_profile from '../static/img/dev_test/프로필이미지.png';
 import '../static/css/diary.css';
 import { 
     BsStarFill, BsStar,
@@ -14,9 +15,12 @@ function Diary() {
             <div className='card'>
                 <div className='diary-profile'>
                     <div className='diary-profile-img'>
-
+                        <img src={dev_img_profile} alt="profile-img" />
                     </div>
-                    <p>닉네임</p>
+                    <div className='diary-profile-info'>
+                        <p>닉네임</p>
+                        <p style={{fontSize:".9rem", color:"#536471"}}>@duckracoon</p>
+                    </div> 
                 </div>
                 <p>2022년 3월 30일</p>
                 <div className="diary-img">

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from accountapp.models import User
+from accountapp.models import User, Profile
 from django.contrib.auth import authenticate
 from django.utils import timezone
 
@@ -92,3 +92,12 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+class ProfileSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField(read_only=True)
+    profile_image = serializers.ImageField(read_only=True)
+    background_image = serializer.ImageField(read_only=True)
+
+    class Meta:
+        model = Profile
+        fields = '__all__'

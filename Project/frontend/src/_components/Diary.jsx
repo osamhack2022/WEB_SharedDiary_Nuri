@@ -31,7 +31,7 @@ function Diary() {
                         <p className='title'>To the MOOOOOON!</p>
                         <p className='subtitle'>도지코인 트레이딩 기록중</p>
                     </div>
-                    <div className='diary-content-star'>
+                    <div className='diary-content-star' style={{marginRight:".5rem"}}>
                         <BsStar/>
                     </div>
                 </div>

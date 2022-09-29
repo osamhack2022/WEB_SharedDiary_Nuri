@@ -14,7 +14,8 @@
     align-items: center;
 }
 .Header > .navbar > .logo-area > a > .logo {
-    margin-right: .5rem;
+    display: flex;
+    align-items: center;
 }
 .Header > .navbar > .nav-input {
     display: flex;

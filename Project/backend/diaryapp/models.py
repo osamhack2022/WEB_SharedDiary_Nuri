@@ -8,8 +8,8 @@ class Note(models.Model):
     pass
     
 class Diary(models.Model):
-    writer = model.ForeignKey(User, on_delete=models.CASCADE)
-    title = model.CharField(max_length=45, null=True)
+    writer = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=45, null=True)
     content = models.TextField(blank=False, null=True)
 
     created_at = models.DateField(auto_now_add=True, null=True)

@@ -85,6 +85,17 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
         return token
 
+    #미사용
+    def validate_token(token):
+        try:
+            jwt.decode(token, settings.SECRET_KEY, algorithms='HS256')
+        except jwt.ExpiredSignatureError:
+            return status.HTTP_401_UNAUTHORIZED
+        except jwt.InvalidTokenError:
+            return status.HTTP_401_UNAUTHORIZED
+        else:
+            return True
+
 class Profile(TimestampedModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     nickname = models.SlugField(max_length=15, unique=True, allow_unicode=True)

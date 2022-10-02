@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 # Create your views here.
 from diaryapp.models import Diary
 from django.views.generic import CreateView, WriteView, DetailView, UpdateView, DeleteView
+from .serializer import DiarySerializer
 
 # class Note():
 class DiaryList(APIView):
@@ -21,6 +22,7 @@ class DiaryList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class DiaryDetail(APIView):

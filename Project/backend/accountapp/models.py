@@ -98,10 +98,14 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
 class Profile(TimestampedModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    nickname = models.SlugField(max_length=15, unique=True, allow_unicode=True)
+    nickname = models.SlugField(max_length=15, unique=True, allow_unicode=True, blank=False)
     self_intro = models.TextField(blank=True)
     profile_image = models.ImageField(upload_to='profile/', default='../static/img/default-profile.png')
-    background_image = models.ImageField(upload_to='profile/', null=True)
+    background_image = models.ImageField(upload_to='profile/', null=True, blank=True)
 
     def __str__(self):
         return self.nickname
+
+    def save(self, *args, **kwargs):
+        self.nickname = self.user.username
+        super(Profile, self).save(*args, **kwargs)

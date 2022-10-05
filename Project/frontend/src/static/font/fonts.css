@@ -21,17 +21,3 @@
     font-family: "spoqa-thin";
     src: url("../font/SpoqaHanSansNeo-Thin.otf");
 }
-
-body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  font-family: 'spoqa-regular';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}

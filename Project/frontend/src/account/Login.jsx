@@ -18,7 +18,7 @@ function Login() {
         });
     };
 
-    const url = "http://127.0.0.1:8000/accounts/login";
+    const url = "/accounts/login";
     const userdata = {
         'email': email,
         'password': password

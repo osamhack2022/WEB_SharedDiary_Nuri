@@ -43,7 +43,7 @@ class LoginAPIView(APIView):
 class UserView(APIView):
     def get(self, request):
         token = request.COOKIES.get('jwt')
-        if not tiken:
+        if not token:
             raise AuthenticationFailed('UnAutehnticated!')
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])

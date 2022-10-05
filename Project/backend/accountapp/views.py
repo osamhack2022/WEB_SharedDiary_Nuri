@@ -35,6 +35,7 @@ class LoginAPIView(APIView):
         serializer.is_valid(raise_exception=True)
 
         res = Response(serializer.data, status=status.HTTP_200_OK)
+        token = res.data.get('token')
         res.set_cookie(key='jwt', value=token, httponly=True)
 
         return res

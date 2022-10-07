@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-// import profileDefault from '../static/img/default-profile.jpg';
-export { ProfileCreate }
+import { useSelector } from 'react-redux'
+export { ProfileCreate, ProfileDetail }
 
 function ProfileCreate() {
     const [info, setInfo] = useState({
@@ -47,6 +47,28 @@ function ProfileCreate() {
             <div className='background-preview'>
                 <img src={backImg} alt="background-preview" />
             </div>
+        </div>
+    );
+}
+
+function ProfileDetail() {
+    const user = useSelector((state) => state.user.value)
+    return (
+        <div className='ProfileDetail'>
+            <p>프로필 화면 만들거다</p>
+            <div>
+                <p>아마 유저네임: {user.username}</p>
+                <p>아마 닉네임: {user.nickname}</p>
+                <p>아마 자기소개: {user.selfIntro}</p>
+                <div>
+                    <p>아마사진: </p>
+                    <div className='profile-preview'>
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile-preview"  width={100} height={100} />
+                    </div>
+                </div>
+                <p>기타 등등</p>
+            </div>
+
         </div>
     );
 }

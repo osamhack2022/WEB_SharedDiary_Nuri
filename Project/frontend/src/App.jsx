@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Signup, Login, ProfileCreate } from './account';
+import { Signup, Login, ProfileCreate, ProfileDetail } from './account';
 import { RandingPage } from './randingpage';
 import { Myspace } from './myspace';
 import { Header, Footer, NotFound } from './_components';
@@ -15,6 +15,7 @@ function App() {
             <Route path="/accounts/signup" element={<Signup/>}/>
             <Route path="/accounts/login" element={<Login/>}/>
             <Route path="/profile/create" element={<ProfileCreate/>}/>
+            <Route path="/profile/detail" element={<ProfileDetail/>}/>
             <Route path="/myspace" element={<Myspace/>}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>

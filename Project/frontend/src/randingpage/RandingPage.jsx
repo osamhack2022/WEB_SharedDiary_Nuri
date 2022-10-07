@@ -9,7 +9,7 @@ function RandingPage() {
     return (
       <div className='RandingPage'>
         <div className="RandingPage-container">
-          <div className="diary-area randingpage-area" style={{backgroundColor:"skyblue"}}>
+          <div className="diary-area randingpage-area">
             <Diary/>
             <Diary/>
           </div>

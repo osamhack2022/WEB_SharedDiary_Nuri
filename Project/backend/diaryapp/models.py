@@ -6,8 +6,10 @@ from accountapp.models import User
 OPEN_CHOICES = ((False, '나만 보기'), (True, '전체 공개'))
 class Note(models.Model):
     pass
-    
+
+
 class Diary(TimestampedModel):
+
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=45, null=True)
     content = models.TextField(blank=False, null=True)

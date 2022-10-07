@@ -51,8 +51,6 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
-    #date_joined = models.DateTimeField(auto_now_add=True)
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
@@ -84,3 +82,28 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         }, settings.SECRET_KEY, algorithm='HS256')
 
         return token
+
+    #미사용
+    def validate_token(token):
+        try:
+            jwt.decode(token, settings.SECRET_KEY, algorithms='HS256')
+        except jwt.ExpiredSignatureError:
+            return status.HTTP_401_UNAUTHORIZED
+        except jwt.InvalidTokenError:
+            return status.HTTP_401_UNAUTHORIZED
+        else:
+            return True
+
+class Profile(TimestampedModel):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    nickname = models.SlugField(max_length=15, unique=True, allow_unicode=True, blank=False)
+    self_intro = models.TextField(blank=True)
+    profile_image = models.ImageField(upload_to='profile/', default='../static/img/default-profile.png')
+    background_image = models.ImageField(upload_to='profile/', null=True, blank=True)
+
+    def __str__(self):
+        return self.nickname
+
+    def save(self, *args, **kwargs):
+        self.nickname = self.user.username
+        super(Profile, self).save(*args, **kwargs)

@@ -42,9 +42,9 @@ import socket
 def get_ipaddress():
     host_name = socket.gethostname()
     ip_address = socket.gethostbyname(host_name)
-    return "http://"+ip_address
+    return "https://"+ip_address
 
-CSRF_TRUSTED_ORIGINS = [get_ipaddress(), 'http://127.0.0.1:8000']
+CSRF_TRUSTED_ORIGINS = [get_ipaddress(), 'https://osamhack2022-web-shareddiary-nuri-g67v9pv5qvvcpg4q-8000.githubpreview.dev']
 
 # Application definition
 

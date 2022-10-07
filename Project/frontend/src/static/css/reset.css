@@ -7,3 +7,12 @@ address,em{font-style:normal}
 a{text-decoration:none;color:black;}
 a:hover{text-decoration:none;}
 iframe{overflow:hidden;margin:0;padding:0;border:0}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'spoqa-regular';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }

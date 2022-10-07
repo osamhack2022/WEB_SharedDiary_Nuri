@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from accountapp.models import User
+from accountapp.models import User, Profile
 from django.contrib.auth import authenticate
 from django.utils import timezone
 
@@ -25,6 +25,7 @@ class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=20, read_only=True)
     password = serializers.CharField(max_length=128, write_only=True)
     last_login = serializers.CharField(max_length=255, read_only=True)
+    token = serializers.CharField(max_length=255, read_only=True)
 
     def validate(self, data):
         email = data.get('email', None)
@@ -57,7 +58,8 @@ class LoginSerializer(serializers.Serializer):
         return {
             'email': user.email,
             'username': user.username,
-            'last_login': user.last_login
+            'last_login': user.last_login,
+            'token': user.token
         }
     
 
@@ -92,3 +94,12 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+class ProfileSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField(read_only=True)
+    profile_image = serializers.ImageField(read_only=True)
+    background_image = serializers.ImageField(read_only=True)
+
+    class Meta:
+        model = Profile
+        fields = '__all__'

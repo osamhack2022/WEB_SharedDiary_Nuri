@@ -19,7 +19,7 @@ function Signup() {
         });
     };
 
-    const url = "http://127.0.0.1:8000/accounts/signup";
+    const url = "/accounts/signup";
     const userdata = {
         'username': username,
         'email': email,

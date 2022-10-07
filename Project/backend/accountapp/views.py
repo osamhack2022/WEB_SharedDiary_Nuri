@@ -7,6 +7,8 @@ from rest_framework.views import APIView
 from .serializers import RegistrationSerializer, LoginSerializer, UserSerializer
 from .renderers import UserJSONRenderer
 
+from django.conf import settings
+
 # Create your views here.
 class RegistrationAPIView(APIView):
     permission_classes = (AllowAny,)
@@ -32,7 +34,37 @@ class LoginAPIView(APIView):
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
 
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        res = Response(serializer.data, status=status.HTTP_200_OK)
+        token = res.data.get('token')
+        res.set_cookie(key='jwt', value=token, httponly=True)
+
+        return res
+
+#로그인 여부 확인
+class UserView(APIView):
+    def get(self, request):
+        token = request.COOKIES.get('jwt')
+        if not token:
+            raise AuthenticationFailed('UnAutehnticated!')
+        try:
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('UnAutehnticated!')
+        
+        user = User.objects.filter(id=payload['id']).first()
+        serializer = UserSerializer(user)
+
+        return Response(serializer.data)
+
+class LogoutView(APIView):
+    def post(self, request):
+        res = Response()
+        res.delete_cookie('jwt')
+        res.data = {
+            "message": "success"
+        }
+
+        return res
 
 
 class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):

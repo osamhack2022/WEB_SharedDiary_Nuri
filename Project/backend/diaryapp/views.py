@@ -2,8 +2,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from rest_framework.views import APIView
 # Create your views here.
-from diaryapp.models import DiaryList
 from .serializer import DiarySerializer
+
+from diaryapp.models import Diary
 
 # class Note():
 class DiaryList(APIView):

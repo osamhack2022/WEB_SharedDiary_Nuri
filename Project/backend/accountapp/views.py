@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.views import APIView
 
-from .serializers import RegistrationSerializer, LoginSerializer, UserSerializer
-from .renderers import UserJSONRenderer
+from .serializers import RegistrationSerializer, LoginSerializer, UserSerializer, ProfileSerializer
+from .renderers import UserJSONRenderer, ProfileJSONRenderer
 
 from django.conf import settings
 
@@ -85,4 +85,14 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class ProfileAPIVIew(APIView):
+    # permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,) # for TEST!
+    renderer_classes = (ProfileJSONRenderer,)
+    serializer_class = ProfileSerializer
+
+    def get(self, request, *args, **kwargs):
+        serializer = self.serializer_class(request.user, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

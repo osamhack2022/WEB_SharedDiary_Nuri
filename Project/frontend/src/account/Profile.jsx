@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux'
+import axios from "axios";
 export { ProfileCreate, ProfileDetail }
 
 function ProfileCreate() {
@@ -53,8 +54,19 @@ function ProfileCreate() {
 
 function ProfileDetail() {
     const user = useSelector((state) => state.user.value)
+    const onSubmit = () => {
+        const url = "/accounts/profile";
+        axios
+            .get(url)
+            .then(res => console.log(res))
+            .catch(error => console.log('에러다'+error))
+    }
     return (
         <div className='ProfileDetail'>
+            <div>
+                프로필 콘솔 테스트
+                <button onClick={onSubmit}>버튼</button>
+            </div>
             <p>프로필 화면 만들거다</p>
             <div>
                 <p>아마 유저네임: {user.username}</p>

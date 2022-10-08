@@ -23,12 +23,7 @@ function Login() {
         });
     };
 
-    const url = "/accounts/login";
-    const userdata = {
-        'email': email,
-        'password': password
-    };
-    const config = {"Content-Type": 'application/json'};
+    
     /* 
     1. 버튼클릭
     2. 이메일, 비번 서버로 전송
@@ -41,6 +36,12 @@ function Login() {
     8. 
     */
     const onSubmit = async() => {
+        const url = "/accounts/login";
+        const userdata = {
+            'email': email,
+            'password': password
+        };
+        const config = {"Content-Type": 'application/json'};
         
         await axios
             .post(url, userdata, config)
@@ -50,7 +51,7 @@ function Login() {
                     localStorage.setItem('nuri-token', res.data.user.token);  
                 }
                 console.log(res.data)
-                dispatch(login({username: "유저네임!", nickname: "닉네임!", selfIntro: "셀프인트로!", profileImg: "이미지다!"}))
+                dispatch(login({username: res.data.user.username, nickname: "닉네임!", selfIntro: "셀프인트로!", profileImg: "이미지다!"}))
             })
             .catch(function (error) {
                 console.log(error);

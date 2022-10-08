@@ -1,7 +1,4 @@
-import randingImg from '../static/img/diary_black.jpg';
 import './randingpage.css'
-import {Login} from '../account/Login';
-import { Link } from 'react-router-dom';
 import { Diary } from '../_components';
 export { RandingPage };
 

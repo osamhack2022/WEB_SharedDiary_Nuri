@@ -88,8 +88,8 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class ProfileAPIVIew(APIView):
-    # permission_classes = (IsAuthenticated,)
-    permission_classes = (AllowAny,) # for TEST!
+    permission_classes = (IsAuthenticated,)
+    # permission_classes = (AllowAny,) # for TEST!
     renderer_classes = (ProfileJSONRenderer,)
     serializer_class = ProfileSerializer
 

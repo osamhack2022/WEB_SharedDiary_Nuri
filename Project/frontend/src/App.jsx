@@ -3,6 +3,7 @@ import { Signup, Login, ProfileCreate, ProfileDetail } from './account';
 import { RandingPage } from './randingpage';
 import { Myspace } from './myspace';
 import { Header, Footer, NotFound } from './_components';
+import { DiaryContext } from './diary';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/accounts/login" element={<Login/>}/>
             <Route path="/profile/create" element={<ProfileCreate/>}/>
             <Route path="/profile/detail" element={<ProfileDetail/>}/>
+            <Route path="/diary" element={<DiaryContext/>}/>
             <Route path="/myspace" element={<Myspace/>}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>

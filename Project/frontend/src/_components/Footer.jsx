@@ -12,6 +12,7 @@ function Footer() {
             <p><Link to="/accounts/login">로그인 바로가기</Link></p>
             <p><Link to="/profile/create">프로필생성 바로가기</Link></p>
             <p><Link to="/profile/detail">프로필화면 바로가기</Link></p>
+            <p><Link to="/diary">정민기 일기장 테스트</Link></p>
         </div>
     );
 }

@@ -19,3 +19,6 @@ class Diary(TimestampedModel):
 
     image = models.ImageField(upload_to='diary/', null=True, blank=True)
     to_open = models.BooleanField(default=True, choices=OPEN_CHOICES)
+
+    def __str__(self):
+        return self.title

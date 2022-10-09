@@ -99,5 +99,5 @@ class ProfileAPIView(APIView):
     serializer_class = ProfileSerializer
 
     def get(self, request, *args, **kwargs):
-        serializer = self.serializer_class(request.user, many=True)
+        serializer = self.serializer_class(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)

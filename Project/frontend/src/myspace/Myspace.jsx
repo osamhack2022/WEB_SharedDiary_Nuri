@@ -15,6 +15,10 @@ function Myspace() {
         })
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
+    
+    axios.get('/home/diary')
+        .then(res=>console.log(res))
+        .catch(error=>console.log(error))
     return (
         <div className="Myspace">
             나의 공간 제작중

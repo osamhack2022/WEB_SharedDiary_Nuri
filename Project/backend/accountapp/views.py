@@ -7,6 +7,8 @@ from rest_framework.views import APIView
 from .serializers import RegistrationSerializer, LoginSerializer, UserSerializer, ProfileSerializer
 from .renderers import UserJSONRenderer, ProfileJSONRenderer
 
+from accountapp.models import User
+
 from django.conf import settings
 
 # Create your views here.
@@ -35,7 +37,10 @@ class LoginAPIView(APIView):
         serializer.is_valid(raise_exception=True)
 
         res = Response(serializer.data, status=status.HTTP_200_OK)
-        token = res.data.get('token')
+        getusername = res.data.get('username')
+        userObject = User.objects.get(username=getusername)
+
+        token = userObject.token
         res.set_cookie(key='jwt', value=token, httponly=True)
 
         return res
@@ -87,7 +92,7 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-class ProfileAPIVIew(APIView):
+class ProfileAPIView(APIView):
     permission_classes = (IsAuthenticated,)
     # permission_classes = (AllowAny,) # for TEST!
     renderer_classes = (ProfileJSONRenderer,)

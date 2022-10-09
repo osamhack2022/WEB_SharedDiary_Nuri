@@ -4,8 +4,19 @@ import { RandingPage } from './randingpage';
 import { Myspace } from './myspace';
 import { Header, Footer, NotFound } from './_components';
 import { DiaryContext } from './diary';
+import { useDispatch } from 'react-redux'
+
+import { authenticate } from './redux/isauthenticated';
+import { useEffect } from 'react';
 
 function App() {
+  const dispatch = useDispatch()
+  const token = localStorage.getItem('token')
+  if(token){
+    dispatch(authenticate({isAuthenticated: true}))
+  }else {
+    dispatch(authenticate({isAuthenticated: false}))
+  }
   return (
     <div className="App">
       <div className="container">

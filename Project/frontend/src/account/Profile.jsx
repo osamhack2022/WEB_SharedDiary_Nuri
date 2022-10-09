@@ -57,11 +57,14 @@ function ProfileCreate() {
 function ProfileDetail() {
     const user = useSelector((state) => state.user.value)
     const cookies = new Cookies()
-    const token = cookies.get('jwt')
+    const testtoken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjcwMzkzMjQyfQ.4ttvGfLbXhQZadD03geY9BrrRAblOfBn6SkU5q6u9a0'
     useEffect(() => {
+        const token = cookies.get('jwt');
+        console.log('test:'+token);
+        
         axios.get('/accounts/profile', {
             headers: {
-                Authorization: `token ${token}`
+                Authorization: `token ${testtoken}`
             }})
             .then(res => {
                 console.log(res);

@@ -1,8 +1,14 @@
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 import '../static/css/header.css';
 export { Header };
 
 function Header() {
+    const authentication = useSelector((state) => state.authenticate.value)
+    const logout = () => {
+      localStorage.removeItem('token');
+      window.location.reload();
+    }
     return (
       <div className="Header">
         <nav className="navbar">
@@ -24,7 +30,12 @@ function Header() {
             <NavLink to="/">메인</NavLink>
             <NavLink to="/myspace">나의 공간</NavLink>
             <NavLink to="/accounts/login">메세지</NavLink>
-            <button><NavLink to="/accounts/login"><p style={{color:"white"}}>일기쓰기</p></NavLink></button>
+            <NavLink to="/accounts/login">일기작성</NavLink>
+            {authentication.isAuthenticated ? 
+              <button onClick={logout}><p style={{color:"white"}}>로그아웃</p></button>
+              :
+              <button><NavLink to="/accounts/login"><p style={{color:"white"}}>로그인</p></NavLink></button>
+            }
           </div>
         </nav>
       </div>

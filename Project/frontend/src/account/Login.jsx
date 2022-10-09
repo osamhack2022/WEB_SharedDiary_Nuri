@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 // import { JWTCheck } from '../lib';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { login } from '../redux/user';
 
@@ -41,17 +42,24 @@ function Login() {
             'email': email,
             'password': password
         };
-        const config = {"Content-Type": 'application/json'};
+        const config = {
+            "Content-Type": 'application/json',
+            header: {
+                
+            }
+        };
         
-        await axios
+        await axios 
             .post(url, userdata, config)
             .then(function (res) {
                 console.log(res);
                 if (res.data.user.token) {
-                    localStorage.setItem('nuri-token', res.data.user.token);  
+                    localStorage.setItem('token', res.data.user.token);  
                 }
                 console.log(res.data)
                 dispatch(login({username: res.data.user.username, nickname: "닉네임!", selfIntro: "셀프인트로!", profileImg: "이미지다!"}))
+                window.history.back();
+                setTimeout(()=>{ window.location.reload() }, 100)
             })
             .catch(function (error) {
                 console.log(error);

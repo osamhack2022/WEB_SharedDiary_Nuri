@@ -7,9 +7,11 @@ function Myspace() {
     const authentication = useSelector((state) => state.authenticate.value) //authentication.isAuthenticated 사용
     const token = localStorage.getItem('token')
     axios.get('/accounts/current', {
-            header: {
-                Authentication: `token ${token}`
-            }
+            headers: {
+                'Authorization': `token ${token}`,
+                'Content-Type':'application/json'
+            },
+            
         })
         .then(res=>console.log(res))
         .catch(error=>console.log(error))

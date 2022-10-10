@@ -11,7 +11,7 @@
     margin: 1rem 0 1rem 0;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
     padding: 1rem 0 1rem 0;
-    border-radius: 3%;
+    border-radius: 3%;  
 }
 .Diary > .card > p {
     margin-left: auto;
@@ -20,20 +20,17 @@
 }
 .Diary > .card > .diary-profile {
     display: flex;
-}
-.Diary > .card > .diary-profile > .diary-profile-info {
-    display: flex;
-    align-items: center;
-}
-.Diary > .card > .diary-profile > .diary-profile-info > p {
-    margin: 0 .25rem 0 .25rem;
+    height: 50%;
 }
 .Diary > .card > .diary-profile > .diary-profile-img {
+    justify-content: flex-start ;
     width: 50px;
     height: 50px;
     border-radius: 70%;
     overflow: hidden;
-    margin: 0 .25rem 0 .5rem;
+    margin: 0rem 0.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
 }
 .Diary > .card > .diary-profile > .diary-profile-img > img {
     object-fit: cover;
@@ -41,21 +38,33 @@
     height: 100%;
     overflow: hidden;
 }
-.Diary > .card > .diary-img {
-    display: flex;
+.Diary > .card > .diary-profile > .diary-detail {
+    display: block;
     width: 100%;
-    height: 10rem;
+    height: 100%;
+    margin: 0.5rem 0.5rem;
 }
-.Diary > .card > .diary-img > img {
+.Diary > .card > .diary-profile > .diary-detail > .diary-profile-info {
+    display: block;
+    align-items: center;
+}
+.Diary > .card > .diary-profile > .diary-detail > .diary-img {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    margin: 0.5rem 0.5rem;
+}
+.Diary > .card > .diary-profile > .diary-detail > .diary-img > img {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    border-radius: 30px;
 }
 .Diary > .card > .diary-content, .diary-reaction {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: .5rem .5rem 0 .5rem;
+    margin: .50rem .5rem 0 .5rem;
 }
 .Diary > .card > .diary-reaction > .icon {
     display: flex;

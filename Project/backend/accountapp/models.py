@@ -94,7 +94,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         else:
             return True
 
-class Profile(TimestampedModel):
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     nickname = models.SlugField(max_length=15, unique=True, allow_unicode=True, blank=False)
     self_intro = models.TextField(blank=True)

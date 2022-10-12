@@ -2,18 +2,20 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny, IsAuthenticated
 # Create your views here.
-from .serializer import DiarySerializer
+from .serializer import DiarySerializer, NoteSerializer
 
 from diaryapp.models import Diary
 
 # class Note():
 class DiaryList(APIView):
-    # 게시물 조회
-    # 이건 Note class 에 넣어야 하는게 아닌지.
+    permission_classes = (AllowAny,)
+    serializer_class = DiarySerializer
+
     def get(self, request, format=None):
         diary = Diary.objects.all()
-        serializer = DiarySerializer(diary, many=True)
+        serializer = self.serializer_class(diary, many=True)
         return Response(serializer.data)
     
     # 게시물 생성
@@ -23,6 +25,39 @@ class DiaryList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class NoteListAPI(APIView):
+    permission_classes = (AllowAny,)
+    serializer_class = NoteSerializer
+
+    def get(self, request):
+        note = Note.objects.all()
+        serializer = NoteSerializer(diary, many=True)
+        return Response(serializer.data)
+
+class UserDiaryAPI(APIView):
+    # 유저의 일기만 필터링해 제공하는 리스트
+    def get():
+        pass
+    # 유저의 일기 수정
+    def put():
+        pass
+    # 유저의 일기 삭제
+    def delete():
+        pass
+
+
+class UserNoteAPI(APIView):
+    # 유저의 노트만 필터링해 제공하는 리스트
+    def get():
+        pass
+    # 유저의 노트 수정
+    def put():
+        pass
+    # 유저의 노트 삭제
+    def delete():
+        pass
+
 
 class DiaryDetail(APIView):
     # 객체 가져오기

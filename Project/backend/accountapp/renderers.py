@@ -40,7 +40,7 @@ class ProfileJSONRenderer(JSONRenderer):
         # data에 error있는지 확인하고 있으면 data를 'user' key에
         # 넣지말고 그대로 반환
         if errors is not None:
-            return super(UserJSONRenderer, self).render(data)
+            return super(ProfileJSONRenderer, self).render(data)
         
         # 그리고 data를 'user' 안에 담아 json 형태로 render
         return json.dumps({

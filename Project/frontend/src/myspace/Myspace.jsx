@@ -15,6 +15,26 @@ function Myspace() {
         })
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
+
+    axios.get('/accounts/profile/list', {
+            headers: {
+                'Authorization': `token ${token}`,
+                'Content-Type':'application/json'
+            },
+            
+        })
+        .then(res=>console.log(res))
+        .catch(error=>console.log(error))
+    
+    axios.get('/accounts/profile/detail', {
+            headers: {
+                'Authorization': `token ${token}`,
+                'Content-Type':'application/json'
+            },
+            
+        })
+        .then(res=>console.log(res))
+        .catch(error=>console.log(error))
     
     axios.get('/home/diary')
         .then(res=>console.log(res))

@@ -3,13 +3,15 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404
 
 from .serializers import RegistrationSerializer, LoginSerializer, UserSerializer, ProfileSerializer
 from .renderers import UserJSONRenderer, ProfileJSONRenderer
 
-from accountapp.models import User
+from accountapp.models import User, Profile
 
 from django.conf import settings
+import jwt
 
 # Create your views here.
 class RegistrationAPIView(APIView):
@@ -92,12 +94,31 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-class ProfileAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
-    # permission_classes = (AllowAny,) # for TEST!
-    renderer_classes = (ProfileJSONRenderer,)
+class ProfileListAPIView(APIView):
+    permission_classes = (AllowAny,)
     serializer_class = ProfileSerializer
 
-    def get(self, request, *args, **kwargs):
-        serializer = self.serializer_class(request.user)
+    def get(self, request):
+        profile = Profile.objects.all()
+        serializer = self.serializer_class(profile, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class ProfileDetailAPIView(APIView):
+    permission_classes = (AllowAny,)
+    serializer_class = ProfileSerializer
+
+    def get(self, request):
+        token = request.COOKIES.get('jwt')
+        if not token:
+            raise AuthenticationFailed('UnAutehnticated!')
+        try:
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('UnAutehnticated!')
+        
+        user = User.objects.filter(id=payload['id']).first()
+        serializer = self.serializer_class(user, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+

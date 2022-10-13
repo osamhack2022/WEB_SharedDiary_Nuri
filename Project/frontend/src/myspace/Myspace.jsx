@@ -26,7 +26,7 @@ function Myspace() {
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
     
-    axios.get('/accounts/profile/detail', {
+    axios.get('/accounts/profile/detail/duckracoon', {
             headers: {
                 'Authorization': `token ${token}`,
                 'Content-Type':'application/json'

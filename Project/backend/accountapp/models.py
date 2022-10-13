@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from _core.models import TimestampedModel
+from django.urls import reverse
+from django.template.defaultfilters import slugify
 
 import jwt
 from datetime import datetime, timedelta
@@ -96,14 +98,21 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    nickname = models.SlugField(max_length=15, unique=True, allow_unicode=True, blank=False)
+    nickname = models.CharField(max_length=15, unique=True, blank=False)
+    slug = models.SlugField(null=True, unique=True)
     self_intro = models.TextField(blank=True)
     profile_image = models.ImageField(upload_to='profile/', default='../static/img/default-profile.png')
     background_image = models.ImageField(upload_to='profile/', null=True, blank=True)
 
     def __str__(self):
         return self.nickname
+    
+    def get_absolute_url(self):
+        return reverse("profile_detail", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):
         self.nickname = self.user.username
+        if not self.slug:
+            self.slug = slugify(self.nickname)
+
         super(Profile, self).save(*args, **kwargs)

@@ -3,6 +3,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.views import APIView
+from rest_framework import authentication, exceptions
 from django.shortcuts import get_object_or_404
 
 from .serializers import RegistrationSerializer, LoginSerializer, UserSerializer, ProfileSerializer
@@ -107,17 +108,19 @@ class ProfileDetailAPIView(APIView):
     permission_classes = (AllowAny,)
     serializer_class = ProfileSerializer
 
-    def get(self, request):
+    def get(self, request, slug):
         token = request.COOKIES.get('jwt')
+        # token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjcwODQzNzQyfQ.ej2WJDoKW4ul6wsf17kGc42cWdPwVuGsVSqYwxY2rh0'
         if not token:
-            raise AuthenticationFailed('UnAutehnticated!')
+            raise exceptions.AuthenticationFailed('UnAutehnticated!')
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
         except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('UnAutehnticated!')
+            raise exceptions.AuthenticationFailed('UnAutehnticated!')
         
         user = User.objects.filter(id=payload['id']).first()
-        serializer = self.serializer_class(user, many=True)
+        profile = Profile.objects.get(user=user)
+        serializer = self.serializer_class(profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 

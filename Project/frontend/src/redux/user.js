@@ -1,20 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialStateValue = {
-    username: "유저네임", nickname: "닉네임", selfIntro: "셀프인트로", profileImg: "이미지다",
-    // email: "", lastLogin: "", token: "", username: "",
+    id: "error", 
+    nickname: "error", 
+    background_image: "error", 
+    profile_image: "error",
+    self_intro: "error",
+    user: "error",
+    slug: "error"
 }
 
 export const userSlice = createSlice({
     name: "user",
     initialState: { value: initialStateValue},
     reducers: {
-        login: (state, action) => {
+        user: (state, action) => {
             state.value = action.payload
         },
     },
 });
 
-export const { login } = userSlice.actions;
+export const { user } = userSlice.actions;
 
 export default userSlice.reducer;

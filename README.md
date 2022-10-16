@@ -65,7 +65,7 @@ $ pip install -r requirements.txt
 $ cd backend
 $ python manage.py makemigrations
 $ python manage.py migrate
-$ python manage.py runserver 8081
+$ python manage.py runserver
 
 // 프론트엔드 실행 안내
 $ cd Project/frontend
@@ -83,7 +83,7 @@ $ cat 곽병혁.json
 {
     "name" : "Kwak Byeong Hyeok (jeff721@cnsh.hs.kr)",
     "Github" : "@Aiden-Kwak",
-    "Role" : ["FullStack", "UI/UX", "CI/CD"]
+    "Role" : ["FullStack", "UI/UX", 'Product design']
 }
 
 $ cd mingi123
@@ -92,7 +92,7 @@ $ cat 정민기.json
 {
     "name" : "Jung MinGi (alsrl123488@gmail.com)",
     "Github" : "@mingi123",
-    "Role" : ["Full Stack", "UI/UX"]
+    "Role" : ["UI/UX"]
 }
 ```
 <br/>

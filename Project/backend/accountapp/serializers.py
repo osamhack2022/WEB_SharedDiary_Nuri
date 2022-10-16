@@ -59,7 +59,7 @@ class LoginSerializer(serializers.Serializer):
             'email': user.email,
             'username': user.username,
             'last_login': user.last_login,
-            'token': user.token
+            'token': user.token,
         }
     
 

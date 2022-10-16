@@ -20,7 +20,7 @@ export { Diary };
 //      writer
 //     프로필 이미지 필요
 //   }
-function Diary({testData}) {
+function Diary(props) {
     return (
         <div className="Diary">
             <div className='card'>
@@ -30,6 +30,10 @@ function Diary({testData}) {
                     </div>
                     <div className='diary-detail'>
                         <div className='diary-profile-info'>
+                            <p>{props.diaryElement.title}</p>
+                            <p>{props.diaryElement.content}</p>
+                            <p>{props.diaryElement.note}</p>
+                            <p>{props.diaryElement.writer.username}</p>
                             {/* <h4>{testData.nickname}</h4> */}
                             {/* <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].username}</p>
                             <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].created_at}</p>

@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import './diaryCreate.css'
 
 export {DiaryCreate}
+
+function Note() {
+    return(
+        <div className='Note'>
+            <div className='card'>
+                씨발
+            </div>
+        </div>
+    );
+}
 
 function DiaryCreate() {
     const token = localStorage.getItem('token');
@@ -24,17 +35,13 @@ function DiaryCreate() {
     const onSubmit = async() => {
         const url = "/home/diary/create";
         const userdata = {
-            'writer': 1,
             'title': title,
             'description': description,
             'image': null,
             'to_open': true
         };
         const config = {
-            headers: {
-                'Authorization': `token ${token}`,
-                // 'Content-Type':'application/json'
-            }, 
+            headers: {'Authorization': `token ${token}`,}, 
         };
         
         await axios 
@@ -53,6 +60,16 @@ function DiaryCreate() {
             <p><input type="text" name="title" value={title} onChange={onChange} placeholder="title"/></p>
             <p><input type="text" name="description" value={description} onChange={onChange} placeholder="description"/></p>
             <button onClick={onSubmit}>button</button>
+            <div className='note-grid'>
+                <Note/>
+                <Note/>
+                <Note/>
+                <Note/>
+                <Note/>
+                <Note/>
+                <Note/>
+            </div>
+            
         </div>
     );
 }

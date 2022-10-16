@@ -25,15 +25,6 @@ class NoteCreateView(APIView):
     
     # 게시물 생성
     def post(self, request, *args, **kwargs):
-        # token = request.COOKIES.get('jwt')
-        # if not token:
-        #     raise exceptions.AuthenticationFailed('UnAutehnticated!')
-        # try:
-        #     payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
-        # except jwt.ExpiredSignatureError:
-        #     raise exceptions.AuthenticationFailed('UnAutehnticated!')
-        
-        # user = User.objects.filter(id=payload['id']).first()
         serializer = NoteSerializer(data=request.data)
         if serializer.is_valid():
             post = Note.objects.create(
@@ -52,7 +43,8 @@ class NoteListAPI(APIView):
     serializer_class = NoteSerializer
 
     def get(self, request):
-        note = Note.objects.all()
+        user=request.user
+        note = Note.objects.filter(writer=user)
         serializer = NoteSerializer(diary, many=True)
         return Response(serializer.data)
 

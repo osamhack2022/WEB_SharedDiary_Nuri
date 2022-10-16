@@ -52,10 +52,12 @@ function Login() {
         await axios 
             .post(url, userdata, config)
             .then(function (res) {
-                console.log(res);
                 if (res.data.user.token) {
+                    localStorage.setItem('userdata', JSON.stringify(res.data));
                     localStorage.setItem('token', res.data.user.token);
-                    localStorage.setItem('username', res.data.user.username);    
+                    localStorage.setItem('username', res.data.user.username);
+                    localStorage.setItem('useremail', res.data.user.email);
+                    localStorage.setItem('userid', res.data.user.id);   
                 }
                 console.log(res.data)
                 // dispatch(login({username: res.data.user.username, nickname: "닉네임!", selfIntro: "셀프인트로!", profileImg: "이미지다!"}))

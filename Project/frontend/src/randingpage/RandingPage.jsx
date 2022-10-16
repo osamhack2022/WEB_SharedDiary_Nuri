@@ -24,7 +24,7 @@ function RandingPage(props) {
   }, [dispatch, variable])
 
   const diaryList = diarySelector&&diarySelector.map(diaryElement => (
-    <Diary diaryElement={diaryElement}/>
+    <Diary diaryElement={diaryElement} key={diaryElement.id}/>
   ))
 
   // content: "일기ㅣㅣㅣㅁ닝리"

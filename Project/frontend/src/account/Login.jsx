@@ -3,12 +3,12 @@ import axios from "axios";
 // import { JWTCheck } from '../lib';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
-import { login } from '../redux/user';
+// import { login } from '../redux/user';
 
 export { Login };
 
 function Login() {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const [info, setInfo] = useState({
         email: '',
         password: '',
@@ -54,10 +54,11 @@ function Login() {
             .then(function (res) {
                 console.log(res);
                 if (res.data.user.token) {
-                    localStorage.setItem('token', res.data.user.token);  
+                    localStorage.setItem('token', res.data.user.token);
+                    localStorage.setItem('username', res.data.user.username);    
                 }
                 console.log(res.data)
-                dispatch(login({username: res.data.user.username, nickname: "닉네임!", selfIntro: "셀프인트로!", profileImg: "이미지다!"}))
+                // dispatch(login({username: res.data.user.username, nickname: "닉네임!", selfIntro: "셀프인트로!", profileImg: "이미지다!"}))
                 window.history.back();
                 setTimeout(()=>{ window.location.reload() }, 100)
             })

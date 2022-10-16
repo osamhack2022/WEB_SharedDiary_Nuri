@@ -46,9 +46,8 @@ def get_ipaddress():
 
 CSRF_TRUSTED_ORIGINS = [
     get_ipaddress(), 
-    'https://osamhack2022-web-shareddiary-nuri-g67v9pv5qvvcpg4q-8000.githubpreview.dev',
-    'https://osamhack2022-web-shareddiary-nuri-5vp9j46vxx9hp6xp-8000.githubpreview.dev',
-    'https://osamhack2022-web-shareddiary-nuri-g67v9pvxgggcwxr9-8000.githubpreview.dev',
+    'http://localhost:8000',
+    'https://osamhack2022-v2-web-shareddiary-nuri-p9p5v65g7rq394vw-8000.githubpreview.dev'
     ]
 
 # Application definition

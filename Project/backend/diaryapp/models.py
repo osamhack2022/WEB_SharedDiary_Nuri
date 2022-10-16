@@ -4,7 +4,9 @@ from _core.models import TimestampedModel
 from accountapp.models import User
 
 OPEN_CHOICES = ((False, '나만 보기'), (True, '전체 공개'))
+
 class Note(TimestampedModel):
+    writer = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=45, null=True)
     description = models.TextField(max_length=150, blank=False, null=True)
     image = models.ImageField(upload_to='note/', null=True, blank=True)

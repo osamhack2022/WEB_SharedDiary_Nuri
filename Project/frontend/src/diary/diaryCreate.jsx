@@ -72,7 +72,7 @@ function DiaryCreate() {
     };
 
     const onSubmit = async() => {
-        const url = "/home/diary/create";
+        const url = "/home/note/create";
         const userdata = {
             'title': title,
             'description': description,

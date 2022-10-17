@@ -10,7 +10,7 @@ export {DiaryCreate}
 
 function Note(props) {
     return(
-        <Link to='/diary/list'>
+        <Link to='/diary/list' state={{ NoteProps: props}}>
             <div className='Note'>
                 <div className='card'>
                     <p>{props.noteElement.title}</p>

@@ -101,8 +101,7 @@ function DiaryShelf() {
             <button onClick={onSubmit}>button</button>
             <div className='note-grid'>
                 {noteList}
-            </div>
-            
+            </div> 
         </div>
     );
 }

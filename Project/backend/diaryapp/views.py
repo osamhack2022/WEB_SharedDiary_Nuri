@@ -44,7 +44,7 @@ class DiaryCreateView(APIView):
 
     def post(self, request, *args, **kwargs):
         serializer = DiarySerializer(data=request.data)
-        note_id = request.query_params['id']
+        note_id = request.data['id']
         note = Note.objects.filter(id__in=note_id)
 
         if serializer.is_valid():

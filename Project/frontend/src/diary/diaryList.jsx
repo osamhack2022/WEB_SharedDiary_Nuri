@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Diary } from '../_components';
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
@@ -25,7 +25,7 @@ function DiaryList(){
             setVariable(res.data);
         })
         .catch(error=>console.log(error));
-    }, [])
+    }, [note_id])
 
     useEffect(()=>{
         dispatch(diary(variable))
@@ -39,6 +39,9 @@ function DiaryList(){
     return (
         <div className='DiaryList'>
             <div className='list-container'>
+                <Link to='/diary/create' state={{ NoteProps: location.state.NoteProps.noteElement}}>
+                    <button>일기쓰기</button>
+                </Link>
                 <div className='list'>
                     {diaryList}
                 </div>          

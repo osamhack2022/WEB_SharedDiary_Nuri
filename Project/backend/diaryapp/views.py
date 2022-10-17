@@ -37,15 +37,28 @@ class NoteCreateView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class ListDiaryNote(APIView):
+    # 클라이언트에서 axios로 노트 id를 받아서 해당 노트의 일기를 필터링해 반환하는 API
+    permission_classes = (AllowAny,)
+
+    def get(self, request, *args, **kwargs):     
+        note_id = request.query_params['id']
+        note = Note.objects.filter(id__in=note_id)
+        diary = Diary.objects.filter(note__in=note)
+        serializer = DiarySerializer(diary, many=True)
+        return Response(serializer.data)
+
+
+
 
 class NoteListAPI(APIView):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = NoteSerializer
 
     def get(self, request):
         user=request.user
         note = Note.objects.filter(writer=user)
-        serializer = NoteSerializer(diary, many=True)
+        serializer = NoteSerializer(note, many=True)
         return Response(serializer.data)
 
 class UserDiaryAPI(APIView):

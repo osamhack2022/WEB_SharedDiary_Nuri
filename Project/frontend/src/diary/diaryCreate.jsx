@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { note } from '../redux/note';
+
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import './diaryCreate.css'
 
@@ -8,13 +10,16 @@ export {DiaryCreate}
 
 function Note(props) {
     return(
-        <div className='Note'>
-            <div className='card'>
-                <p>{props.noteElement.title}</p>
-                <p>{props.noteElement.description}</p>
-                <p>{props.noteElement.image}</p>
+        <Link to='/diary/list'>
+            <div className='Note'>
+                <div className='card'>
+                    <p>{props.noteElement.title}</p>
+                    <p>{props.noteElement.description}</p>
+                    <p>{props.noteElement.image}</p>
+                </div>
             </div>
-        </div>
+        </Link>
+        
     );
 }
 

@@ -4,9 +4,9 @@ import { note } from '../redux/note';
 
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import './diaryCreate.css'
+import './diaryShelf.css'
 
-export {DiaryCreate}
+export {DiaryShelf}
 
 function Note(props) {
     return(
@@ -23,7 +23,7 @@ function Note(props) {
     );
 }
 
-function DiaryCreate() {
+function DiaryShelf() {
     const noteSelector = useSelector((state) => state.note.value)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token');
@@ -94,7 +94,7 @@ function DiaryCreate() {
     }
 
     return (
-        <div className="DiaryCreate">
+        <div className="DiaryShelf">
             노트작성(제목, 설명, 사진)
             <p><input type="text" name="title" value={title} onChange={onChange} placeholder="title"/></p>
             <p><input type="text" name="description" value={description} onChange={onChange} placeholder="description"/></p>

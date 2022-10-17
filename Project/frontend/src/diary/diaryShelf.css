@@ -1,14 +1,14 @@
-.DiaryCreate {
+.DiaryShelf {
     width:1600px;
     margin: 0 auto;
     padding: 50px 0;
 }
-.DiaryCreate > .note-grid {
+.DiaryShelf > .note-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
 }
-.DiaryCreate > .note-grid > a {
+.DiaryShelf > .note-grid > a {
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
     border: 1px solid #000;
     display: flex;

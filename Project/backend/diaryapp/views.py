@@ -9,7 +9,7 @@ from .serializer import DiarySerializer, NoteSerializer
 
 from diaryapp.models import Diary, Note
 
-# class Note():
+# 모든 일기장 리스트 반환 API
 class DiaryList(APIView):
     permission_classes = (AllowAny,)
     serializer_class = DiarySerializer
@@ -19,11 +19,11 @@ class DiaryList(APIView):
         serializer = self.serializer_class(diary, many=True)
         return Response(serializer.data)
 
+# 일기장 생성 API
 class NoteCreateView(APIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = NoteSerializer
     
-    # 게시물 생성
     def post(self, request, *args, **kwargs):
         serializer = NoteSerializer(data=request.data)
         if serializer.is_valid():
@@ -37,8 +37,31 @@ class NoteCreateView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# 일기장안에서 일기생성 API
+class DiaryCreateView(APIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = DiarySerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = DiarySerializer(data=request.data)
+        note_id = request.data['id']
+        note = Note.objects.filter(id__in=note_id)
+
+        if serializer.is_valid():
+            post = Diary.objects.create(
+                writer=request.user,
+                title=request.data['title'],
+                content=request.data['content'],
+                note=note,
+                imate=request.data['image'],
+                to_open=request.data['to_open']
+            )
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# 클라이언트에서 axios로 노트 id를 받아서 해당 노트의 일기를 필터링해 반환하는 API
 class ListDiaryNote(APIView):
-    # 클라이언트에서 axios로 노트 id를 받아서 해당 노트의 일기를 필터링해 반환하는 API
     permission_classes = (AllowAny,)
 
     def get(self, request, *args, **kwargs):     
@@ -50,7 +73,7 @@ class ListDiaryNote(APIView):
 
 
 
-
+# 로그인된 유저의(자신의) 일기장 반환 API
 class NoteListAPI(APIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = NoteSerializer

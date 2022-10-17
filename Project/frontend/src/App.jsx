@@ -3,7 +3,7 @@ import { Signup, Login, ProfileCreate, ProfileDetail } from './account';
 import { RandingPage } from './randingpage';
 import { Myspace } from './myspace';
 import { Header, Footer, NotFound } from './_components';
-import { DiaryContext, DiaryCreate, DiaryList } from './diary';
+import { DiaryContext, DiaryShelf, DiaryList, DiaryCreate } from './diary';
 import { useDispatch } from 'react-redux'
 
 import { authenticate } from './redux/isauthenticated';
@@ -30,6 +30,7 @@ function App() {
             <Route path="/profile/detail" element={<ProfileDetail/>}/>
             <Route path="/diary" element={<DiaryContext/>}/>
             <Route path="/diary/create" element={<DiaryCreate/>}/>
+            <Route path="/diaryshelf" element={<DiaryShelf/>}/>
             <Route path="/diary/list" element={<DiaryList/>}/>
             <Route path="/myspace" element={<Myspace/>}/>
             <Route path="*" element={<NotFound/>}/>

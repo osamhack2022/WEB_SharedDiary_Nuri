@@ -1,72 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { note } from '../redux/note';
-
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation} from 'react-router-dom';
 import axios from "axios";
-import './diaryCreate.css'
-
 export {DiaryCreate}
 
-function Note(props) {
-    return(
-        <Link to='/diary/list' state={{ NoteProps: props}}>
-            <div className='Note'>
-                <div className='card'>
-                    <p>{props.noteElement.title}</p>
-                    <p>{props.noteElement.description}</p>
-                    <p>{props.noteElement.image}</p>
-                </div>
-            </div>
-        </Link>
-        
-    );
-}
-
-function DiaryCreate() {
-    const noteSelector = useSelector((state) => state.note.value)
-    const dispatch = useDispatch()
+function DiaryCreate(){
+    const location = useLocation();
+    const note_id = location.state.NoteProps.id
     const token = localStorage.getItem('token');
-    const user = localStorage.getItem('userid');
+    console.log(note_id)
 
-    // get note
-    const [myNote, setMyNote] = useState();
-
-    useEffect(() => {    
-        axios.get('/home/note', {
-            headers: {
-                'Authorization': `token ${token}`,
-                'Content-Type':'application/json'
-            },  
-        })
-        .then(res => {
-          setMyNote(res.data);
-        })
-        .catch(error=>console.log(error))
-    }, [token]);
-
-    useEffect(()=>{
-        dispatch(note(myNote))
-    }, [dispatch, myNote]);
-
-    // console.log(noteSelector[0].data.id);
-
-    const noteList = noteSelector&&noteSelector.map(noteElement => (
-        <Note noteElement={noteElement} key={noteElement.id}/>
-    ))
-
-    // create note
-    const [noteForm, setNoteForm] = useState({
+    const [diaryForm, setDiaryForm] = useState({
         title: '',
-        description: '',
+        content: '',
     });
 
-    const {title, description} = noteForm; // 비구조화할당
+    const {title, content} = diaryForm; // 비구조화할당
 
     const onChange = e => {
         const {value,name} = e.target;
-        setNoteForm({
-            ...noteForm,
+        setDiaryForm({
+            ...diaryForm,
             [name]:value
         });
     };
@@ -74,8 +27,9 @@ function DiaryCreate() {
     const onSubmit = async() => {
         const url = "/home/diary/create";
         const userdata = {
+            'id': note_id,
             'title': title,
-            'description': description,
+            'content': content,
             'image': null,
             'to_open': true
         };
@@ -95,14 +49,10 @@ function DiaryCreate() {
 
     return (
         <div className="DiaryCreate">
-            노트작성(제목, 설명, 사진)
+            일기장안에서 일기생성
             <p><input type="text" name="title" value={title} onChange={onChange} placeholder="title"/></p>
-            <p><input type="text" name="description" value={description} onChange={onChange} placeholder="description"/></p>
+            <p><textarea type="text" name="content" onChange={onChange}>{content}</textarea></p>
             <button onClick={onSubmit}>button</button>
-            <div className='note-grid'>
-                {noteList}
-            </div>
-            
         </div>
     );
 }

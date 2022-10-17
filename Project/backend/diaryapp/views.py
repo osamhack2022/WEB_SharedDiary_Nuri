@@ -39,13 +39,13 @@ class NoteCreateView(APIView):
 
 
 class NoteListAPI(APIView):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = NoteSerializer
 
     def get(self, request):
         user=request.user
         note = Note.objects.filter(writer=user)
-        serializer = NoteSerializer(diary, many=True)
+        serializer = NoteSerializer(note, many=True)
         return Response(serializer.data)
 
 class UserDiaryAPI(APIView):

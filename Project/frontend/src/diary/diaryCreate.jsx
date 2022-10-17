@@ -1,22 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { note } from '../redux/note';
 import axios from "axios";
 import './diaryCreate.css'
 
 export {DiaryCreate}
 
-function Note() {
+function Note(props) {
     return(
         <div className='Note'>
             <div className='card'>
-                씨발
+                <p>{props.noteElement.title}</p>
+                <p>{props.noteElement.description}</p>
+                <p>{props.noteElement.image}</p>
             </div>
         </div>
     );
 }
 
 function DiaryCreate() {
+    const noteSelector = useSelector((state) => state.note.value)
+    const dispatch = useDispatch()
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('userid');
+
+    // get note
+    const [myNote, setMyNote] = useState();
+
+    useEffect(() => {    
+        axios.get('/home/note', {
+            headers: {
+                'Authorization': `token ${token}`,
+                'Content-Type':'application/json'
+            },  
+        })
+        .then(res => {
+          setMyNote(res.data);
+        })
+        .catch(error=>console.log(error))
+    }, [token]);
+
+    useEffect(()=>{
+        dispatch(note(myNote))
+    }, [dispatch, myNote]);
+
+    // console.log(noteSelector[0].data.id);
+
+    const noteList = noteSelector&&noteSelector.map(noteElement => (
+        <Note noteElement={noteElement} key={noteElement.id}/>
+    ))
+
+    // create note
     const [noteForm, setNoteForm] = useState({
         title: '',
         description: '',
@@ -61,13 +95,7 @@ function DiaryCreate() {
             <p><input type="text" name="description" value={description} onChange={onChange} placeholder="description"/></p>
             <button onClick={onSubmit}>button</button>
             <div className='note-grid'>
-                <Note/>
-                <Note/>
-                <Note/>
-                <Note/>
-                <Note/>
-                <Note/>
-                <Note/>
+                {noteList}
             </div>
             
         </div>

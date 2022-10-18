@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import './account.css';
-// import { JWTCheck } from '../lib';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-// import { login } from '../redux/user';
+import { Link } from 'react-router-dom';
 
 export { Login };
 
 function Login() {
-    // const dispatch = useDispatch()
     const [info, setInfo] = useState({
         email: '',
         password: '',
@@ -90,7 +86,12 @@ function Login() {
                     <p className='input'><input type="text" name="email" value={email} onChange={onChange} onKeyPress={loginEnter} placeholder="이메일"/></p>
                     <p className='input'><input type="password" name="password" value={password} onChange={onChange} onKeyPress={loginEnter} placeholder="비밀번호"/></p>   
                     <p className='submit'><input type="submit" value="로그인" onClick={onSubmit}/></p>
+                    <p className='register'>
+                        <span style={{marginRight:'5px'}}>누리는 처음이신가요?</span>
+                        <Link to='/accounts/signup'><span style={{color:'#4CA771'}}>회원가입</span></Link>
+                    </p>
                 </div>
+                
             </div>
             
         </div>  

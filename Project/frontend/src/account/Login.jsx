@@ -68,7 +68,14 @@ function Login() {
             .catch(function (error) {
                 console.log(error);
             });
-    }
+    };
+
+    const loginEnter =(e) => {
+        if(e.key === 'Enter'){
+            console.log('작동');
+            onSubmit();
+        }
+    };
 
     return (
         <div className='Login'>
@@ -80,8 +87,8 @@ function Login() {
                     <p style={{color: '#808080'}}>누리, 사색을 공유하다</p>
                 </div>
                 <div className='login-form'>
-                    <p className='input'><input type="text" name="email" value={email} onChange={onChange} placeholder="이메일"/></p>
-                    <p className='input'><input type="password" name="password" value={password} onChange={onChange} placeholder="비밀번호"/></p>   
+                    <p className='input'><input type="text" name="email" value={email} onChange={onChange} onKeyPress={loginEnter} placeholder="이메일"/></p>
+                    <p className='input'><input type="password" name="password" value={password} onChange={onChange} onKeyPress={loginEnter} placeholder="비밀번호"/></p>   
                     <p className='submit'><input type="submit" value="로그인" onClick={onSubmit}/></p>
                 </div>
             </div>

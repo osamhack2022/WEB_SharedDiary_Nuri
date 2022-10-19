@@ -1,3 +1,4 @@
+/* Diary */
 .Diary {
     display: flex;
     justify-content: center;
@@ -73,3 +74,70 @@
 .Diary > .card > .diary-reaction > .icon > p {
     margin: 0 .25rem 0 .25rem;
 }
+
+/* Footer */
+.Footer {
+    text-align: center;
+    background-color: #E9EAEB;
+    position: absolute;
+    bottom: 1;
+    width: 100%;
+}
+
+/* Header */
+.Header {
+    padding: 1rem;
+    font-size: 1rem;
+}
+.Header > .navbar {
+    display: flex;
+}
+.Header > .navbar > .logo-area {
+    display: flex;
+    margin: 0 4rem 0 4rem;
+}
+.Header > .navbar > .logo-area > a {
+    display: flex;
+    align-items: center;
+}
+.Header > .navbar > .logo-area > a > .logo {
+    display: flex;
+    align-items: center;
+}
+.Header > .navbar > .nav-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30vw;
+}
+.Header > .navbar > .nav-input > input {  
+    border: none;
+    border-radius: .3rem;
+    background: #E9EAEB;
+    height: 2.5rem;
+    width: 100%;
+    vertical-align: middle;
+}
+.Header > .navbar > .nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+.Header > .navbar > .nav-menu > a {
+    margin: 0 1.5rem 0 1.5rem;
+}
+.Header > .navbar > .nav-menu > .active {
+    color: #4CA771;
+}
+.Header > .navbar > .nav-menu > button {
+    padding: 5px;
+    border: none;
+    border-radius: .3rem;
+    background: #4CA771;
+    margin: 0 3rem 0 1.5rem;
+}
+
+/* ProfileCard */
+
+/* NotFound */

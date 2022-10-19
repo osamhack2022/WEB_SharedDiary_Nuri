@@ -1,6 +1,6 @@
 import { NavLink, Link, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux'
-import '../static/css/header.css';
+import './components.css';
 export { Header };
 
 function Header() {

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { user } from '../redux/user';
 import { useParams } from 'react-router-dom';
 import { Profile } from '../account';
+import { ProfileCard } from '../_components/ProfileCard';
 import './myspace.css'
 export {Myspace};
 
@@ -18,6 +19,7 @@ function Myspace() {
                 <h2>당신이 좋아할 누리들</h2>
                 <div className='list'>
                     리스트 컴포넌트 만들어 넣기
+                    <ProfileCard/>
                 </div>
             </div>          
         </div>

@@ -1,3 +1,4 @@
+import './components.css';
 export { NotFound };
 
 function NotFound() {

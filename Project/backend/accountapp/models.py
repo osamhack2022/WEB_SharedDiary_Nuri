@@ -103,6 +103,8 @@ class Profile(models.Model):
     self_intro = models.TextField(blank=True)
     profile_image = models.ImageField(upload_to='profile/', default='../static/img/default-profile.png')
     background_image = models.ImageField(upload_to='profile/', null=True, blank=True)
+    following = models.ManyToManyField('self', symmetrical=False, related_name='followings', blank=True, null=True)
+    follower = models.ManyToManyField('self', symmetrical=False, related_name='followers', blank=True, null=True)
 
     def __str__(self):
         return self.nickname

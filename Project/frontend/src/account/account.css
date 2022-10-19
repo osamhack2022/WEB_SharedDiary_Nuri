@@ -60,7 +60,15 @@
 }
 
 /* Profile */
+.Profile {
+    width: 100%;
+    display: flex;
+}
+.Profile > .Profile-container {
+    
 
+
+}
 
 
 

@@ -1,0 +1,11 @@
+.Myspace {
+    display: flex;
+    
+}
+.Myspace > .Myspace-profile-cp {
+    width: 60%;
+}
+.Myspace > .Nuri-list {
+    width: 40%;
+    background-color: aqua;
+}

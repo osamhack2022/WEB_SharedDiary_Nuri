@@ -3,6 +3,8 @@ import axios from "axios";
 import './account.css';
 import { Link } from 'react-router-dom';
 
+import { VscWorkspaceUntrusted } from "react-icons/vsc";
+
 export { Login };
 
 function Login() {
@@ -10,6 +12,8 @@ function Login() {
         email: '',
         password: '',
     });
+
+    const [loginError, setLoginError] = useState(false)
 
     const {email, password} = info; // 비구조화할당
 
@@ -63,6 +67,7 @@ function Login() {
             })
             .catch(function (error) {
                 console.log(error);
+                setLoginError(true);
             });
     };
 
@@ -89,6 +94,10 @@ function Login() {
                     <p className='register'>
                         <span style={{marginRight:'5px'}}>누리는 처음이신가요?</span>
                         <Link to='/accounts/signup'><span style={{color:'#4CA771'}}>회원가입</span></Link>
+                    </p>
+                    <p className={'error'+(loginError?'active':'')}>
+                        <VscWorkspaceUntrusted/>
+                        <span style={{marginLeft:'5px'}}>계정정보가 잘못되었습니다.</span>
                     </p>
                 </div>
                 

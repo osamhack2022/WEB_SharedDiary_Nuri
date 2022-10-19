@@ -47,6 +47,16 @@
 }
 .Login > .Login-container > .login-form > p.register {
     text-align: center;
+    margin-bottom: 15px;
+}
+.Login > .Login-container > .login-form > p.error {
+    display: none;
+    color: red;
+    text-align: center;
+}
+.Login > .Login-container > .login-form > p.erroractive {
+    color: red;
+    text-align: center;
 }
 
 /* Profile */

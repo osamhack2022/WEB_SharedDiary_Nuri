@@ -79,8 +79,8 @@
 .Footer {
     text-align: center;
     background-color: #E9EAEB;
-    position: absolute;
-    bottom: 1;
+    position: fixed;
+    bottom: 0;
     width: 100%;
 }
 

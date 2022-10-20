@@ -48,7 +48,53 @@ function Myspace() {
                 <div className='list'>
                     {profileList}
                 </div>
-            </div>          
+            </div>
+            <div className="Myprofile">
+                <div className="ProfileDetail">
+                    <div className="background-img">
+                        <img src={require("../testimg/testbackground.png")}/>
+                        <div className="profile-img">
+                            <img src={require("../testimg/testprofile.png")}/>
+                        </div>
+                    </div>
+                    <div className="UserInfo">
+                        <p>profileUsername</p>
+                        <p>userProfile.nickname</p>
+                        <p>자기소개: userProfile.self_intro</p>
+                    </div>
+                </div>
+                <div className="TimeLine">
+                    <div className="NullSpace"></div>
+                    <div className="MydiaryTimeline">
+                        <div className="TimelineProfile">
+                            <div className="TimelineProfile-img">
+                                <img src={require("../testimg/testbackground.png")}/>
+                            </div>
+                            <div className="TimelineProfileDetail">
+                                <p>닉네임userProfile.nickname</p>
+                                <p>profileUsername</p>
+                            </div>
+                        </div>
+                        <div className="TimelineContent">
+                            <div className="TimelineContentNull"></div>
+                            <div classNanme="TimelineContentDetail">
+                                <div className="TimelinecontentTitle">
+                                    <p>제목입니다</p>
+                                </div>
+                                <div className="TimelineContent-img">
+                                    <img src={require("../testimg/testbackground.png")}/>
+                                </div>
+                                <div className="TimelineContentWriting">
+                                    <p>내용입니다.</p>
+                                    <p>가나다라마바사아자차카타하213213213213213213213213123</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="MydiaryList">
+            </div>   
         </div>
     );
 }

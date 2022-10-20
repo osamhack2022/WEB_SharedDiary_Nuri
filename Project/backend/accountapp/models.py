@@ -101,7 +101,7 @@ class Profile(models.Model):
     nickname = models.CharField(max_length=15, unique=True, blank=False)
     slug = models.SlugField(null=True, unique=True)
     self_intro = models.TextField(blank=True)
-    profile_image = models.ImageField(upload_to='profile/', default='../static/img/default-profile.png')
+    profile_image = models.ImageField(upload_to='profile/')
     background_image = models.ImageField(upload_to='profile/', null=True, blank=True)
     following = models.ManyToManyField('self', symmetrical=False, related_name='followings', blank=True, null=True)
     follower = models.ManyToManyField('self', symmetrical=False, related_name='followers', blank=True, null=True)

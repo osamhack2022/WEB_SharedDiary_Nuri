@@ -1,0 +1,145 @@
+/* Login */
+.Login {
+    top: 50%;
+    margin-top: -170px;
+    height: 280px;
+    position: absolute;
+    left: 50%;
+    margin-left: -180px;
+    width: 360px;
+}
+.Login > .Login-container > .logo {
+    display: flex;
+    justify-content: space-between;
+}
+.Login > .Login-container > .logo {
+    align-items: center;
+}
+.Login > .Login-container > .login-form > p.input {
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    border: 1px solid #d6d6d6;
+    background-color: #fff;
+}
+.Login > .Login-container > .login-form > p.input > input {
+    border: 0;
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
+    color: #292929;
+    font-size: 16px;
+    outline: none;
+}
+.Login > .Login-container > .login-form > p.submit {
+    margin-bottom: 15px;
+    background-color: #4CA771;
+}
+.Login > .Login-container > .login-form > p.submit > input {
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    background-color: #4CA771;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+}
+.Login > .Login-container > .login-form > p.register {
+    text-align: center;
+    margin-bottom: 15px;
+}
+.Login > .Login-container > .login-form > p.error {
+    display: none;
+    color: red;
+    text-align: center;
+}
+.Login > .Login-container > .login-form > p.erroractive {
+    color: red;
+    text-align: center;
+}
+
+/* Profile */
+.Profile {
+    display: flex;
+}
+.Profile > .Profile-container {
+    width: 100%;
+}
+.Profile > .Profile-container > .background-image {
+    width: 100%;
+    background-color: rgb(207, 217, 222);
+    height: 40%;
+}
+.Profile > .Profile-container > .background-image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.Profile > .Profile-container > .profile-image {
+    /* 포지션 relative로 겹쳐줘야할것같음 겹치면 flex로 나열한
+    누리리스트 풀리는데 어카지 */
+}
+
+.Profile > .Profile-container > .profile-content > .profile-nuri-inform {
+    display: flex;
+}
+.Profile > .Profile-container > .profile-content > .profile-nuri-inform > .count {
+    text-align: center;
+    margin: 0 5px 0 5px;
+}
+
+
+
+
+
+
+/* Signup */
+.Signup > .Signup-container {
+    top: 50%;
+    padding: 24px;
+    border: 1px solid #ededed;
+    border-radius: 12px;
+    margin: 24px auto;
+    width: 480px;
+}
+.Signup > .Signup-container > .logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.Signup > .Signup-container > .description {
+    color: #737373;
+    margin-bottom: 48px;
+}
+.Signup > .Signup-container > .signup-form > p.input {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border: 1px solid #d6d6d6;
+    border-radius: 6px;
+    background-color: #fff;
+}
+.Signup > .Signup-container > .signup-form > p.input > input {
+    border: 0;
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
+    color: #292929;
+    font-size: 16px;
+    outline: none;
+}
+.Signup > .Signup-container > .signup-form > p.submit {
+    margin-bottom: 15px;
+    background-color: #4CA771;
+}
+.Signup > .Signup-container > .signup-form > p.submit > input {
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    background-color: #4CA771;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    width: 100%;
+}

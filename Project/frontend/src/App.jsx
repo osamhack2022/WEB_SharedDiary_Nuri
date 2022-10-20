@@ -26,8 +26,8 @@ function App() {
             <Route path="/" element={<RandingPage/>}/>
             <Route path="/accounts/signup" element={<Signup/>}/>
             <Route path="/accounts/login" element={<Login/>}/>
-            <Route path="/profile/create" element={<ProfileCreate/>}/>
-            <Route path="/profile/detail" element={<ProfileDetail/>}/>
+            {/* <Route path="/profile/create" element={<ProfileCreate/>}/> */}
+            {/* <Route path="/profile/detail" element={<ProfileDetail/>}/> */}
             <Route path="/diary" element={<DiaryContext/>}/>
             <Route path="/diary/create" element={<DiaryCreate/>}/>
             <Route path="/diaryshelf" element={<DiaryShelf/>}/>

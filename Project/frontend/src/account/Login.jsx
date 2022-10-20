@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import axios from "axios";
-// import { JWTCheck } from '../lib';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-// import { login } from '../redux/user';
+import './account.css';
+import { Link } from 'react-router-dom';
+
+import { VscWorkspaceUntrusted } from "react-icons/vsc";
 
 export { Login };
 
 function Login() {
-    // const dispatch = useDispatch()
     const [info, setInfo] = useState({
         email: '',
         password: '',
     });
+
+    const [loginError, setLoginError] = useState(false)
 
     const {email, password} = info; // 비구조화할당
 
@@ -66,16 +67,42 @@ function Login() {
             })
             .catch(function (error) {
                 console.log(error);
+                setLoginError(true);
             });
-    }
+    };
+
+    const loginEnter =(e) => {
+        if(e.key === 'Enter'){
+            console.log('작동');
+            onSubmit();
+        }
+    };
 
     return (
-        <>
-            <div className="Login">
-                <input type="text" name="email" value={email} onChange={onChange} placeholder="email"/>
-                <input type="password" name="password" value={password} onChange={onChange} placeholder="password"/>
+        <div className='Login'>
+            <div className="Login-container">
+                <div className='logo'>
+                    <svg width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox='0 0 48 48'>
+                        <path d="M7.7 29.5c-2.3 0-4.1-.8-5.6-2.4C.7 25.5 0 23 0 20c0-4.5 1.1-8.4 3.4-11.6C5.7 5.2 9.2 2.6 14 .5l3.1 7c-3 .5-5.6 1.5-7.8 3A10 10 0 0 0 5 15.9c.7-.3 1.7-.5 2.8-.5 2.2 0 4 .7 5.3 2 1.3 1.3 2 3 2 5.1 0 2.1-.7 3.8-2 5.1a7.3 7.3 0 0 1-5.4 2Zm19 0c-2.3 0-4.2-.8-5.6-2.4-1.4-1.6-2.1-4-2.1-7.1 0-4.5 1-8.4 3.4-11.6C24.7 5.2 28 2.6 32.8.5l3.2 7c-3 .5-5.7 1.5-7.9 3a10 10 0 0 0-4.2 5.3c.8-.3 1.7-.5 2.8-.5 2.2 0 4 .7 5.3 2 1.4 1.3 2 3 2 5.1 0 2.1-.6 3.8-2 5.1a7.3 7.3 0 0 1-5.3 2Z" fill="#4CA771"/>
+                    </svg>
+                    <p style={{color: '#808080'}}>누리, 사색을 공유하다</p>
+                </div>
+                <div className='login-form'>
+                    <p className='input'><input type="text" name="email" value={email} onChange={onChange} onKeyPress={loginEnter} placeholder="이메일"/></p>
+                    <p className='input'><input type="password" name="password" value={password} onChange={onChange} onKeyPress={loginEnter} placeholder="비밀번호"/></p>   
+                    <p className='submit'><input type="submit" value="로그인" onClick={onSubmit}/></p>
+                    <p className='register'>
+                        <span style={{marginRight:'5px'}}>누리는 처음이신가요?</span>
+                        <Link to='/accounts/signup'><span style={{color:'#4CA771'}}>회원가입</span></Link>
+                    </p>
+                    <p className={'error'+(loginError?'active':'')}>
+                        <VscWorkspaceUntrusted/>
+                        <span style={{marginLeft:'5px'}}>계정정보가 잘못되었습니다.</span>
+                    </p>
+                </div>
+                
             </div>
-            <button onClick={onSubmit}>button</button>
-        </>  
+            
+        </div>  
     );
 }

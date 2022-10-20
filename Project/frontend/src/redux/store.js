@@ -3,6 +3,7 @@ import userReducer from './user'
 import authenticateReducer from './isauthenticated';
 import diaryReducer from './diary';
 import noteReducer from './note';
+import profilelistReducer from './profilelist';
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     authenticate: authenticateReducer,
     diary: diaryReducer,
     note: noteReducer,
+    profilelist: profilelistReducer
   },
 })

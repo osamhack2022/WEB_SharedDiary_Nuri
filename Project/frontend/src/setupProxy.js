@@ -13,4 +13,10 @@ module.exports = (app) => {
       changeOrigin: true,
     }),
   );
+  app.use(
+    createProxyMiddleware("/media", {
+      target: "http://localhost:8000",
+      changeOrigin: true,
+    }),
+  );
 };

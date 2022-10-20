@@ -1,0 +1,189 @@
+/* Diary */
+.Diary {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+.Diary > .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem 0 1rem 0;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    padding: 1rem 0 1rem 0;
+    border-radius: 3%;  
+}
+.Diary > .card > p {
+    margin-left: auto;
+    color: #4CA771;
+    padding: 0 .25rem 0 0;
+}
+.Diary > .card > .diary-profile {
+    display: flex;
+    height: 50%;
+}
+.Diary > .card > .diary-profile > .diary-profile-img {
+    justify-content: flex-start ;
+    width: 50px;
+    height: 50px;
+    border-radius: 70%;
+    overflow: hidden;
+    margin: 0rem 0.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+}
+.Diary > .card > .diary-profile > .diary-profile-img > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.Diary > .card > .diary-profile > .diary-detail {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0.5rem 0.5rem;
+}
+.Diary > .card > .diary-profile > .diary-detail > .diary-profile-info {
+    display: block;
+    align-items: center;
+}
+.Diary > .card > .diary-profile > .diary-detail > .diary-img {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    margin: 0.5rem 0.5rem;
+}
+.Diary > .card > .diary-profile > .diary-detail > .diary-img > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+}
+.Diary > .card > .diary-content, .diary-reaction {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: .50rem .5rem 0 .5rem;
+}
+.Diary > .card > .diary-reaction > .icon {
+    display: flex;
+    flex-direction: row;
+}
+.Diary > .card > .diary-reaction > .icon > p {
+    margin: 0 .25rem 0 .25rem;
+}
+
+/* Footer */
+.Footer {
+    text-align: center;
+    background-color: #E9EAEB;
+    position: absolute;
+    bottom: 1;
+    width: 100%;
+}
+
+/* Header */
+.Header {
+    padding: 1rem;
+    font-size: 1rem;
+}
+.Header > .navbar {
+    display: flex;
+}
+.Header > .navbar > .logo-area {
+    display: flex;
+    margin: 0 4rem 0 4rem;
+}
+.Header > .navbar > .logo-area > a {
+    display: flex;
+    align-items: center;
+}
+.Header > .navbar > .logo-area > a > .logo {
+    display: flex;
+    align-items: center;
+}
+.Header > .navbar > .nav-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30vw;
+}
+.Header > .navbar > .nav-input > input {  
+    border: none;
+    border-radius: .3rem;
+    background: #E9EAEB;
+    height: 2.5rem;
+    width: 100%;
+    vertical-align: middle;
+}
+.Header > .navbar > .nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+.Header > .navbar > .nav-menu > a {
+    margin: 0 1.5rem 0 1.5rem;
+}
+.Header > .navbar > .nav-menu > .active {
+    color: #4CA771;
+}
+.Header > .navbar > .nav-menu > button {
+    padding: 5px;
+    border: none;
+    border-radius: .3rem;
+    background: #4CA771;
+    margin: 0 3rem 0 1.5rem;
+}
+
+/* ProfileCard */
+.ProfileCard {
+    margin-bottom: 1.5rem;
+}
+.ProfileCard > .ProfileCard-container {
+    display: flex;
+    width: 100%;
+}
+.ProfileCard > .ProfileCard-container > .image {
+    width: 70px;
+    height: 70px;
+    border-radius: 30%;
+    overflow: hidden;
+    margin: 0rem 0.75rem;
+    flex-shrink: 0;
+    flex-direction: column;
+}
+.ProfileCard > .ProfileCard-container > .image > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.ProfileCard > .ProfileCard-container > .inform {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1rem;
+}
+.ProfileCard > .ProfileCard-container > .btn {
+    border: none;
+    padding: 5px;
+    background-color: black;
+    height: 1.5rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.3rem;
+    margin-left: 1rem;
+    margin-top: 1.15rem;
+
+}
+.ProfileCard > .ProfileCard-container > .btn > button {
+    all: unset;
+}
+
+
+/* NotFound */

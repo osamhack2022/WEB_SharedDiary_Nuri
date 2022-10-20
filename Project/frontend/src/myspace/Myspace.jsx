@@ -1,55 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
-import { user } from '../redux/user';
+import { profilelist } from '../redux/profilelist';
 import { useParams } from 'react-router-dom';
-
+import { Profile } from '../account';
+import { ProfileCard } from '../_components/ProfileCard';
+import './myspace.css'
 export {Myspace};
 
 function Myspace() {
-    const [info, setInfo] = useState({
-        id: '',
-        nickname: '', 
-        background_image: '',
-        profile_image: '',
-        self_intro: '',
-        user: '',
-        slug: ''
-    });
-    // const { id, nickname, background_image, profile_image, self_intro, user, slug } = info;
-
-    let { profileUsername } = useParams();
-    profileUsername = localStorage.getItem('username');
-    const authentication = useSelector((state) => state.authenticate.value) //authentication.isAuthenticated 사용
-    const userProfile = useSelector((state) => state.user.value)
+    const [info, setInfo] = useState([]);
+    const userProfile = useSelector((state) => state.profilelist.value)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token');
-    // axios.get('/accounts/current', {
-    //         headers: {
-    //             'Authorization': `token ${token}`,
-    //             'Content-Type':'application/json'
-    //         },
-            
-    //     })
-    //     .then(res=>console.log(res))
-    //     .catch(error=>console.log(error))
-
-    // axios.get('/accounts/profile/list', {
-    //         headers: {
-    //             'Authorization': `token ${token}`,
-    //             'Content-Type':'application/json'
-    //         },
-            
-    //     })
-    //     .then(res=>console.log(res))
-    //     .catch(error=>console.log(error))
-
-    // axios.get('/home/diary')
-    //     .then(res=>console.log(res))
-    //     .catch(error=>console.log(error))
     
     useEffect(()=>{
-        axios.get(`/accounts/profile/detail/${profileUsername}`, {
+        axios.get('/accounts/profile/list', {
             headers: {
                 'Authorization': `token ${token}`,
                 'Content-Type':'application/json'
@@ -59,41 +25,30 @@ function Myspace() {
             setInfo(res.data)
         })
         .catch(error=>console.log(error))
-    }, [profileUsername, token]);
+    }, [token]);
 
 
     useEffect(()=>{
-        dispatch(user({
-            id: info.id,
-            nickname: info.nickname, 
-            background_image: info.background_image,
-            profile_image: info.profile_image,
-            self_intro: info.self_intro,
-            user: info.user,
-            slug: info.slug
-        }))
+        dispatch(profilelist(info))
     }, [info, dispatch])
 
+    console.log(userProfile)
+
+    const profileList = userProfile&&userProfile.map(profileElement => (
+        <ProfileCard profileElement={profileElement} key={profileElement.id}/>
+    ))
 
     return (
         <div className="Myspace">
-            <div className="Mydiary">
-                <div className='ProfileDetail'>
-                    <p>프로필 화면 만들거다</p>
-                    <div>
-                        <p>아마 유저네임: {profileUsername}</p>
-                        <p>아마 닉네임: {userProfile.nickname}</p>
-                        <p>아마 자기소개: {userProfile.self_intro}</p>
-                        <div>
-                            <p>아마사진: </p>
-                            <div className='profile-preview'>
-                                <img src={userProfile.profile_image} alt="profile-preview"  width={100} height={100} />
-                            </div>
-                        </div>
-                        <p>기타 등등</p>
-                    </div>
-                </div>
+            <div className='Myspace-profile-cp'>
+                <Profile/>
             </div>
+            <div className='Nuri-list'>
+                <h2 style={{marginBottom:'25px', marginLeft: '15px'}}>Find Nuries</h2>
+                <div className='list'>
+                    {profileList}
+                </div>
+            </div>          
         </div>
     );
 }

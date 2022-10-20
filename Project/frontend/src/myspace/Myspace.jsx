@@ -44,9 +44,8 @@ function Myspace() {
                 <Profile/>
             </div>
             <div className='Nuri-list'>
-                <h2>당신이 좋아할 누리들</h2>
+                <h2 style={{marginBottom:'25px', marginLeft: '15px'}}>Find Nuries</h2>
                 <div className='list'>
-                    리스트 컴포넌트 만들어 넣기
                     {profileList}
                 </div>
             </div>          

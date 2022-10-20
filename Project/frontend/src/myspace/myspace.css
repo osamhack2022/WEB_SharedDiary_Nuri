@@ -4,8 +4,10 @@
 }
 .Myspace > .Myspace-profile-cp {
     width: 60%;
+    border-right-style: solid;
+    border-color: rgb(239, 243, 244);
+    border: 2px;
 }
 .Myspace > .Nuri-list {
     width: 40%;
-    background-color: aqua;
 }

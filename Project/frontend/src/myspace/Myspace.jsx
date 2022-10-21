@@ -13,6 +13,7 @@ function Myspace() {
     const userProfile = useSelector((state) => state.profilelist.value)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
     
     useEffect(()=>{
         axios.get('/accounts/profile/list', {
@@ -34,7 +35,8 @@ function Myspace() {
 
     console.log(userProfile)
 
-    const profileList = userProfile&&userProfile.map(profileElement => (
+
+    const profileList = userProfile&&userProfile.map(profileElement => ( 
         <ProfileCard profileElement={profileElement} key={profileElement.id}/>
     ))
 
@@ -49,7 +51,7 @@ function Myspace() {
                     {profileList}
                 </div>
             </div>
-            <div className="Myprofile">
+            {/* <div className="Myprofile">
                 <div className="ProfileDetail">
                     <div className="background-img">
                         <img src={require("../testimg/testbackground.png")}/>
@@ -94,7 +96,7 @@ function Myspace() {
                 </div>
             </div>
             <div className="MydiaryList">
-            </div>   
+            </div>    */}
         </div>
     );
 }

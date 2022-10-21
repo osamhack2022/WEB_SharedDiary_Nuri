@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { user } from '../redux/user';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 export { Profile };
 
 function Profile() {
@@ -22,13 +22,16 @@ function Profile() {
     const userProfile = useSelector((state) => state.user.value)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token');
-    const id = localStorage.getItem('userid');
-    userid = id
+    // const id = localStorage.getItem('userid');
+    // userid = id
+
+    const location = useLocation();
+    const id = location.state.id
     
     useEffect(()=>{
-        axios.get(`/accounts/profile/detail/${userid}`, {
+        axios.get(`/accounts/profile/detail/${id}`, {
             params: {
-                id: userid
+                id: id
             },  
         })
         .then(function(res){

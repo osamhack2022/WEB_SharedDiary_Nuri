@@ -16,25 +16,26 @@ function Profile() {
         slug: ''
     });
 
-    let { profileUsername } = useParams();
-    profileUsername = localStorage.getItem('username');
+    let { userid } = useParams();
+    // profileUsername = localStorage.getItem('username');
     const authentication = useSelector((state) => state.authenticate.value) //authentication.isAuthenticated 사용
     const userProfile = useSelector((state) => state.user.value)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token');
+    const id = localStorage.getItem('userid');
+    userid = id
     
     useEffect(()=>{
-        axios.get(`/accounts/profile/detail/${profileUsername}`, {
-            headers: {
-                'Authorization': `token ${token}`,
-                'Content-Type':'application/json'
+        axios.get(`/accounts/profile/detail/${userid}`, {
+            params: {
+                id: userid
             },  
         })
         .then(function(res){
             setInfo(res.data)
         })
         .catch(error=>console.log(error))
-    }, [profileUsername, token]);
+    }, [userid]);
 
 
     useEffect(()=>{
@@ -50,7 +51,7 @@ function Profile() {
     }, [info, dispatch])
     const page_hosturl = 'https://'+window.location.hostname
     const profile_image = userProfile.profile_image
-
+    console.log(userProfile)
     return (
         <div className="Profile">
             <div className="Profile-container">
@@ -65,7 +66,7 @@ function Profile() {
                 </div>
                 <button className='profile-edit'>프로필 수정</button>
                 <div className='profile-content'>
-                    <p className='username'>{profileUsername}</p>
+                    <p className='username'>유저네임채워야함</p>
                     <p className='nickname'>{`@${userProfile.nickname}`}</p>
                     <p className='self-intro'>{userProfile.self_intro}</p>
                     <div className='profile-nuri-inform'>

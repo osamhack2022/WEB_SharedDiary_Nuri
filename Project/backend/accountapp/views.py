@@ -108,20 +108,26 @@ class ProfileDetailAPIView(APIView):
     permission_classes = (AllowAny,)
     serializer_class = ProfileSerializer
 
-    def get(self, request, slug):
-        token = request.COOKIES.get('jwt')
-        # token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjcwODQzNzQyfQ.ej2WJDoKW4ul6wsf17kGc42cWdPwVuGsVSqYwxY2rh0'
-        if not token:
-            raise exceptions.AuthenticationFailed('UnAutehnticated!')
-        try:
-            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
-        except jwt.ExpiredSignatureError:
-            raise exceptions.AuthenticationFailed('UnAutehnticated!')
-        
-        user = User.objects.filter(id=payload['id']).first()
+    def get(self, request, pk):
+        id = request.query_params['id']
+        user = User.objects.get(id=id)
         profile = Profile.objects.get(user=user)
         serializer = self.serializer_class(profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # def get(self, request, slug):
+    #     token = request.COOKIES.get('jwt')
+    #     if not token:
+    #         raise exceptions.AuthenticationFailed('UnAutehnticated!')
+    #     try:
+    #         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+    #     except jwt.ExpiredSignatureError:
+    #         raise exceptions.AuthenticationFailed('UnAutehnticated!')
+        
+    #     user = User.objects.filter(id=payload['id']).first()
+    #     profile = Profile.objects.get(user=user)
+    #     serializer = self.serializer_class(profile)
+    #     return Response(serializer.data, status=status.HTTP_200_OK)
 
 class FollowAPIView(APIView):
     permission_classes = (IsAuthenticated,)

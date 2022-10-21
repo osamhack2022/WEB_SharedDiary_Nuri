@@ -26,6 +26,7 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(max_length=128, write_only=True)
     last_login = serializers.CharField(max_length=255, read_only=True)
     token = serializers.CharField(max_length=255, read_only=True)
+    id = serializers.ReadOnlyField()
 
     def validate(self, data):
         email = data.get('email', None)
@@ -56,7 +57,8 @@ class LoginSerializer(serializers.Serializer):
         user.save(update_fields=['last_login'])
 
         return {
-            'email': user.email,
+            'id': user.pk,
+            'email':user.email,
             'username': user.username,
             'last_login': user.last_login,
             'token': user.token,

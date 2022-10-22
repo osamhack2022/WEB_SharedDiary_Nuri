@@ -140,7 +140,12 @@
 
 /* ProfileCard */
 .ProfileCard {
-    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.ProfileCard:hover {
+    transition: 0.5s ease-out;
+    background-color: #E2E2E2;
 }
 .ProfileCard > .ProfileCard-container {
     display: flex;

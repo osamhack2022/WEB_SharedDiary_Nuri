@@ -1,7 +1,5 @@
 .DiaryShelf {
-    width:1600px;
-    margin: 0 auto;
-    padding: 50px 0;
+    display: flex;
 }
 .DiaryShelf > .note-grid {
     display: grid;
@@ -16,4 +14,34 @@
     justify-content: center;
     padding: 150px; /*임시*/
 }
-
+.DiaryShelf > .WritingDiary {
+    width: 50vw;
+    height: 150vw;
+    display: flex;
+    flex-direction: column;
+    margin: 5rem 5rem 5rem 8rem;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    padding: 1rem 0 1rem 0;
+    border-radius: 30px;  
+}
+.DiaryShelf > .WritingDiary > .InsertImg > {
+    width: 10px;
+    height: 10px;
+}
+.DiaryShelf > .WritingDiary > .InsertImg > .img{
+    width: 10px;
+    height: 10px;
+}
+.DiaryShelf > .WritingDiary > .title > {
+    width: 100px;
+    height: 100px;
+}
+.DiaryShelf > .Nuri-list {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    margin: 5rem 5rem 5rem 0;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    padding: 1rem 0 1rem 0;
+    border-radius: 30px;  
+}

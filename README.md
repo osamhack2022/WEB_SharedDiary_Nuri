@@ -1,7 +1,7 @@
 # 🌱 누리
 ### <strong>아카이브를 강화한 SNS형태의 공유형 일기장</strong>
 <br/>
-discord test
+
 ```bash
 저장소 규칙명시
 WEB(FE) : Project/frontend

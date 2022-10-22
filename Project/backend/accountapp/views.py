@@ -136,7 +136,7 @@ class FollowAPIView(APIView):
     def post(self, request, *args, **kwargs):
         user = request.user
         profile = Profile.objects.get(user=user)
-        another_user = request.get['username']
+        another_user = User.objects.get(id=request.data['id'])
         another_profile = Profile.objects.get(user=another_user)
         profile.following.add(another_profile)
         another_profile.follower.add(profile)

@@ -54,7 +54,7 @@ function Profile() {
     }, [info, dispatch])
     const page_hosturl = 'https://'+window.location.hostname
     const profile_image = userProfile.profile_image
-    console.log(userProfile)
+
     return (
         <div className="Profile">
             <div className="Profile-container">

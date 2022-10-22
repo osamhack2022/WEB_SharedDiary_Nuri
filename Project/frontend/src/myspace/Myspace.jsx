@@ -33,8 +33,6 @@ function Myspace() {
         dispatch(profilelist(info))
     }, [info, dispatch])
 
-    console.log(userProfile)
-
 
     const profileList = userProfile&&userProfile.map(profileElement => ( 
         <ProfileCard profileElement={profileElement} key={profileElement.id}/>

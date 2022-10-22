@@ -4,6 +4,7 @@ import './components.css';
 export {ProfileCard}
 
 function ProfileCard(props) {
+    const token = localStorage.getItem('token');
     const page_hosturl = 'https://'+window.location.hostname
     const profile_image = props.profileElement.profile_image
     const nickname = props.profileElement.nickname
@@ -12,7 +13,21 @@ function ProfileCard(props) {
     const email = props.profileElement.user
     const id = props.profileElement.id
     
-    
+    const followBtn = () => {
+        const url = '/accounts/profile/follow';
+        const followId = {'id':id};
+        const config = {
+            headers: {'Authorization': `token ${token}`,}, 
+        };
+        axios
+            .post(url, followId, config)
+            .then(function(res){
+                console.log(res)
+            })
+            .catch(function(error){
+                console.log(error)
+            })
+    }
 
     return (
         <Link to="/myspace/:userid" state={{id: id}}>
@@ -29,7 +44,7 @@ function ProfileCard(props) {
                         <p>{username}</p>
                         <p>{self_intro}</p>
                     </div>
-                    <p className='btn'><button>Follow</button></p>
+                    <p className='btn' onClick={followBtn}><button>Follow</button></p>
                 </div>
             </div>
         </Link>

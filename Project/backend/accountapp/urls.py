@@ -7,7 +7,7 @@ urlpatterns = [
     path('login', LoginAPIView.as_view()),
     path('current', UserRetrieveUpdateAPIView.as_view()),
     path('profile/list', ProfileListAPIView.as_view()), # 나중에 뒤에 /유저닉네임 붙일거임
-    path('profile/detail/<slug:slug>', ProfileDetailAPIView.as_view()),
+    path('profile/detail/<int:pk>', ProfileDetailAPIView.as_view()),
     path('profile/follow', FollowAPIView.as_view()),
     path('isauthenticated', UserView.as_view()),
 ]

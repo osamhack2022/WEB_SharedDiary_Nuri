@@ -32,7 +32,7 @@ function App() {
             <Route path="/diary/create" element={<DiaryCreate/>}/>
             <Route path="/diaryshelf" element={<DiaryShelf/>}/>
             <Route path="/diary/list" element={<DiaryList/>}/>
-            <Route path="/myspace" element={<Myspace/>}/>
+            <Route path="/myspace/:userid" element={<Myspace/>}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>
           <Footer/>

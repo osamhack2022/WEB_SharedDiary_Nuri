@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { user } from '../redux/user';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 export { Profile };
 
 function Profile() {
@@ -16,25 +16,29 @@ function Profile() {
         slug: ''
     });
 
-    let { profileUsername } = useParams();
-    profileUsername = localStorage.getItem('username');
+    let { userid } = useParams();
+    // profileUsername = localStorage.getItem('username');
     const authentication = useSelector((state) => state.authenticate.value) //authentication.isAuthenticated 사용
     const userProfile = useSelector((state) => state.user.value)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token');
+    // const id = localStorage.getItem('userid');
+    // userid = id
+
+    const location = useLocation();
+    const id = location.state.id
     
     useEffect(()=>{
-        axios.get(`/accounts/profile/detail/${profileUsername}`, {
-            headers: {
-                'Authorization': `token ${token}`,
-                'Content-Type':'application/json'
+        axios.get(`/accounts/profile/detail/${id}`, {
+            params: {
+                id: id
             },  
         })
         .then(function(res){
             setInfo(res.data)
         })
         .catch(error=>console.log(error))
-    }, [profileUsername, token]);
+    }, [userid]);
 
 
     useEffect(()=>{
@@ -65,7 +69,7 @@ function Profile() {
                 </div>
                 <button className='profile-edit'>프로필 수정</button>
                 <div className='profile-content'>
-                    <p className='username'>{profileUsername}</p>
+                    <p className='username'>유저네임채워야함</p>
                     <p className='nickname'>{`@${userProfile.nickname}`}</p>
                     <p className='self-intro'>{userProfile.self_intro}</p>
                     <div className='profile-nuri-inform'>

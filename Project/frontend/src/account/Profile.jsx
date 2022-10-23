@@ -86,13 +86,13 @@ function Profile() {
                             <p className='num'>132</p>
                             <p className='what'>일기</p>
                         </div>
-                        <Link to='/following/list'>
+                        <Link to='/following/list' state={{id:userProfile.id}}>
                             <div className='count diary-num'>
                                 <p className='num'>46</p>
                                 <p className='what'>팔로잉</p>
                             </div>
                         </Link>
-                        <Link to='/follower/list'>
+                        <Link to='/follower/list' state={{id:userProfile.id}}>
                             <div className='count diary-num'>
                                 <p className='num'>329</p>
                                 <p className='what'>팔로워</p>

@@ -33,7 +33,7 @@ function Diary(props) {
                             <p>{props.diaryElement.title}</p>
                             <p>{props.diaryElement.content}</p>
                             <p>{props.diaryElement.note}</p>
-                            <p>{props.diaryElement.writer.username}</p>
+                            <p>{props.diaryElement.writer}</p>
                             {/* <h4>{testData.nickname}</h4> */}
                             {/* <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].username}</p>
                             <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].created_at}</p>

@@ -9,22 +9,18 @@ function DiaryCreate(){
     const location = useLocation();
     const note_id = location.state.NoteProps.id
     const token = localStorage.getItem('token');
-    console.log(note_id)
 
-    const [diaryForm, setDiaryForm] = useState({
-        title: '',
-        content: '',
-    });
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
 
-    const {title, content} = diaryForm; // 비구조화할당
-
-    const onChange = e => {
-        const {value,name} = e.target;
-        setDiaryForm({
-            ...diaryForm,
-            [name]:value
-        });
+    const onChangeTitle = e => {
+        setTitle(e.target.value);
+        // console.log(title);
     };
+    const onChangeContent = e => {
+        setContent(e);
+        // console.log(content);
+    }
 
     const onSubmit = async() => {
         const url = "/home/diary/create";
@@ -89,9 +85,9 @@ function DiaryCreate(){
     return (
         <div className="DiaryCreate">
             일기장안에서 일기생성
-            <p><input type="text" name="title" value={title} onChange={onChange} placeholder="title"/></p>
+            <p><input type="text" name="title" value={title} onChange={onChangeTitle} placeholder="title"/></p>
             <div className='quill-textarea' style={{padding:"5rem"}}>
-                <ReactQuill theme="snow" value={content} onChange={onChange} modules={modules} formats={formats}
+                <ReactQuill theme="snow" value={content||''} onChange={onChangeContent} modules={modules} formats={formats}
                     style={{height:"450px"}}
                 />
             </div>

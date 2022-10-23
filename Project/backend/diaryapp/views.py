@@ -45,15 +45,16 @@ class DiaryCreateView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = DiarySerializer(data=request.data)
         note_id = request.data['id']
-        note = Note.objects.filter(id__in=note_id)
+        note = Note.objects.get(id=note_id)
+        user=request.user
 
         if serializer.is_valid():
             post = Diary.objects.create(
-                writer=request.user,
+                writer=user,
                 title=request.data['title'],
                 content=request.data['content'],
                 note=note,
-                imate=request.data['image'],
+                image=request.data['image'],
                 to_open=request.data['to_open']
             )
             return Response(serializer.data, status=status.HTTP_201_CREATED)

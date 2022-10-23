@@ -8,11 +8,11 @@ function ProfileCard(props) {
     const page_hosturl = 'https://'+window.location.hostname
     const profile_image = props.profileElement.profile_image
     const nickname = props.profileElement.nickname
-    const username = '@'+'유저네임'
+    const username = '@'+props.profileElement.username
     const self_intro = props.profileElement.self_intro.substr(0,30)
     const email = props.profileElement.user
     const id = props.profileElement.id
-    
+
     const followBtn = () => {
         const url = '/accounts/profile/follow';
         const followId = {'id':id};

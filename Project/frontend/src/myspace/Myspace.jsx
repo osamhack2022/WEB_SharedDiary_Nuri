@@ -10,10 +10,25 @@ export {Myspace};
 
 function Myspace() {
     const [info, setInfo] = useState([]);
+    const [inputData, setInputData] = useState('');
     const userProfile = useSelector((state) => state.profilelist.value)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
+
+    const searchChange = async(e) => {
+        setInputData(e.target.value);
+        e.target.value.length===0 ? dispatch(profilelist(info)):
+        await axios.get('/accounts/profile/search',{
+            params:{
+                inputData:inputData
+            }
+        })
+        .then(function(res){
+            dispatch(profilelist(res.data))
+        })
+        .catch(error=>console.log(error))
+    }
     
     useEffect(()=>{
         axios.get('/accounts/profile/list', {
@@ -33,68 +48,24 @@ function Myspace() {
         dispatch(profilelist(info))
     }, [info, dispatch])
 
-
-    const profileList = userProfile&&userProfile.map(profileElement => ( 
+    const profileList = userProfile.length!==0 ? userProfile&&userProfile.map(profileElement => ( 
         <ProfileCard profileElement={profileElement} key={profileElement.id}/>
-    ))
+    )):<div>추천드릴 누리가 없습니다</div>
 
     return (
         <div className="Myspace">
-            <div className='Myspace-profile-cp'>
-                <Profile/>
-            </div>
-            <div className='Nuri-list'>
-                <h2 style={{marginBottom:'25px', marginLeft: '15px'}}>Find Nuries</h2>
-                <div className='list'>
-                    {profileList}
+            <div className='Myspace-container'>
+                <div className='Myspace-profile-cp'>
+                    <Profile/>
                 </div>
-            </div>
-            {/* <div className="Myprofile">
-                <div className="ProfileDetail">
-                    <div className="background-img">
-                        <img src={require("../testimg/testbackground.png")}/>
-                        <div className="profile-img">
-                            <img src={require("../testimg/testprofile.png")}/>
-                        </div>
-                    </div>
-                    <div className="UserInfo">
-                        <p>profileUsername</p>
-                        <p>userProfile.nickname</p>
-                        <p>자기소개: userProfile.self_intro</p>
+                <div className='Nuri-list'>
+                    <h2 style={{marginBottom:'25px', marginLeft: '15px'}}>Find Nuries</h2>
+                    <p className='input'><input type="search" name='search' onChange={searchChange} value={inputData} placeholder='누리 찾기'/></p>
+                    <div className='list'>
+                        {profileList}
                     </div>
                 </div>
-                <div className="TimeLine">
-                    <div className="NullSpace"></div>
-                    <div className="MydiaryTimeline">
-                        <div className="TimelineProfile">
-                            <div className="TimelineProfile-img">
-                                <img src={require("../testimg/testbackground.png")}/>
-                            </div>
-                            <div className="TimelineProfileDetail">
-                                <p>닉네임userProfile.nickname</p>
-                                <p>profileUsername</p>
-                            </div>
-                        </div>
-                        <div className="TimelineContent">
-                            <div className="TimelineContentNull"></div>
-                            <div classNanme="TimelineContentDetail">
-                                <div className="TimelinecontentTitle">
-                                    <p>제목입니다</p>
-                                </div>
-                                <div className="TimelineContent-img">
-                                    <img src={require("../testimg/testbackground.png")}/>
-                                </div>
-                                <div className="TimelineContentWriting">
-                                    <p>내용입니다.</p>
-                                    <p>가나다라마바사아자차카타하213213213213213213213213123</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="MydiaryList">
-            </div>    */}
+            </div> 
         </div>
     );
 }

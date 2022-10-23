@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Signup, Login, ProfileCreate, ProfileDetail } from './account';
+import { Signup, Login, ProfileCreate, ProfileDetail, Follower, Following } from './account';
 import { RandingPage } from './randingpage';
 import { Myspace } from './myspace';
 import { Header, Footer, NotFound } from './_components';
@@ -33,6 +33,8 @@ function App() {
             <Route path="/diaryshelf" element={<DiaryShelf/>}/>
             <Route path="/diary/list" element={<DiaryList/>}/>
             <Route path="/myspace/:userid" element={<Myspace/>}/>
+            <Route path="/follower/list" element={<Follower/>}/>
+            <Route path="/following/list" element={<Following/>}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>
           <Footer/>

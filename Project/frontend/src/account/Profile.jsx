@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { user } from '../redux/user';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 export { Profile };
 
 function Profile() {
@@ -13,7 +13,8 @@ function Profile() {
         profile_image: '',
         self_intro: '',
         user: '',
-        slug: ''
+        slug: '',
+        username: ''
     });
 
     let { userid } = useParams();
@@ -38,7 +39,7 @@ function Profile() {
             setInfo(res.data)
         })
         .catch(error=>console.log(error))
-    }, [userid]);
+    }, [id]);
 
 
     useEffect(()=>{
@@ -49,11 +50,14 @@ function Profile() {
             profile_image: info.profile_image,
             self_intro: info.self_intro,
             user: info.user,
-            slug: info.slug
+            slug: info.slug,
+            username: info.username
         }))
     }, [info, dispatch])
     const page_hosturl = 'https://'+window.location.hostname
     const profile_image = userProfile.profile_image
+
+    // console.log(info)
 
     return (
         <div className="Profile">
@@ -61,30 +65,39 @@ function Profile() {
                 <div className='background-image'>
                     <img src={`${page_hosturl}${userProfile.background_image}`} alt="profile-preview"  width={100} height={100} />
                 </div>
-                <div className='profile-image'>
-                    { profile_image === null ? 
-                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile-preview"  width={100} height={100} />:
-                    <img src={`${page_hosturl}${userProfile.profile_image}`} alt="profile-preview"  width={100} height={100} />
-                    }
-                </div>
-                <button className='profile-edit'>프로필 수정</button>
+                
                 <div className='profile-content'>
-                    <p className='username'>유저네임채워야함</p>
+                    <div className='image-and-edit'>
+                        <div className='profile-image'>
+                            { profile_image === null ? 
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile-preview"/>:
+                            <img src={`${page_hosturl}${userProfile.profile_image}`} alt="profile-preview"/>
+                            }
+                        </div>
+                        
+                        <p className='profile-edit'><input type="submit" value='Edit profile'/></p>
+                    </div>
+                    
                     <p className='nickname'>{`@${userProfile.nickname}`}</p>
+                    <p className='username'>{userProfile.username}</p>
                     <p className='self-intro'>{userProfile.self_intro}</p>
                     <div className='profile-nuri-inform'>
                         <div className='count diary-num'>
                             <p className='num'>132</p>
                             <p className='what'>일기</p>
                         </div>
-                        <div className='count diary-num'>
-                            <p className='num'>46</p>
-                            <p className='what'>팔로잉</p>
-                        </div>
-                        <div className='count diary-num'>
-                            <p className='num'>329</p>
-                            <p className='what'>팔로워</p>
-                        </div>
+                        <Link to='/following/list'>
+                            <div className='count diary-num'>
+                                <p className='num'>46</p>
+                                <p className='what'>팔로잉</p>
+                            </div>
+                        </Link>
+                        <Link to='/follower/list'>
+                            <div className='count diary-num'>
+                                <p className='num'>329</p>
+                                <p className='what'>팔로워</p>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>

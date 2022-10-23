@@ -184,7 +184,17 @@
     border-radius: 0.3rem;
     margin-left: 1rem;
     margin-top: 1.15rem;
-
+}
+.ProfileCard > .ProfileCard-container > .btn:hover {
+    animation: vibration .1s infinite;
+}
+@keyframes vibration {
+    from {
+      transform: rotate(1deg);
+    }
+    to {
+      transform: rotate(-1deg);
+    }
 }
 .ProfileCard > .ProfileCard-container > .btn > button {
     all: unset;

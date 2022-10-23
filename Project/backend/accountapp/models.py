@@ -98,7 +98,8 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    nickname = models.CharField(max_length=15, unique=True, blank=False)
+    username = models.CharField(max_length=20, unique=True, blank=False, null=True)
+    nickname = models.CharField(max_length=20, unique=True, blank=False)
     slug = models.SlugField(null=True, unique=True)
     self_intro = models.TextField(blank=True)
     profile_image = models.ImageField(upload_to='profile/')
@@ -114,6 +115,7 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         self.nickname = self.user.username
+        self.username = self.user.username
         if not self.slug:
             self.slug = slugify(self.nickname)
 

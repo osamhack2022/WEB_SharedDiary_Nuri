@@ -4,7 +4,7 @@ import { note } from '../redux/note';
 
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import './diaryShelf.css'
+import './diary.css'
 
 export {DiaryShelf}
 

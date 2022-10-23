@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { profilelist } from '../redux/profilelist';
-import { ProfileCard } from '../_components/ProfileCard';
-
 import { useParams } from 'react-router-dom';
 import { Profile } from '../account';
-
-import './myspace.css';
+import { ProfileCard } from '../_components/ProfileCard';
+import './myspace.css'
 export {Myspace};
 
 function Myspace() {
@@ -17,14 +15,14 @@ function Myspace() {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     
-    useEffect(() => {
+    useEffect(()=>{
         axios.get('/accounts/profile/list', {
             headers: {
                 'Authorization': `token ${token}`,
                 'Content-Type':'application/json'
             },  
         })
-        .then(res => {
+        .then(function(res){
             setInfo(res.data)
         })
         .catch(error=>console.log(error))
@@ -42,10 +40,16 @@ function Myspace() {
 
     return (
         <div className="Myspace">
-            {/* <div className='Myspace-profile-cp'>
+            <div className='Myspace-profile-cp'>
                 <Profile/>
-            </div> */}
-            <div className="Myprofile">
+            </div>
+            <div className='Nuri-list'>
+                <h2 style={{marginBottom:'25px', marginLeft: '15px'}}>Find Nuries</h2>
+                <div className='list'>
+                    {profileList}
+                </div>
+            </div>
+            {/* <div className="Myprofile">
                 <div className="ProfileDetail">
                     <div className="background-img">
                         <img src={require("../testimg/testbackground.png")}/>
@@ -90,13 +94,7 @@ function Myspace() {
                 </div>
             </div>
             <div className="MydiaryList">
-                <div className='Nuri-list'>
-                    <h2 style={{marginBottom:'25px', marginLeft: '15px'}}>Find Nuries</h2>
-                    <div className='list'>
-                        {profileList}
-                    </div>
-                </div>
-            </div>   
+            </div>    */}
         </div>
     );
 }

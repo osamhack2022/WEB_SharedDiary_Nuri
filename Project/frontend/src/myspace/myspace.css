@@ -1,5 +1,6 @@
 .Myspace {
     display: flex;
+    
 }
 .Myspace > .Myspace-profile-cp {
     width: 60%;
@@ -7,12 +8,15 @@
     border-color: rgb(239, 243, 244);
     border: 2px;
 }
+.Myspace > .Nuri-list {
+    width: 40%;
+}
 .Myspace > .Myprofile {
     width: 50vw;
     height: 150vw;
     display: flex;
     flex-direction: column;
-    margin: 5rem 5rem 5rem 8rem;
+    margin: 5rem 5rem 5rem 5rem;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
     padding: 1rem 0 1rem 0;
     border-radius: 30px;  
@@ -101,11 +105,9 @@
     width: 30vw;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin: 5rem 5rem 5rem 0;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
     padding: 1rem 0 1rem 0;
     border-radius: 30px;  
-}
-.Myspace > .MydiaryList > .Nuri-list {
-    width: 40%;
 }

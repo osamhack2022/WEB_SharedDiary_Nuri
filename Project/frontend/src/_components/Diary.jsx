@@ -1,5 +1,4 @@
-import dev_img_diary from '../static/img/dev_test/doge-goorm.jpg';
-import dev_img_profile from '../static/img/dev_test/프로필이미지.png';
+import { Link } from 'react-router-dom';
 import './components.css';
 import { 
     BsStarFill, BsStar,
@@ -22,31 +21,33 @@ export { Diary };
 //   }
 function Diary(props) {
     return (
-        <div className="Diary">
-            <div className='card'>
-                <div className='diary-profile' style={{backgroundColor:"white"}}>
-                    <div className='diary-profile-img'>
-                        {/* <img src={testData[0].image} alt="profile-img" /> */}
-                    </div>
-                    <div className='diary-detail'>
-                        <div className='diary-profile-info'>
-                            <p>{props.diaryElement.title}</p>
-                            <div dangerouslySetInnerHTML={{ __html: props.diaryElement.content }}></div>
-                            <p>{props.diaryElement.note}</p>
-                            <p>{props.diaryElement.writer}</p>
-                            {/* <h4>{testData.nickname}</h4> */}
-                            {/* <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].username}</p>
-                            <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].created_at}</p>
-                            <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].updated_at}</p>
-                            <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].to_open}</p> */}
+        <Link to='/diary/detail'>
+            <div className="Diary">
+                <div className='card'>
+                    <div className='diary-profile' style={{backgroundColor:"white"}}>
+                        <div className='diary-profile-img'>
+                            {/* <img src={testData[0].image} alt="profile-img" /> */}
                         </div>
-                        <div className="diary-img">
-                            {/* <img src={testData[0].image} alt="diary-img" /> */}
+                        <div className='diary-detail'>
+                            <div className='diary-profile-info'>
+                                <p>{props.diaryElement.title}</p>
+                                <div dangerouslySetInnerHTML={{ __html: props.diaryElement.content }}></div>
+                                <p>{props.diaryElement.note}</p>
+                                <p>{props.diaryElement.writer}</p>
+                                {/* <h4>{testData.nickname}</h4> */}
+                                {/* <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].username}</p>
+                                <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].created_at}</p>
+                                <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].updated_at}</p>
+                                <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].to_open}</p> */}
+                            </div>
+                            <div className="diary-img">
+                                {/* <img src={testData[0].image} alt="diary-img" /> */}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Link> 
     );
 }
 

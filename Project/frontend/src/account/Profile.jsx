@@ -39,7 +39,7 @@ function Profile() {
             setInfo(res.data)
         })
         .catch(error=>console.log(error))
-    }, [userid]);
+    }, [id]);
 
 
     useEffect(()=>{

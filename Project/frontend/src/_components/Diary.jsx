@@ -31,7 +31,7 @@ function Diary(props) {
                     <div className='diary-detail'>
                         <div className='diary-profile-info'>
                             <p>{props.diaryElement.title}</p>
-                            <p>{props.diaryElement.content}</p>
+                            <div dangerouslySetInnerHTML={{ __html: props.diaryElement.content }}></div>
                             <p>{props.diaryElement.note}</p>
                             <p>{props.diaryElement.writer}</p>
                             {/* <h4>{testData.nickname}</h4> */}

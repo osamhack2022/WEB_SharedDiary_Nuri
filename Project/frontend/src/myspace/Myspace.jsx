@@ -18,7 +18,7 @@ function Myspace() {
 
     const searchChange = async(e) => {
         setInputData(e.target.value);
-        // console.log(inputData);
+        e.target.value.length===0 ? dispatch(profilelist(info)):
         await axios.get('/accounts/profile/search',{
             params:{
                 inputData:inputData
@@ -48,10 +48,9 @@ function Myspace() {
         dispatch(profilelist(info))
     }, [info, dispatch])
 
-    console.log(userProfile.length)
-    const profileList = userProfile&&userProfile.map(profileElement => ( 
+    const profileList = userProfile.length!==0 ? userProfile&&userProfile.map(profileElement => ( 
         <ProfileCard profileElement={profileElement} key={profileElement.id}/>
-    ))
+    )):<div>추천드릴 누리가 없습니다</div>
 
     return (
         <div className="Myspace">
@@ -65,52 +64,6 @@ function Myspace() {
                     {profileList}
                 </div>
             </div>
-            {/* <div className="Myprofile">
-                <div className="ProfileDetail">
-                    <div className="background-img">
-                        <img src={require("../testimg/testbackground.png")}/>
-                        <div className="profile-img">
-                            <img src={require("../testimg/testprofile.png")}/>
-                        </div>
-                    </div>
-                    <div className="UserInfo">
-                        <p>profileUsername</p>
-                        <p>userProfile.nickname</p>
-                        <p>자기소개: userProfile.self_intro</p>
-                    </div>
-                </div>
-                <div className="TimeLine">
-                    <div className="NullSpace"></div>
-                    <div className="MydiaryTimeline">
-                        <div className="TimelineProfile">
-                            <div className="TimelineProfile-img">
-                                <img src={require("../testimg/testbackground.png")}/>
-                            </div>
-                            <div className="TimelineProfileDetail">
-                                <p>닉네임userProfile.nickname</p>
-                                <p>profileUsername</p>
-                            </div>
-                        </div>
-                        <div className="TimelineContent">
-                            <div className="TimelineContentNull"></div>
-                            <div classNanme="TimelineContentDetail">
-                                <div className="TimelinecontentTitle">
-                                    <p>제목입니다</p>
-                                </div>
-                                <div className="TimelineContent-img">
-                                    <img src={require("../testimg/testbackground.png")}/>
-                                </div>
-                                <div className="TimelineContentWriting">
-                                    <p>내용입니다.</p>
-                                    <p>가나다라마바사아자차카타하213213213213213213213213123</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="MydiaryList">
-            </div>    */}
         </div>
     );
 }

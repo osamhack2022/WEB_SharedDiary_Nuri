@@ -131,10 +131,6 @@
 }
 
 
-
-
-
-
 /* Signup */
 .Signup > .Signup-container {
     top: 50%;
@@ -183,4 +179,15 @@
     outline: none;
     font-size: 16px;
     width: 100%;
+}
+
+/* Following/Follower */
+.Following > .Following-container, 
+.Follower > .Follower-container {
+    max-width: 70vw;
+    margin:auto;
+}
+.Following > .Following-container > .Following-list,
+.Follower > .Follower-container > .Follower-list {
+    margin-top: 3rem;
 }

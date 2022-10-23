@@ -145,6 +145,22 @@ class FollowAPIView(APIView):
         serializer = self.serializer_class(Profile.objects.get(user=user))
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+class FollowingProfileShowAPIView(APIView):
+    # permission_classes = (IsAuthenticated,)
+    # serializer_class = ProfileSerializer
+    # def get(self, request, *args, **kwargs):
+    #     user = request.user
+    #     profile = Profile.objects.get(user=user)
+    #     for user in profile.following:
+    #         following_list = Profile.objects.get(user=user)
+    pass
+
+        
+
+class FollowerProfileShowAPIView(APIView):
+    pass
+
+
 class ProfileSearchAPIView(APIView):
     serializer_class = ProfileSerializer
     def get(self, request, *args, **kwargs):

@@ -65,14 +65,19 @@ function Profile() {
                 <div className='background-image'>
                     <img src={`${page_hosturl}${userProfile.background_image}`} alt="profile-preview"  width={100} height={100} />
                 </div>
-                <div className='profile-image'>
-                    { profile_image === null ? 
-                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile-preview"  width={100} height={100} />:
-                    <img src={`${page_hosturl}${userProfile.profile_image}`} alt="profile-preview"  width={100} height={100} />
-                    }
-                </div>
-                <button className='profile-edit'>프로필 수정</button>
+                
                 <div className='profile-content'>
+                    <div className='image-and-edit'>
+                        <div className='profile-image'>
+                            { profile_image === null ? 
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile-preview"/>:
+                            <img src={`${page_hosturl}${userProfile.profile_image}`} alt="profile-preview"/>
+                            }
+                        </div>
+                        
+                        <p className='profile-edit'><input type="submit" value='Edit profile'/></p>
+                    </div>
+                    
                     <p className='nickname'>{`@${userProfile.nickname}`}</p>
                     <p className='username'>{userProfile.username}</p>
                     <p className='self-intro'>{userProfile.self_intro}</p>

@@ -13,7 +13,8 @@ function Profile() {
         profile_image: '',
         self_intro: '',
         user: '',
-        slug: ''
+        slug: '',
+        username: ''
     });
 
     let { userid } = useParams();
@@ -49,11 +50,14 @@ function Profile() {
             profile_image: info.profile_image,
             self_intro: info.self_intro,
             user: info.user,
-            slug: info.slug
+            slug: info.slug,
+            username: info.username
         }))
     }, [info, dispatch])
     const page_hosturl = 'https://'+window.location.hostname
     const profile_image = userProfile.profile_image
+
+    // console.log(info)
 
     return (
         <div className="Profile">
@@ -69,8 +73,8 @@ function Profile() {
                 </div>
                 <button className='profile-edit'>프로필 수정</button>
                 <div className='profile-content'>
-                    <p className='username'>유저네임채워야함</p>
                     <p className='nickname'>{`@${userProfile.nickname}`}</p>
+                    <p className='username'>{userProfile.username}</p>
                     <p className='self-intro'>{userProfile.self_intro}</p>
                     <div className='profile-nuri-inform'>
                         <div className='count diary-num'>

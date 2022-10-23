@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -143,7 +145,13 @@ class FollowAPIView(APIView):
         serializer = self.serializer_class(Profile.objects.get(user=user))
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
+class ProfileSearchAPIView(APIView):
+    serializer_class = ProfileSerializer
+    def get(self, request, *args, **kwargs):
+        input_data = request.query_params['inputData']
+        profile = Profile.objects.filter(Q(nickname__icontains=input_data) and Q(username__icontains=input_data))
+        serializer = self.serializer_class(profile, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 

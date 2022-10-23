@@ -10,10 +10,25 @@ export {Myspace};
 
 function Myspace() {
     const [info, setInfo] = useState([]);
+    const [inputData, setInputData] = useState('');
     const userProfile = useSelector((state) => state.profilelist.value)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
+
+    const searchChange = async(e) => {
+        setInputData(e.target.value);
+        // console.log(inputData);
+        await axios.get('/accounts/profile/search',{
+            params:{
+                inputData:inputData
+            }
+        })
+        .then(function(res){
+            dispatch(profilelist(res.data))
+        })
+        .catch(error=>console.log(error))
+    }
     
     useEffect(()=>{
         axios.get('/accounts/profile/list', {
@@ -33,7 +48,7 @@ function Myspace() {
         dispatch(profilelist(info))
     }, [info, dispatch])
 
-
+    console.log(userProfile.length)
     const profileList = userProfile&&userProfile.map(profileElement => ( 
         <ProfileCard profileElement={profileElement} key={profileElement.id}/>
     ))
@@ -45,6 +60,7 @@ function Myspace() {
             </div>
             <div className='Nuri-list'>
                 <h2 style={{marginBottom:'25px', marginLeft: '15px'}}>Find Nuries</h2>
+                <p><input type="search" name='search' onChange={searchChange} value={inputData} placeholder='누리 찾기'/></p>
                 <div className='list'>
                     {profileList}
                 </div>

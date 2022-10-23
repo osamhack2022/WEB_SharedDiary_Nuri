@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { user } from '../redux/user';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 export { Profile };
 
 function Profile() {
@@ -86,14 +86,18 @@ function Profile() {
                             <p className='num'>132</p>
                             <p className='what'>일기</p>
                         </div>
-                        <div className='count diary-num'>
-                            <p className='num'>46</p>
-                            <p className='what'>팔로잉</p>
-                        </div>
-                        <div className='count diary-num'>
-                            <p className='num'>329</p>
-                            <p className='what'>팔로워</p>
-                        </div>
+                        <Link to='/following/list'>
+                            <div className='count diary-num'>
+                                <p className='num'>46</p>
+                                <p className='what'>팔로잉</p>
+                            </div>
+                        </Link>
+                        <Link to='/follower/list'>
+                            <div className='count diary-num'>
+                                <p className='num'>329</p>
+                                <p className='what'>팔로워</p>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -131,6 +131,7 @@ class ProfileDetailAPIView(APIView):
     #     serializer = self.serializer_class(profile)
     #     return Response(serializer.data, status=status.HTTP_200_OK)
 
+# 팔로우하기
 class FollowAPIView(APIView):
     permission_classes = (IsAuthenticated,)
     renderer_classes = (UserJSONRenderer,)
@@ -145,28 +146,31 @@ class FollowAPIView(APIView):
         serializer = self.serializer_class(Profile.objects.get(user=user))
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+# 팔로잉한 프로필을 보여주는 API
 class FollowingProfileShowAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
     serializer_class = ProfileSerializer
     def get(self, request, *args, **kwargs):
-        user = request.user
+        id = request.query_params['id']
+        user = User.objects.get(id=id)
         profile = Profile.objects.get(user=user)
         following_queryset = profile.following.all()
         serializer = self.serializer_class(following_queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
-
+# 팔로워 프로필을 보여주는 API
 class FollowerProfileShowAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
     serializer_class = ProfileSerializer
     def get(self, request, *args, **kwargs):
-        user = request.user
+        id = request.query_params['id']
+        user = User.objects.get(id=id)
         profile = Profile.objects.get(user=user)
         follower_queryset = profile.follower.all()
         serializer = self.serializer_class(follower_queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
+# 닉네임, 유저네임으로 프로필 검색
 class ProfileSearchAPIView(APIView):
     serializer_class = ProfileSerializer
     def get(self, request, *args, **kwargs):

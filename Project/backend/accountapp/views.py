@@ -146,19 +146,25 @@ class FollowAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class FollowingProfileShowAPIView(APIView):
-    # permission_classes = (IsAuthenticated,)
-    # serializer_class = ProfileSerializer
-    # def get(self, request, *args, **kwargs):
-    #     user = request.user
-    #     profile = Profile.objects.get(user=user)
-    #     for user in profile.following:
-    #         following_list = Profile.objects.get(user=user)
-    pass
-
-        
+    permission_classes = (IsAuthenticated,)
+    serializer_class = ProfileSerializer
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        following_queryset = profile.following.all()
+        serializer = self.serializer_class(following_queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
 
 class FollowerProfileShowAPIView(APIView):
-    pass
+    permission_classes = (IsAuthenticated,)
+    serializer_class = ProfileSerializer
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        follower_queryset = profile.follower.all()
+        serializer = self.serializer_class(follower_queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ProfileSearchAPIView(APIView):

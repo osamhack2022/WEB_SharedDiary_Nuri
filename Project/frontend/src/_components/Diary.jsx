@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import { Link } from 'react-router-dom';
 import './components.css';
 import { 
@@ -8,25 +10,43 @@ import {
 } from "react-icons/bs";
 export { Diary };
 
-// {
-//     "content":res.data[0].content,
-//     "created_at":res.data[0].created_at,OOO
-//     "id":res.data[0].id,
-//     "image":res.data[0].image,
-//     "title":res.data[0].title,
-//     "to_open":res.data[0].to_open,OOO
-//     "updated_at":res.data[0].updated_at,OOO
-//      writer
-//     프로필 이미지 필요
-//   }
 function Diary(props) {
+    const page_hosturl = 'https://'+window.location.hostname
+    const diary_cover = props.diaryElement.image
+    console.log(props.diaryElement)
+    //작성자프로필상태관리임
+    const id =props.diaryElement.writer_pk
+    const [info, setInfo] = useState({
+        id: '',
+        nickname: '', 
+        background_image: '',
+        profile_image: '',
+        self_intro: '',
+        user: '',
+        slug: '',
+        username: ''
+    });
+
+    useEffect(()=>{
+        axios.get(`/accounts/profile/detail/${id}`, {
+            params: {
+                id: id
+            },  
+        })
+        .then(function(res){
+            setInfo(res.data)
+        })
+        .catch(error=>console.log(error))
+    }, [id]);
+    console.log(info)
+
     return (
         <Link to='/diary/detail' state={{props: props.diaryElement}}>
             <div className="Diary">
                 <div className='card'>
                     <div className='diary-profile' style={{backgroundColor:"white"}}>
                         <div className='diary-profile-img'>
-                            {/* <img src={testData[0].image} alt="profile-img" /> */}
+                            <img src={`${page_hosturl}${diary_cover}`} alt="diaryCover"  width={100} height={100} />
                         </div>
                         <div className='diary-detail'>
                             <div className='diary-profile-info'>
@@ -34,15 +54,16 @@ function Diary(props) {
                                 <div dangerouslySetInnerHTML={{ __html: props.diaryElement.content }}></div>
                                 <p>{props.diaryElement.note}</p>
                                 <p>{props.diaryElement.writer}</p>
-                                {/* <h4>{testData.nickname}</h4> */}
-                                {/* <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].username}</p>
-                                <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].created_at}</p>
-                                <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].updated_at}</p>
-                                <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].to_open}</p> */}
+                                <p>{props.diaryElement.writer_pk}</p>
+                                <p>작성자 username: {info.username}</p>
+                                <p>작성자 nickname: {info.nickname}</p>
                             </div>
+                            {diary_cover!==null?
                             <div className="diary-img">
-                                {/* <img src={testData[0].image} alt="diary-img" /> */}
-                            </div>
+                                <img src={`${page_hosturl}${diary_cover}`} alt="diaryCover"  width={100} height={100} />
+                            </div>:""
+                            }
+                            
                         </div>
                     </div>
                 </div>

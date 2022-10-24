@@ -1,12 +1,14 @@
 .RandingPage-container {
     display: flex;
     justify-content: center;
+    max-width: 70vw;
+    margin:auto;
 }
 .RandingPage-container > .recommend-area {
-    width: 30vw;
+    width: 40%;
 }
 .RandingPage-container > .diary-area {
-    width: 30vw;
+    width: 60%;
 }
 .RandingPage-container > .randingpage-area {
     margin: 0 1rem 0 1rem;

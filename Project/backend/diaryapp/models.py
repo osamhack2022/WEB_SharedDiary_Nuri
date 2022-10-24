@@ -14,6 +14,10 @@ class Note(TimestampedModel):
 
     def __str__(self):
         return self.title
+    
+    @property
+    def writer_pk(self):
+        return self.writer.id
 
 
 class Diary(TimestampedModel):
@@ -31,3 +35,7 @@ class Diary(TimestampedModel):
 
     def __str__(self):
         return self.title
+    
+    @property
+    def writer_pk(self):
+        return self.writer.id

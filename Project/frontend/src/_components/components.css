@@ -78,11 +78,28 @@
 /* Footer */
 .Footer {
     text-align: center;
-    background-color: #E9EAEB;
+    background-color: black;
     position: fixed;
     bottom: 0;
     width: 100%;
+    display: flex;
 }
+.Footer > .Footer-container {
+    display: flex;
+    justify-content: center; 
+}
+.Footer > .Footer-container > .logo-area {
+    display: flex;
+    margin:auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.Footer > .Footer-container > .logo-area > .logo-string >.Nuri {
+
+}
+
+
 
 /* Header */
 .Header {

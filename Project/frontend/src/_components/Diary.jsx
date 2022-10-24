@@ -21,7 +21,7 @@ export { Diary };
 //   }
 function Diary(props) {
     return (
-        <Link to='/diary/detail'>
+        <Link to='/diary/detail' state={{props: props.diaryElement}}>
             <div className="Diary">
                 <div className='card'>
                     <div className='diary-profile' style={{backgroundColor:"white"}}>

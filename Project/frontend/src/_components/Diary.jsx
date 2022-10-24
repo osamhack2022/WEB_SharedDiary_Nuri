@@ -41,29 +41,40 @@ function Diary(props) {
     console.log(info)
 
     return (
-        <Link to='/diary/detail' state={{props: props.diaryElement}}>
-            <div className="Diary">
-                <div className='card'>
-                    <div className='diary-profile' style={{backgroundColor:"white"}}>
-                        <div className='diary-profile-img'>
-                            <img src={`${page_hosturl}${diary_cover}`} alt="diaryCover"  width={100} height={100} />
+        <Link to='/diary/detail' state={{props: props.diaryElement, profileprops:info}}>
+            <div className='Diary'>
+                <div className='Diary-container'>
+                    <div className='profile'>
+                        <div className='image'>
+                            {info.profile_image!==null?
+                            <img src={`${page_hosturl}${info.profile_image}`} alt="diaryCover"  width={100} height={100} />
+                            :<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile-preview"/>}
                         </div>
-                        <div className='diary-detail'>
-                            <div className='diary-profile-info'>
-                                <p>{props.diaryElement.title}</p>
-                                <div dangerouslySetInnerHTML={{ __html: props.diaryElement.content }}></div>
-                                <p>{props.diaryElement.note}</p>
-                                <p>{props.diaryElement.writer}</p>
-                                <p>{props.diaryElement.writer_pk}</p>
-                                <p>작성자 username: {info.username}</p>
-                                <p>작성자 nickname: {info.nickname}</p>
-                            </div>
-                            {diary_cover!==null?
-                            <div className="diary-img">
-                                <img src={`${page_hosturl}${diary_cover}`} alt="diaryCover"  width={100} height={100} />
-                            </div>:""
-                            }
-                            
+                        <div className='name'>
+                            <p className='nickname'>{info.nickname}</p>
+                            <p className='username'>{`@${info.username}`}</p>
+                        </div>
+                    </div>
+                    <div className='diary-content'>
+                        <p className='title'>{props.diaryElement.title}</p>
+                        <div className='content' dangerouslySetInnerHTML={{ __html: props.diaryElement.content }}></div>
+                        {diary_cover!==null?
+                        <div className="image">
+                            <img src={`${page_hosturl}${diary_cover}`} alt="diaryCover"  width={100} height={100} />
+                        </div>:""} 
+                    </div>
+                    <div className='diary-reaction'>
+                        <div className='icon diary-reaction-likes'>
+                            <BsHeart/>
+                            <p>14</p>
+                        </div>
+                        <div className='icon diary-reaction-comments'>
+                            <BsChat/>
+                            <p>6</p>
+                        </div>
+                        <div className='icon diary-reaction-views'>
+                            <BsEye/>
+                            <p>59</p>
                         </div>
                     </div>
                 </div>
@@ -71,31 +82,3 @@ function Diary(props) {
         </Link> 
     );
 }
-
-
-/* <div className="diary-data">
-                    <p>2022년 3월 30일</p>
-                </div>
-                <div className='diary-content'>
-                    <div className='diary-content-p'>
-                        <p className='title'>To the MOOOOOON!</p>
-                        <p className='subtitle'>도지코인 트레이딩 기록중</p>
-                    </div>
-                    <div className='diary-content-star' style={{marginRight:".5rem"}}>
-                        <BsStar/>
-                    </div>
-                </div>
-                <div className='diary-reaction'>
-                    <div className='icon diary-reaction-likes'>
-                        <BsHeart/>
-                        <p>14</p>
-                    </div>
-                    <div className='icon diary-reaction-comments'>
-                        <BsChat/>
-                        <p>6</p>
-                    </div>
-                    <div className='icon diary-reaction-views'>
-                        <BsEye/>
-                        <p>59</p>
-                    </div>
-                </div> */

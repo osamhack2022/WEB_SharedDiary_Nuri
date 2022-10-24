@@ -1,3 +1,4 @@
+/* diaryShelf */
 .DiaryShelf {
     width:1600px;
     margin: 0 auto;
@@ -17,3 +18,14 @@
     padding: 150px; /*임시*/
 }
 
+/* diaryDetail */
+.DiaryDetail > .DiaryDetail-container {
+    max-width: 70vw;
+    margin:auto;
+}
+
+/* diaryList */
+.DiaryList > .DiaryList-container {
+    max-width: 70vw;
+    margin:auto;
+}

@@ -84,6 +84,9 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         }, settings.SECRET_KEY, algorithm='HS256')
 
         return token
+    
+    def natural_key(self):
+        return (self.pk)
 
     #미사용
     def validate_token(token):

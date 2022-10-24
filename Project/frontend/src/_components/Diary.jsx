@@ -1,5 +1,6 @@
-import dev_img_diary from '../static/img/dev_test/doge-goorm.jpg';
-import dev_img_profile from '../static/img/dev_test/프로필이미지.png';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
+import { Link } from 'react-router-dom';
 import './components.css';
 import { 
     BsStarFill, BsStar,
@@ -9,71 +10,75 @@ import {
 } from "react-icons/bs";
 export { Diary };
 
-// {
-//     "content":res.data[0].content,
-//     "created_at":res.data[0].created_at,OOO
-//     "id":res.data[0].id,
-//     "image":res.data[0].image,
-//     "title":res.data[0].title,
-//     "to_open":res.data[0].to_open,OOO
-//     "updated_at":res.data[0].updated_at,OOO
-//      writer
-//     프로필 이미지 필요
-//   }
 function Diary(props) {
+    const page_hosturl = 'https://'+window.location.hostname
+    const diary_cover = props.diaryElement.image
+    console.log(props.diaryElement)
+    //작성자프로필상태관리임
+    const id =props.diaryElement.writer_pk
+    const [info, setInfo] = useState({
+        id: '',
+        nickname: '', 
+        background_image: '',
+        profile_image: '',
+        self_intro: '',
+        user: '',
+        slug: '',
+        username: ''
+    });
+
+    useEffect(()=>{
+        axios.get(`/accounts/profile/detail/${id}`, {
+            params: {
+                id: id
+            },  
+        })
+        .then(function(res){
+            setInfo(res.data)
+        })
+        .catch(error=>console.log(error))
+    }, [id]);
+    console.log(info)
+
     return (
-        <div className="Diary">
-            <div className='card'>
-                <div className='diary-profile' style={{backgroundColor:"white"}}>
-                    <div className='diary-profile-img'>
-                        {/* <img src={testData[0].image} alt="profile-img" /> */}
-                    </div>
-                    <div className='diary-detail'>
-                        <div className='diary-profile-info'>
-                            <p>{props.diaryElement.title}</p>
-                            <p>{props.diaryElement.content}</p>
-                            <p>{props.diaryElement.note}</p>
-                            <p>{props.diaryElement.writer.username}</p>
-                            {/* <h4>{testData.nickname}</h4> */}
-                            {/* <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].username}</p>
-                            <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].created_at}</p>
-                            <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].updated_at}</p>
-                            <p style={{fontSize:".9rem", color:"#536471"}}>{testData[0].to_open}</p> */}
+        <Link to='/diary/detail' state={{props: props.diaryElement, profileprops:info}}>
+            <div className='Diary'>
+                <div className='Diary-container'>
+                    <div className='profile'>
+                        <div className='image'>
+                            {info.profile_image!==null?
+                            <img src={`${page_hosturl}${info.profile_image}`} alt="diaryCover"  width={100} height={100} />
+                            :<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile-preview"/>}
                         </div>
-                        <div className="diary-img">
-                            {/* <img src={testData[0].image} alt="diary-img" /> */}
+                        <div className='name'>
+                            <p className='nickname'>{info.nickname}</p>
+                            <p className='username'>{`@${info.username}`}</p>
+                        </div>
+                    </div>
+                    <div className='diary-content'>
+                        <p className='title'>{props.diaryElement.title}</p>
+                        <div className='content' dangerouslySetInnerHTML={{ __html: props.diaryElement.content }}></div>
+                        {diary_cover!==null?
+                        <div className="image">
+                            <img src={`${page_hosturl}${diary_cover}`} alt="diaryCover"  width={100} height={100} />
+                        </div>:""} 
+                    </div>
+                    <div className='diary-reaction'>
+                        <div className='icon diary-reaction-likes'>
+                            <BsHeart/>
+                            <p>14</p>
+                        </div>
+                        <div className='icon diary-reaction-comments'>
+                            <BsChat/>
+                            <p>6</p>
+                        </div>
+                        <div className='icon diary-reaction-views'>
+                            <BsEye/>
+                            <p>59</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Link> 
     );
 }
-
-
-/* <div className="diary-data">
-                    <p>2022년 3월 30일</p>
-                </div>
-                <div className='diary-content'>
-                    <div className='diary-content-p'>
-                        <p className='title'>To the MOOOOOON!</p>
-                        <p className='subtitle'>도지코인 트레이딩 기록중</p>
-                    </div>
-                    <div className='diary-content-star' style={{marginRight:".5rem"}}>
-                        <BsStar/>
-                    </div>
-                </div>
-                <div className='diary-reaction'>
-                    <div className='icon diary-reaction-likes'>
-                        <BsHeart/>
-                        <p>14</p>
-                    </div>
-                    <div className='icon diary-reaction-comments'>
-                        <BsChat/>
-                        <p>6</p>
-                    </div>
-                    <div className='icon diary-reaction-views'>
-                        <BsEye/>
-                        <p>59</p>
-                    </div>
-                </div> */

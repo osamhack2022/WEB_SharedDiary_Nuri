@@ -3,6 +3,7 @@ import { useLocation} from 'react-router-dom';
 import axios from "axios";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import './diary.css';
 export {DiaryCreate}
 
 function DiaryCreate(){
@@ -84,17 +85,13 @@ function DiaryCreate(){
 
     return (
         <div className="DiaryCreate">
-            일기장안에서 일기생성
-            <p><input type="text" name="title" value={title} onChange={onChangeTitle} placeholder="title"/></p>
-            <div className='quill-textarea' style={{padding:"5rem"}}>
-                <ReactQuill theme="snow" value={content||''} onChange={onChangeContent} modules={modules} formats={formats}
-                    style={{height:"450px"}}
-                />
-            </div>
-            {/* <p><textarea type="text" name="content" onChange={onChange}>{content}</textarea></p> */}
-            <button onClick={onSubmit}>button</button>
-            
-            
+            <div className='DiaryCreate-container'>
+                <p className='title'><input type="text" name="title" value={title} onChange={onChangeTitle} placeholder="제목을 입력하세요"/></p>
+                <div className='quill-textarea'>
+                    <ReactQuill theme="snow" value={content||''} onChange={onChangeContent} modules={modules} formats={formats}/>
+                </div>
+                <p className='submit'><button onClick={onSubmit}>button</button></p>
+            </div>  
         </div>
     );
 }

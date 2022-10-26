@@ -106,7 +106,7 @@ function Profile() {
                         </Link>
                     </div>
                 </div>
-                <DiaryShelf/>
+                <DiaryShelf idProps={id}/>
             </div>
         </div>
     );

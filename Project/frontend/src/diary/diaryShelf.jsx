@@ -33,7 +33,7 @@ function Note(props) {
     );
 }
 
-function DiaryShelf() {
+function DiaryShelf(props) {
     const noteSelector = useSelector((state) => state.note.value)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token');
@@ -41,13 +41,16 @@ function DiaryShelf() {
 
     // get note
     const [myNote, setMyNote] = useState();
-
+    const id = props.idProps;
     useEffect(() => {    
         axios.get('/home/note', {
             headers: {
                 'Authorization': `token ${token}`,
                 'Content-Type':'application/json'
-            },  
+            },
+            params: {
+                id: id
+            }
         })
         .then(res => {
           setMyNote(res.data);

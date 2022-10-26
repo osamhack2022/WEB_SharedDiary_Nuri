@@ -29,6 +29,7 @@ function ProfileCard(props) {
             })
     }
 
+
     return (
         <Link to="/myspace/:userid" state={{id: id}}>
             <div className="ProfileCard">

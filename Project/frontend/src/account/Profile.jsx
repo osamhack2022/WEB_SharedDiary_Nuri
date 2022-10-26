@@ -65,7 +65,9 @@ function Profile() {
         <div className="Profile">
             <div className="Profile-container">
                 <div className='background-image'>
-                    <img src={`${page_hosturl}${userProfile.background_image}`} alt="profile-preview"  width={100} height={100} />
+                    {userProfile.background_image!==null?<img src={`${page_hosturl}${userProfile.background_image}`}  width={100} height={100} />
+                    :""}
+                    
                 </div>
                 
                 <div className='profile-content'>

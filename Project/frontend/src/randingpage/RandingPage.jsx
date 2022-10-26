@@ -55,7 +55,7 @@ function RandingPage(props) {
           {diaryList}
         </div>
         <div className="recommend-area randingpage-area">
-              <p>당신을 위한 추천</p>
+              <p style={{marginBottom:'1rem'}}><strong>당신을 위한 추천</strong></p>
             {noteList}
         </div>
       </div>

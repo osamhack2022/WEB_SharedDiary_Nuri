@@ -24,8 +24,8 @@ function Note(props) {
             <Link to='/diary/list' state={{ NoteProps: props}} className='NoteA'>
                 <div className='Note'>
                     <div className='card'>
-                        <p>{props.noteElement.title}</p>
-                        <p>{props.noteElement.description}</p>
+                        <p className='title'><strong>{props.noteElement.title}</strong></p>
+                        <p className='description'>{props.noteElement.description}</p>
                     </div>
                 </div>
             </Link>

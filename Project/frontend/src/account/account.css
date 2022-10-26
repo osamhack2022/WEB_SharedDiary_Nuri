@@ -69,7 +69,7 @@
 .Profile > .Profile-container > .background-image {
     width: 100%;
     background-color: rgb(207, 217, 222);
-    height: 40%;
+    height: 250px;
 }
 .Profile > .Profile-container > .background-image > img {
     width: 100%;
@@ -83,13 +83,29 @@
 }
 .Profile > .Profile-container > .profile-content > .image-and-edit {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
-.Profile > .Profile-container > .profile-content > .image-and-edit > .profile-edit {
+.Profile > .Profile-container > .profile-content > .image-and-edit > .profile-inform {
+    width: 100%;
+    margin-left: 1rem;
+}
+.Profile > .Profile-container > .profile-content > .image-and-edit > .profile-inform > .nickname {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+.Profile > .Profile-container > .profile-content > .image-and-edit > .profile-inform > .username {
+    margin-top: .1rem;
+    color: gray;
+}
+.Profile > .Profile-container > .profile-content > .image-and-edit > .profile-inform > .self-intro {
+    margin-top: .5rem;
+}
+.Profile > .Profile-container > .profile-content > .image-and-edit > .profile-inform > .profile-edit {
     width: 120px;
     border-radius: 9999px;
+    float: right;
 }
-.Profile > .Profile-container > .profile-content > .image-and-edit > .profile-edit > input {
+.Profile > .Profile-container > .profile-content > .image-and-edit > .profile-inform > .profile-edit > input {
     height: 40px;
     line-height: 40px;
     color: black;
@@ -101,7 +117,7 @@
     border-radius: 9999px;
     background-color: white;
 }
-.Profile > .Profile-container > .profile-content > .image-and-edit > .profile-edit > input:hover {
+.Profile > .Profile-container > .profile-content > .image-and-edit > .profile-inform > .profile-edit > input:hover {
     transition: 0.5s ease-out;
     background-color: #E2E2E2;
 }
@@ -124,10 +140,17 @@
 
 .Profile > .Profile-container > .profile-content > .profile-nuri-inform {
     display: flex;
-}
-.Profile > .Profile-container > .profile-content > .profile-nuri-inform > .count {
     text-align: center;
-    margin: 0 5px 0 5px;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+.Profile > .Profile-container > .profile-content > .profile-nuri-inform > a > .count {
+    text-align: center;
+    margin: 0 15px 0 15px;
+}
+.Profile > .Profile-container > .profile-content > .profile-nuri-inform > a > .count:hover {
+    color: #4CA771;
+    transition: 0.2s ease-out;
 }
 
 

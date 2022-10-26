@@ -1,21 +1,45 @@
-/* diaryShelf */
-.DiaryShelf {
-    width:1600px;
-    margin: 0 auto;
-    padding: 50px 0;
-}
-.DiaryShelf > .note-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-}
-.DiaryShelf > .note-grid > a {
+/*  Note */
+a.NoteA {
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
-    border: 1px solid #000;
+    border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 150px; /*임시*/
+    place-items: center;
+    width: 100%;
+    height: 100%;
+}
+a.NoteA:hover {
+    box-shadow: 0 1rem 1.5rem rgba(0,0,0,.15);
+    transition: 0.3s ease-out;
+}
+/* diaryShelf */
+.DiaryShelf {
+    max-width: 70vw;
+    margin: auto;
+    padding: 50px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.DiaryShelf > .DiaryShelf-container > .note-grid {
+    display: grid;
+    grid-template-columns: 180px 180px 180px;
+    grid-template-rows: 180px 180px 180px;
+    grid-gap: 20px;
+    width: 100%;
+}
+.DiaryShelf > .DiaryShelf-container > a > .plus {
+    float: right;
+    color: #4CA771;
+    display: flex;
+    vertical-align: middle;
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+.DiaryShelf > .DiaryShelf-container > a > .plus > svg {
+    margin-top: .1rem;
 }
 
 /* diaryDetail */

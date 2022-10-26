@@ -9,6 +9,9 @@ from .serializer import DiarySerializer, NoteSerializer
 
 from diaryapp.models import Diary, Note
 
+import base64
+from PIL import Image
+
 # 모든 일기장 리스트 반환 API
 class DiaryList(APIView):
     permission_classes = (AllowAny,)
@@ -47,6 +50,7 @@ class DiaryCreateView(APIView):
         note_id = request.data['id']
         note = Note.objects.get(id=note_id)
         user=request.user
+        image = base64.b64decode(str(request.data['image']))   
 
         if serializer.is_valid():
             post = Diary.objects.create(
@@ -54,7 +58,7 @@ class DiaryCreateView(APIView):
                 title=request.data['title'],
                 content=request.data['content'],
                 note=note,
-                image=request.data['image'],
+                image=image,
                 to_open=request.data['to_open']
             )
             return Response(serializer.data, status=status.HTTP_201_CREATED)

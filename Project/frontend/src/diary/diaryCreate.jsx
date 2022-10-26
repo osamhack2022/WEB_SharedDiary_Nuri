@@ -13,6 +13,7 @@ function DiaryCreate(){
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [imageSrc, setImageSrc] = useState('');
 
     const onChangeTitle = e => {
         setTitle(e.target.value);
@@ -22,6 +23,17 @@ function DiaryCreate(){
         setContent(e);
         // console.log(content);
     }
+    
+    const encodeFileToBase64 = (fileBlob) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileBlob);
+        return new Promise((resolve) => {
+            reader.onload =() => {
+                setImageSrc(reader.result);
+                resolve();
+            };
+        });
+    };
 
     const onSubmit = async() => {
         const url = "/home/diary/create";
@@ -29,7 +41,7 @@ function DiaryCreate(){
             'id': note_id,
             'title': title,
             'content': content,
-            'image': null,
+            'image': imageSrc,
             'to_open': true
         };
         const config = {
@@ -82,11 +94,31 @@ function DiaryCreate(){
         },
     };
 
+    
 
     return (
         <div className="DiaryCreate">
             <div className='DiaryCreate-container'>
                 <p className='title'><input type="text" name="title" value={title} onChange={onChangeTitle} placeholder="제목을 입력하세요"/></p>
+                <div className='cover-input'>
+                    <div className='description'>
+                        <div className='text'>
+                            <p>일기커버이미지</p>
+                            <p>오늘을 장식할 <br/>
+                            이미지를 등록해주세요!</p>
+                        </div>
+                        <div className='imageBtn'>
+                            <p>
+                                <input type="file" onChange={(e) => {
+                                    encodeFileToBase64(e.target.files[0]);
+                                }} />
+                            </p>
+                        </div>
+                    </div>
+                    <div className='image-preview'>
+                        {imageSrc && <img src={imageSrc} alt="preview-img"/>}
+                    </div>
+                </div>
                 <div className='quill-textarea'>
                     <ReactQuill theme="snow" value={content||''} onChange={onChangeContent} modules={modules} formats={formats}/>
                 </div>

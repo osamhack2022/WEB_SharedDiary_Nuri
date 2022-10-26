@@ -32,7 +32,7 @@ function Profile() {
 
     const location = useLocation();
     const id = location.state.id
-    
+    console.log('test:'+id)
     useEffect(()=>{
         axios.get(`/accounts/profile/detail/${id}`, {
             params: {
@@ -77,13 +77,15 @@ function Profile() {
                 <div className='profile-content'>
                     <div className='image-and-edit'>
                         <div className='profile-image'>
-                            { profile_image === null ? 
+                            { profile_image == null ? 
                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile-preview"/>:
                             <img src={`${page_hosturl}${userProfile.profile_image}`} alt="profile-preview"/>
                             }
                         </div>
                         <div className='profile-inform'>
-                            <p className='profile-edit'><input type="submit" value='Edit profile'/></p>
+                            { userProfile.username === localStorage.getItem('username')?<p className='profile-edit'><input type="submit" value='Edit profile'/></p>
+                            :""}
+                            
                             <p className='nickname'><strong>{userProfile.nickname}</strong></p>
                             <p className='username'>{`@${userProfile.username}`}</p>
                             <p className='self-intro'>{userProfile.self_intro}</p>

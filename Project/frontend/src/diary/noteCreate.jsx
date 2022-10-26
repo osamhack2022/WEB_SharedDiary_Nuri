@@ -40,6 +40,8 @@ function NoteCreate() {
             .post(url, userdata, config)
             .then(function (res) {
                 console.log(res)
+                window.history.back();
+                setTimeout(()=>{ window.location.href('/') }, 100)
             })
             .catch(function (error) {
                 console.log(error);
@@ -49,9 +51,9 @@ function NoteCreate() {
     return (
         <div className='NoteCreate'>
             <div className='NoteCreate-container'>
-                <p><input type="text" name="title" value={title} onChange={onChange} placeholder="title"/></p>
-                <p><input type="text" name="description" value={description} onChange={onChange} placeholder="description"/></p>
-                <button onClick={onSubmit}>button</button>
+                <p className='input'><input type="text" name="title" value={title} onChange={onChange} placeholder="일기장 제목을 알려주세요"/></p>
+                <p className='input'><input type="text" name="description" value={description} onChange={onChange} placeholder="어떤 이야기를 적을건가요?"/></p>
+                <p className='submit'><button onClick={onSubmit}>일기장 생성하기</button></p>
             </div>
         </div>
     );

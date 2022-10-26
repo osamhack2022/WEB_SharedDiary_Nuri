@@ -186,3 +186,40 @@ a.NoteA:hover {
 .DiaryCreate > .DiaryCreate-container > .quill-textarea > .quill > .ql-container {
     min-height: 430px;
 }
+
+/* NoteCreate */
+.NoteCreate-container {
+    max-width: 60vw;
+    margin:auto;
+}
+.NoteCreate-container > p.input {
+    border-bottom: 1px solid #d6d6d6;
+    background-color: #fff;
+    margin-bottom: 15px;
+    margin-top: 25px;
+}
+.NoteCreate-container > p.input > input {
+    border: 0;
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
+    color: #292929;
+    font-size: 26px;
+    outline: none;
+    padding: 1rem;
+}
+.NoteCreate-container > p.submit > button {
+    margin-bottom: 15px;
+    margin-top: 4rem;
+    background-color: black;
+    width: 140px;
+    text-align: center;
+    border-radius: 9999px;
+    height: 40px;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    float: right;
+}

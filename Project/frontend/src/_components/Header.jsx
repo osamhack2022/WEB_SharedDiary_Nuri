@@ -30,7 +30,10 @@ function Header() {
           <div className='nav-input'><input type="text" placeholder="     search"/></div> 
           <div className='nav-menu'>
             <NavLink to="/">메인</NavLink>
+            {authentication.isAuthenticated ? 
             <NavLink to="/myspace/:userid" state={{id: localStorage.getItem('userid')}}>나의 공간</NavLink>
+            :""
+            }
             {/* <NavLink to="/accounts/login">메세지</NavLink>
             <NavLink to="/diaryshelf">일기작성</NavLink> */}
             {authentication.isAuthenticated ? 

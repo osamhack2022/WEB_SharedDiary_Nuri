@@ -3,6 +3,7 @@ import { useLocation} from 'react-router-dom';
 import axios from "axios";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import './diary.css';
 export {DiaryCreate}
 
 function DiaryCreate(){
@@ -12,6 +13,7 @@ function DiaryCreate(){
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [imageSrc, setImageSrc] = useState('');
 
     const onChangeTitle = e => {
         setTitle(e.target.value);
@@ -21,6 +23,17 @@ function DiaryCreate(){
         setContent(e);
         // console.log(content);
     }
+    
+    const encodeFileToBase64 = (fileBlob) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileBlob);
+        return new Promise((resolve) => {
+            reader.onload =() => {
+                setImageSrc(reader.result);
+                resolve();
+            };
+        });
+    };
 
     const onSubmit = async() => {
         const url = "/home/diary/create";
@@ -81,20 +94,36 @@ function DiaryCreate(){
         },
     };
 
+    
 
     return (
         <div className="DiaryCreate">
-            일기장안에서 일기생성
-            <p><input type="text" name="title" value={title} onChange={onChangeTitle} placeholder="title"/></p>
-            <div className='quill-textarea' style={{padding:"5rem"}}>
-                <ReactQuill theme="snow" value={content||''} onChange={onChangeContent} modules={modules} formats={formats}
-                    style={{height:"450px"}}
-                />
-            </div>
-            {/* <p><textarea type="text" name="content" onChange={onChange}>{content}</textarea></p> */}
-            <button onClick={onSubmit}>button</button>
-            
-            
+            <div className='DiaryCreate-container'>
+                <p className='title'><input type="text" name="title" value={title} onChange={onChangeTitle} placeholder="제목을 입력하세요"/></p>
+                <div className='cover-input'>
+                    {/* <div className='description'>
+                        <div className='text'>
+                            <p>일기커버이미지</p>
+                            <p>오늘을 장식할 <br/>
+                            이미지를 등록해주세요!</p>
+                        </div>
+                        <div className='imageBtn'>
+                            <p>
+                                <input type="file" onChange={(e) => {
+                                    encodeFileToBase64(e.target.files[0]);
+                                }} />
+                            </p>
+                        </div>
+                    </div> */}
+                    {/* <div className='image-preview'>
+                        {imageSrc && <img src={imageSrc} alt="preview-img"/>}
+                    </div> */}
+                </div>
+                <div className='quill-textarea'>
+                    <ReactQuill theme="snow" value={content||''} onChange={onChangeContent} modules={modules} formats={formats}/>
+                </div>
+                <p className='submit'><button onClick={onSubmit}>button</button></p>
+            </div>  
         </div>
     );
 }

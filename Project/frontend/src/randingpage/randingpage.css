@@ -8,8 +8,31 @@
     width: 40%;
 }
 .RandingPage-container > .diary-area {
-    width: 60%;
+    width: 50%;
 }
 .RandingPage-container > .randingpage-area {
     margin: 0 1rem 0 1rem;
+    padding-left: 1rem;
+}
+.RandingPage-container > .recommend-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.RandingPage-container > .recommend-area > div {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+    width: 80%;
+    height: 100%;
+    margin: auto auto 1.5rem auto;
+}
+.RandingPage-container > .recommend-area > p {
+    margin-left: 2.5rem;
+    margin-top: 1rem;
+    color: #4CA771;
+    font-size: 1.2rem;
 }

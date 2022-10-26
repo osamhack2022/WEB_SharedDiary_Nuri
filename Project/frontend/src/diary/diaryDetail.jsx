@@ -25,9 +25,20 @@ function DiaryDetail() {
     return (
         <div className="DiaryDetail">
             <div className="DiaryDetail-container">
+                <div className='profile'>
+                    <div className='image'>
+                        {profileData.profile_image!==null?
+                        <img src={`${page_hosturl}${profileData.profile_image}`} alt="diaryCover"  width={100} height={100} />
+                        :<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile-preview"/>}
+                    </div>
+                    <div className='name'>
+                        <p className='nickname'>{profileData.nickname}</p>
+                        <p className='username'>{`@${profileData.username}`}</p>
+                    </div>
+                </div>
                 <div className='cover-area'>
-                    <p className='data'>2022년 10월 24일</p>
-                    <div>
+                    <p className='date' style={{color:'#4CA771'}}>2022년 10월 24일</p>
+                    <div className='title-reaction-container'>
                         <p className='title'>{diaryData.title}</p>
                         <div className='diary-reaction'>
                             <div className='icon diary-reaction-likes'>
@@ -44,9 +55,9 @@ function DiaryDetail() {
                             </div>
                         </div>
                     </div>
-                    <div>
-                    <img src={`${page_hosturl}${diaryData.image}`} alt="diaryCover"  width={100} height={100} />
-                    </div>
+                    {diaryData.image!==null?<div className='cover-image'>
+                        <img src={`${page_hosturl}${diaryData.image}`} alt="diaryCover"  width={100} height={100} />
+                    </div>:""} 
                 </div>
                 <div className='content-area'>
                     <div dangerouslySetInnerHTML={{ __html: diaryData.content }}></div>

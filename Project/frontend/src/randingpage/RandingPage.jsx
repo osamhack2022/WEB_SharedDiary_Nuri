@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { diary } from '../redux/diary';
+import { Note } from '../diary';
 
 export { RandingPage };
  
@@ -11,10 +12,17 @@ function RandingPage(props) {
   const diarySelector = useSelector((state) => state.diary.value)
   const dispatch = useDispatch()
   const [variable, setVariable] = useState();
+  const [note, setNote] = useState();
   useEffect(() => {    
     axios.get('/home/diary')
     .then(res => {
       setVariable(res.data);
+    })
+    .catch(error=>console.log(error))
+
+    axios.get('home/note/all')
+    .then(res=>{
+      setNote(res.data);
     })
     .catch(error=>console.log(error))
   }, []);
@@ -25,6 +33,9 @@ function RandingPage(props) {
 
   const diaryList = diarySelector&&diarySelector.map(diaryElement => (
     <Diary diaryElement={diaryElement} key={diaryElement.id}/>
+  ))
+  const noteList = note&&note.map(noteElement => (
+    <Note noteElement={noteElement} key={noteElement.id}/>
   ))
 
   // content: "일기ㅣㅣㅣㅁ닝리"
@@ -43,8 +54,9 @@ function RandingPage(props) {
         <div className="diary-area randingpage-area">
           {diaryList}
         </div>
-        <div className="recommend-area randingpage-area" style={{backgroundColor:"red"}}>
-            추천일기장 구역
+        <div className="recommend-area randingpage-area">
+              <p style={{marginBottom:'1rem'}}><strong>당신을 위한 추천</strong></p>
+            {noteList}
         </div>
       </div>
     </div>

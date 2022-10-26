@@ -3,6 +3,8 @@ import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { user } from '../redux/user';
 import { useParams, useLocation, Link } from 'react-router-dom';
+import { DiaryShelf } from '../diary';
+
 export { Profile };
 
 function Profile() {
@@ -63,7 +65,9 @@ function Profile() {
         <div className="Profile">
             <div className="Profile-container">
                 <div className='background-image'>
-                    <img src={`${page_hosturl}${userProfile.background_image}`} alt="profile-preview"  width={100} height={100} />
+                    {userProfile.background_image!==null?<img src={`${page_hosturl}${userProfile.background_image}`}  width={100} height={100} />
+                    :""}
+                    
                 </div>
                 
                 <div className='profile-content'>
@@ -74,32 +78,37 @@ function Profile() {
                             <img src={`${page_hosturl}${userProfile.profile_image}`} alt="profile-preview"/>
                             }
                         </div>
-                        
-                        <p className='profile-edit'><input type="submit" value='Edit profile'/></p>
-                    </div>
-                    
-                    <p className='nickname'>{`@${userProfile.nickname}`}</p>
-                    <p className='username'>{userProfile.username}</p>
-                    <p className='self-intro'>{userProfile.self_intro}</p>
-                    <div className='profile-nuri-inform'>
-                        <div className='count diary-num'>
-                            <p className='num'>132</p>
-                            <p className='what'>일기</p>
+                        <div className='profile-inform'>
+                            <p className='profile-edit'><input type="submit" value='Edit profile'/></p>
+                            <p className='nickname'><strong>{userProfile.nickname}</strong></p>
+                            <p className='username'>{`@${userProfile.username}`}</p>
+                            <p className='self-intro'>{userProfile.self_intro}</p>
                         </div>
+                        
+                    </div>
+
+                    <div className='profile-nuri-inform'>
+                        <a href="">
+                            <div className='count diary-num'>
+                                <p className='num'>132</p>
+                                <p className='what'><strong>일기</strong></p>
+                            </div>
+                        </a>
                         <Link to='/following/list' state={{id:userProfile.id}}>
                             <div className='count diary-num'>
                                 <p className='num'>46</p>
-                                <p className='what'>팔로잉</p>
+                                <p className='what'><strong>팔로잉</strong></p>
                             </div>
                         </Link>
                         <Link to='/follower/list' state={{id:userProfile.id}}>
                             <div className='count diary-num'>
                                 <p className='num'>329</p>
-                                <p className='what'>팔로워</p>
+                                <p className='what'><strong>팔로워</strong></p>
                             </div>
                         </Link>
                     </div>
                 </div>
+                <DiaryShelf idProps={id}/>
             </div>
         </div>
     );

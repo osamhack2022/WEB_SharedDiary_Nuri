@@ -6,10 +6,13 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 # Create your views here.
 from .serializer import DiarySerializer, NoteSerializer
-
+from accountapp.models import User
 from diaryapp.models import Diary, Note
 
-# 모든 일기장 리스트 반환 API
+import base64
+from PIL import Image
+
+# 모든 일기 리스트 반환 API
 class DiaryList(APIView):
     permission_classes = (AllowAny,)
     serializer_class = DiarySerializer
@@ -17,6 +20,16 @@ class DiaryList(APIView):
     def get(self, request, format=None):
         diary = Diary.objects.all()
         serializer = self.serializer_class(diary, many=True)
+        return Response(serializer.data)
+
+# 모든 노트 리스트 반환 API
+class AllNoteList(APIView):
+    permission_classes = (AllowAny,)
+    serializer_class = NoteSerializer
+
+    def get(self, request, format=None):
+        note = Note.objects.all()
+        serializer = self.serializer_class(note, many=True)
         return Response(serializer.data)
 
 # 일기장 생성 API
@@ -47,6 +60,7 @@ class DiaryCreateView(APIView):
         note_id = request.data['id']
         note = Note.objects.get(id=note_id)
         user=request.user
+        # image = base64.b64decode(str(request.data['image']))   
 
         if serializer.is_valid():
             post = Diary.objects.create(
@@ -74,13 +88,14 @@ class ListDiaryNote(APIView):
 
 
 
-# 로그인된 유저의(자신의) 일기장 반환 API
+# 유저의 일기장 반환 API
 class NoteListAPI(APIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = NoteSerializer
 
     def get(self, request):
-        user=request.user
+        user_id=request.query_params['id']
+        user=User.objects.get(id=user_id)
         note = Note.objects.filter(writer=user)
         serializer = NoteSerializer(note, many=True)
         return Response(serializer.data)

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import './account.css';
+import { VscWorkspaceUntrusted } from "react-icons/vsc";
 export { Signup };
 
 function Signup() {
@@ -11,6 +12,7 @@ function Signup() {
     });
 
     const {username, email, password} = info; // 비구조화할당
+    const [signupError, setSignupError] = useState(false);
 
     const onChange = e => {
         const {value,name} = e.target;
@@ -33,11 +35,21 @@ function Signup() {
             .post(url, userdata, config)
             .then(function (res) {
                 console.log(res);
+                window.history.back();
+                setTimeout(()=>{ window.location.href('/') }, 100)
             })
             .catch(function (error) {
                 console.log(error);
+                setSignupError(true);
             });
     }
+    const loginEnter =(e) => {
+        if(e.key === 'Enter'){
+            console.log('작동');
+            onSubmit();
+        }
+    };
+
     return (
         <div className='Signup'>
             <div className="Signup-container">
@@ -51,11 +63,14 @@ function Signup() {
                     누리에 가입해 서로의 세상을 공유해보세요! <br/>가입 후 프로필 변경을 통해 <span style={{color:'#4CA771'}}>닉네임</span>을 설정할 수 있습니다.
                 </p>
                 <div className='signup-form'>
-                    <p className='input'><input type="text" name="username" value={username} onChange={onChange} placeholder="누리 아이디"/></p>
-                    <p className='input'><input type="text" name="email" value={email} onChange={onChange} placeholder="이메일"/></p>
-                    <p className='input'><input type="password" name="password" value={password} onChange={onChange} placeholder="비밀번호"/></p>
+                    <p className='input'><input type="text" name="username" value={username} onChange={onChange} placeholder="누리 아이디" onKeyPress={loginEnter}/></p>
+                    <p className='input'><input type="text" name="email" value={email} onChange={onChange} placeholder="이메일" onKeyPress={loginEnter}/></p>
+                    <p className='input'><input type="password" name="password" value={password} onChange={onChange} placeholder="비밀번호" onKeyPress={loginEnter}/></p>
                     <p className='submit'><input type="submit" value="회원가입" onClick={onSubmit}/></p>
-
+                    <p className={'error'+(signupError?'active':'')}>
+                        <VscWorkspaceUntrusted/>
+                        <span style={{marginLeft:'5px'}}>5-20글자 사이의 숫자,영문,언더바만 가능합니다.</span>
+                    </p>
                 </div>   
             </div>
             {/* <button onClick={onSubmit}>button</button> */}

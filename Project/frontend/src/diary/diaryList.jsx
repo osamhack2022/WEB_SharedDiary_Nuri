@@ -38,9 +38,9 @@ function DiaryList(){
 
     return (
         <div className='DiaryList'>
-            <div className='list-container'>
+            <div className='DiaryList-container'>
                 <Link to='/diary/create' state={{ NoteProps: location.state.NoteProps.noteElement}}>
-                    <button>일기쓰기</button>
+                    <p className='writeBtn'><button>일기쓰기</button></p>
                 </Link>
                 <div className='list'>
                     {diaryList}

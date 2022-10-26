@@ -12,7 +12,7 @@ from diaryapp.models import Diary, Note
 import base64
 from PIL import Image
 
-# 모든 일기장 리스트 반환 API
+# 모든 일기 리스트 반환 API
 class DiaryList(APIView):
     permission_classes = (AllowAny,)
     serializer_class = DiarySerializer
@@ -20,6 +20,16 @@ class DiaryList(APIView):
     def get(self, request, format=None):
         diary = Diary.objects.all()
         serializer = self.serializer_class(diary, many=True)
+        return Response(serializer.data)
+
+# 모든 노트 리스트 반환 API
+class AllNoteList(APIView):
+    permission_classes = (AllowAny,)
+    serializer_class = NoteSerializer
+
+    def get(self, request, format=None):
+        note = Note.objects.all()
+        serializer = self.serializer_class(note, many=True)
         return Response(serializer.data)
 
 # 일기장 생성 API

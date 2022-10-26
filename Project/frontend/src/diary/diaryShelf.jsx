@@ -8,7 +8,7 @@ import styled from "styled-components";
 import './diary.css'
 
 
-export {DiaryShelf}
+export {DiaryShelf, Note}
 
 function Note(props) {
     const page_hosturl = 'https://'+window.location.hostname

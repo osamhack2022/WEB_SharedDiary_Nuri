@@ -16,7 +16,9 @@ function Profile() {
         self_intro: '',
         user: '',
         slug: '',
-        username: ''
+        username: '',
+        following_count: '',
+        follower_count: ''
     });
 
     let { userid } = useParams();
@@ -30,7 +32,7 @@ function Profile() {
 
     const location = useLocation();
     const id = location.state.id
-    
+    console.log('test:'+id)
     useEffect(()=>{
         axios.get(`/accounts/profile/detail/${id}`, {
             params: {
@@ -53,7 +55,9 @@ function Profile() {
             self_intro: info.self_intro,
             user: info.user,
             slug: info.slug,
-            username: info.username
+            username: info.username,
+            following_count: info.following_count,
+            follower_count: info.follower_count
         }))
     }, [info, dispatch])
     const page_hosturl = 'https://'+window.location.hostname
@@ -73,13 +77,15 @@ function Profile() {
                 <div className='profile-content'>
                     <div className='image-and-edit'>
                         <div className='profile-image'>
-                            { profile_image === null ? 
+                            { profile_image == null ? 
                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profile-preview"/>:
                             <img src={`${page_hosturl}${userProfile.profile_image}`} alt="profile-preview"/>
                             }
                         </div>
                         <div className='profile-inform'>
-                            <p className='profile-edit'><input type="submit" value='Edit profile'/></p>
+                            { userProfile.username === localStorage.getItem('username')?<p className='profile-edit'><input type="submit" value='Edit profile'/></p>
+                            :""}
+                            
                             <p className='nickname'><strong>{userProfile.nickname}</strong></p>
                             <p className='username'>{`@${userProfile.username}`}</p>
                             <p className='self-intro'>{userProfile.self_intro}</p>
@@ -96,13 +102,13 @@ function Profile() {
                         </a>
                         <Link to='/following/list' state={{id:userProfile.id}}>
                             <div className='count diary-num'>
-                                <p className='num'>46</p>
+                                <p className='num'>{userProfile.following_count}</p>
                                 <p className='what'><strong>팔로잉</strong></p>
                             </div>
                         </Link>
                         <Link to='/follower/list' state={{id:userProfile.id}}>
                             <div className='count diary-num'>
-                                <p className='num'>329</p>
+                                <p className='num'>{userProfile.follower_count}</p>
                                 <p className='what'><strong>팔로워</strong></p>
                             </div>
                         </Link>

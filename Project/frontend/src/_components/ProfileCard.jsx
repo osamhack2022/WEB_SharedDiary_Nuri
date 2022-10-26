@@ -14,6 +14,7 @@ function ProfileCard(props) {
     const id = props.profileElement.id
 
     const followBtn = () => {
+
         const url = '/accounts/profile/follow';
         const followId = {'id':id};
         const config = {
@@ -23,6 +24,7 @@ function ProfileCard(props) {
             .post(url, followId, config)
             .then(function(res){
                 console.log(res)
+                setTimeout(()=>{ window.location.reload() }, 100)
             })
             .catch(function(error){
                 console.log(error)
@@ -31,9 +33,10 @@ function ProfileCard(props) {
 
 
     return (
-        <Link to="/myspace/:userid" state={{id: id}}>
+        
             <div className="ProfileCard">
                 <div className='ProfileCard-container'>
+                    <Link to="/myspace/:userid" state={{id: id}}>
                     <div className="image">
                         { profile_image === null ? 
                         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="defaultImg"/>:
@@ -45,10 +48,11 @@ function ProfileCard(props) {
                         <p>{username}</p>
                         <p>{self_intro}</p>
                     </div>
+                    </Link>
                     <p className='btn' onClick={followBtn}><button>Follow</button></p>
                 </div>
             </div>
-        </Link>
+        
         
     );
 }

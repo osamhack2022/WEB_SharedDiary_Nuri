@@ -9,8 +9,8 @@ from .serializer import DiarySerializer, NoteSerializer
 from accountapp.models import User
 from diaryapp.models import Diary, Note
 
-import base64
-from PIL import Image
+# import base64
+# from PIL import Image
 
 # 모든 일기 리스트 반환 API
 class DiaryList(APIView):

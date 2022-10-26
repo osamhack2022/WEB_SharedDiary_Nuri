@@ -123,3 +123,12 @@ class Profile(models.Model):
             self.slug = slugify(self.nickname)
 
         super(Profile, self).save(*args, **kwargs)
+
+    @property
+    def follower_count(self):
+        return self.follower.count()
+    
+    @property
+    def following_count(self):
+        return self.following.count()
+    

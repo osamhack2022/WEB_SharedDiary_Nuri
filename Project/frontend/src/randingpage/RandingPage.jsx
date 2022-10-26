@@ -54,8 +54,8 @@ function RandingPage(props) {
         <div className="diary-area randingpage-area">
           {diaryList}
         </div>
-        <div className="recommend-area randingpage-area" style={{backgroundColor:"red"}}>
-            추천일기장 구역
+        <div className="recommend-area randingpage-area">
+              <p>당신을 위한 추천</p>
             {noteList}
         </div>
       </div>

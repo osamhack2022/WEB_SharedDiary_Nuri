@@ -31,8 +31,8 @@ function Header() {
           <div className='nav-menu'>
             <NavLink to="/">메인</NavLink>
             <NavLink to="/myspace/:userid" state={{id: localStorage.getItem('userid')}}>나의 공간</NavLink>
-            <NavLink to="/accounts/login">메세지</NavLink>
-            <NavLink to="/diaryshelf">일기작성</NavLink>
+            {/* <NavLink to="/accounts/login">메세지</NavLink>
+            <NavLink to="/diaryshelf">일기작성</NavLink> */}
             {authentication.isAuthenticated ? 
               <button onClick={logout}><p style={{color:"white"}}>로그아웃</p></button>
               :

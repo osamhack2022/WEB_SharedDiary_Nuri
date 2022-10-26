@@ -60,7 +60,7 @@ class DiaryCreateView(APIView):
         note_id = request.data['id']
         note = Note.objects.get(id=note_id)
         user=request.user
-        image = base64.b64decode(str(request.data['image']))   
+        # image = base64.b64decode(str(request.data['image']))   
 
         if serializer.is_valid():
             post = Diary.objects.create(
@@ -68,7 +68,7 @@ class DiaryCreateView(APIView):
                 title=request.data['title'],
                 content=request.data['content'],
                 note=note,
-                image=image,
+                image=request.data['image'],
                 to_open=request.data['to_open']
             )
             return Response(serializer.data, status=status.HTTP_201_CREATED)

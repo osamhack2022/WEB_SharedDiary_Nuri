@@ -41,7 +41,7 @@ function DiaryCreate(){
             'id': note_id,
             'title': title,
             'content': content,
-            'image': imageSrc,
+            'image': null,
             'to_open': true
         };
         const config = {
@@ -101,7 +101,7 @@ function DiaryCreate(){
             <div className='DiaryCreate-container'>
                 <p className='title'><input type="text" name="title" value={title} onChange={onChangeTitle} placeholder="제목을 입력하세요"/></p>
                 <div className='cover-input'>
-                    <div className='description'>
+                    {/* <div className='description'>
                         <div className='text'>
                             <p>일기커버이미지</p>
                             <p>오늘을 장식할 <br/>
@@ -114,10 +114,10 @@ function DiaryCreate(){
                                 }} />
                             </p>
                         </div>
-                    </div>
-                    <div className='image-preview'>
+                    </div> */}
+                    {/* <div className='image-preview'>
                         {imageSrc && <img src={imageSrc} alt="preview-img"/>}
-                    </div>
+                    </div> */}
                 </div>
                 <div className='quill-textarea'>
                     <ReactQuill theme="snow" value={content||''} onChange={onChangeContent} modules={modules} formats={formats}/>

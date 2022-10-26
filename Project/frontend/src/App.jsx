@@ -39,7 +39,7 @@ function App() {
             <Route path="/following/list" element={<Following/>}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>
-          <Footer/>
+          {/* <Footer/> */}
         </BrowserRouter>
       </div>
     </div>

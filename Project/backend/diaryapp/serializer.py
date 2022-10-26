@@ -8,9 +8,9 @@ class DiarySerializer(serializers.ModelSerializer):
     writer = serializers.StringRelatedField(read_only=True)
     writer_pk = serializers.IntegerField(read_only=True)
     note = serializers.CharField(max_length=45, read_only=True)
-    image = Base64ImageField(
-        max_length=None, use_url=True,
-    )
+    # image = Base64ImageField(
+    #     max_length=None, use_url=True,
+    # )
     class Meta:
         model = Diary
         fields = '__all__'

@@ -16,7 +16,9 @@ function Profile() {
         self_intro: '',
         user: '',
         slug: '',
-        username: ''
+        username: '',
+        following_count: '',
+        follower_count: ''
     });
 
     let { userid } = useParams();
@@ -53,7 +55,9 @@ function Profile() {
             self_intro: info.self_intro,
             user: info.user,
             slug: info.slug,
-            username: info.username
+            username: info.username,
+            following_count: info.following_count,
+            follower_count: info.follower_count
         }))
     }, [info, dispatch])
     const page_hosturl = 'https://'+window.location.hostname
@@ -96,13 +100,13 @@ function Profile() {
                         </a>
                         <Link to='/following/list' state={{id:userProfile.id}}>
                             <div className='count diary-num'>
-                                <p className='num'>46</p>
+                                <p className='num'>{userProfile.following_count}</p>
                                 <p className='what'><strong>팔로잉</strong></p>
                             </div>
                         </Link>
                         <Link to='/follower/list' state={{id:userProfile.id}}>
                             <div className='count diary-num'>
-                                <p className='num'>329</p>
+                                <p className='num'>{userProfile.follower_count}</p>
                                 <p className='what'><strong>팔로워</strong></p>
                             </div>
                         </Link>

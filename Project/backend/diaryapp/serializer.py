@@ -1,7 +1,7 @@
 from .models import Diary, Note
 from rest_framework import serializers
 from accountapp.models import User
-from drf_extra_fields.fields import Base64ImageField
+# from drf_extra_fields.fields import Base64ImageField
 
 class DiarySerializer(serializers.ModelSerializer):
     # writer = serializers.ReadOnlyField(source='User.nickname')

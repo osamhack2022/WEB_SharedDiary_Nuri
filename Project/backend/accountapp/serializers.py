@@ -101,6 +101,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(read_only=True)
     profile_image = serializers.ImageField(read_only=True)
     background_image = serializers.ImageField(read_only=True)
+    following_count = serializers.IntegerField(read_only=True)
+    follower_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Profile

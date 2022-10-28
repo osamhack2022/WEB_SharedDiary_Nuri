@@ -12,13 +12,13 @@ WEB(BE) : Project/backend
 ### <strong>Index</strong>
 <hr>
 
-1. [<strong>왜 만들었나?</strong> 🚀](#----strong-service-needs--strong-)
-2. [<strong>뭘로 만들었나?</strong> 💻](#----strong-technique-used--strong-)
-3. [<strong>실행 주의사항?</strong> ❗](#---strong-compatibility--strong-)
-4. [<strong>설치방법?</strong> ⚙️](#----strong-installation--strong-)
-5. [<strong>팀 구성원?</strong> 🔥](#----strong-crew--strong-)
-6. [<strong>제품 설명?</strong> 🏅](#----strong-product-demonstration--------------strong-)
-7. [<strong>개발 문서?</strong> 📚](#----strong-devdocs--strong-)
+1. [<strong>왜 만들었나?</strong> 🚀](#-service-needs)
+2. [<strong>뭘로 만들었나?</strong> 💻](#-technique-used)
+3. [<strong>실행 주의사항?</strong> ❗](#-compatibility)
+4. [<strong>설치방법?</strong> ⚙️](#-installation)
+5. [<strong>팀 구성원?</strong> 🔥](#-crew)
+6. [<strong>제품 설명?</strong> 🏅](#-product-demonstration)
+7. [<strong>개발 문서?</strong> 📚](#-devdocs)
 
 <br>
 <br>

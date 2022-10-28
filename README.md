@@ -149,15 +149,98 @@ $ cat 정민기.json
 <br/>
 
 ### 📚 <strong>DevDocs</strong>
+<br>
+
 * DB Schema
 ```sql
-계정관련 (유저, 프로필)
+1. 계정관련 (유저, 프로필)
 
-일기관련(일기장, 일기)
+Table User {
+  id int [PK]
+  username char(20) [unique, not null]
+  email varchar [unique, not null]
+  created_at datetime
+  updated_at datetime
+}
+
+Table Profile {
+  user int [PK]
+  nickname char(20) [unique, not null]
+  self_intro char(250)
+  profile_image image
+  background_image image
+  following int
+  follower int
+  created_at datetime
+  updated_at datetime
+}
+
+Ref: Profile.user - User.id
+Note: 'One-to-One relation'
+Ref: Profile.following > Profile.user
+Note: 'Many-to-Many relation'
+Ref: Profile.follower > Profile.user
+Note: 'Many-to-Many relation'
+
+
+2. 일기관련(일기장, 일기)
+
+Table Diary {
+  id int [PK]
+  writer int
+  title char(45) [not null]
+  content varchar [not null]
+  note int
+  created_at datetime
+  updated_at datetime
+  to_open boolean
+} Note: '일기모델'
+
+Table Note {
+  id int [PK]
+  writer int
+  title char(45)
+  description char(150)
+  image image
+  diary int
+  created_at datetime
+  updated_at datetime
+  to_open boolean
+} Note: '일기장 모델'
+
+Ref: Diary.writer - User.id
+Note: 'One-to-One relation'
+Ref: Diary.note - Note.id
+Note: 'One-to-One relation'
+Ref: Note.diary > Diary.id
+Note: 'One-to-One relation'
 ```
+<br>
+
+* ER-diagram
+![image](https://user-images.githubusercontent.com/67510613/198579841-423e44dd-6d43-4957-ae58-ec2de50f3e9e.png)
 
 * 회원가입 구현
+> jwt(Json Web Token) 방식의 인증을 구현하였다. 아래는 구현과정에 대한 간략한 설명이다.
+ ```python
+ 1. 토큰 생성
 
+ @property
+def token(self):
+    return self._generated_jwt_token()
+    
+def _generated_jwt_token(self):
+    dt = datetime.now()+timedelta(days=60)
+
+    token = jwt.encode({
+        'id':self.pk,
+        'exp':dt.utcfromtimestamp(dt.timestamp())
+    }, settings.SECRET_KEY, algorithm='HS256')
+
+    return token
+ ```
+ > accountapp/models.py의 일부이다. token은 유저id, 60일로 설정한 만료시간(dt), 적용알고리즘(HS256)을 인코딩한 값을 합친뒤 SECRET_KEY로 hashing되어 만들어진다.
+ 
 * 로그인, 상태유지 구현
 
 * 팔로우 구현

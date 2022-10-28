@@ -9,6 +9,20 @@ WEB(BE) : Project/backend
 ```
 <br/>
 
+### <strong>Index</strong>
+<hr>
+
+1. [<strong>왜 만들었나?</strong> 🚀](#----strong-service-needs--strong-)
+2. [<strong>뭘로 만들었나?</strong> 💻](#----strong-technique-used--strong-)
+3. [<strong>실행 주의사항?</strong> ❗](#---strong-compatibility--strong-)
+4. [<strong>설치방법?</strong> ⚙️](#----strong-installation--strong-)
+5. [<strong>팀 구성원?</strong> 🔥](#----strong-crew--strong-)
+6. [<strong>제품 설명?</strong> 🏅](#----strong-product-demonstration--------------strong-)
+7. [<strong>개발 문서?</strong> 📚](#----strong-devdocs--strong-)
+
+<br>
+<br>
+
 ### 🚀 <strong>Service Needs</strong>
 일기를 쓰면서 내가 아닌 다른 사람들은 어떤 글을 적을까. 나와 어떤 다른 생각을 가지고 있을까 고민한 경험이 많다. 스마트폰이 대중화되면서 많은 사람들이 어플에 일기를 적고 있고, 이런 고민을 반영해 공유 기능을 추가한 서비스도 이미 존재한다. 하지만 공유기능을 의도대로 살리고 유저 간에 커뮤니케이션을 활발하게 이끌어내는데 성공한 서비스는 아직까지 보이지 않는다. 비밀스러운 글이라는 일기의 특성 때문일지도 모르지만 나는 아직까지 '공유'에 초점을 둔 서비스가 없었기 때문이라고 파악한다. SNS가 어떻게 유저 간에 결속을 만들고 강한 확산력을 만들어내는지, 그럼에도 불구하고 SNS가 일기장을 대체할 수 없는 이유가 무엇인지 말이다. <br/>
 
@@ -101,6 +115,8 @@ $ cat 정민기.json
 <br/>
 
 ### 🏅 <strong>Product demonstration(작성중, 이미지추가)</strong>
+<br>
+
 * 회원가입, 로그인
 > 아이디, 이메일, 비밀번호를 입력받아 회원가입이 이루어집니다. <br>
 > 로그인시엔 이메일, 비밀번호를 입력받습니다. <br>
@@ -132,4 +148,24 @@ $ cat 정민기.json
 <br/>
 
 ### 📚 <strong>DevDocs</strong>
+* DB Schema
+```sql
+계정관련 (유저, 프로필)
+
+일기관련(일기장, 일기)
+```
+
+* 회원가입 구현
+
+* 로그인, 상태유지 구현
+
+* 팔로우 구현
+
+* 일기장 구현
+
+* 일기 구현
+
+
+<br>
+
 <strong>[Backend 기술문서 바로가기](https://melodious-cornucopia-9b9.notion.site/Nuri-Backend-64f6886d357a458a87a20bedd5102936)</strong>

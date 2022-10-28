@@ -24,24 +24,26 @@ WEB(BE) : Project/backend
   <img src="https://img.shields.io/badge/Javascript-orange?style=flat-square&logo=Javascript&logoColor=white"/></a>
   <img src="https://img.shields.io/badge/React-18.1.0-13BEF9?style=flat-square&logo=React&logoColor=white"/></a>
   <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/></a>
-  <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/></a>
+
 </div>
 <div align="center">
   <img src="https://img.shields.io/badge/Django-4.1.1-092E20?style=flat-square&logo=Django&logoColor=092E20"/></a>
-  <img src="https://img.shields.io/badge/Nginx-1.21.1-009639?style=flat-square&logo=Nginx&logoColor=009639"/></a>
-  <img src="https://img.shields.io/badge/PostgreSQL-13.3-4169E1?style=flat-square&logo=PostgreSQL&logoColor=4169E1"/></a>
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/SQLite-4169E1?style=flat-square&logo=SQLite&logoColor=white"/></a>
+    <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/></a>
 </div>
 <br/>
 
 * Server
-    * Django Rest Framework (DRF)
+    * Django
+    > Django RestFramework (DRF) 이용 
 * Frontend
-    * React.js + Redux
+    * React.js
+    > Create React App (CRA) 빌드<br>
+    > Redux Tool Kit (RTK) 이용 상태관리
 * Database
-    * PostgreSQL
-* CI/CD
-    * Docker-compose, Git
+    * SQLite
+    > Raw Query 없이 django ORM 이용
+    
 <br/>
 <br/>
 
@@ -83,7 +85,7 @@ $ cat 곽병혁.json
 {
     "name" : "Kwak Byeong Hyeok (jeff721@cnsh.hs.kr)",
     "Github" : "@Aiden-Kwak",
-    "Role" : ["FullStack", "UI/UX", 'Product design']
+    "Role" : ["FullStack", "UI/UX", "Product design"]
 }
 
 $ cd mingi123
@@ -92,14 +94,40 @@ $ cat 정민기.json
 {
     "name" : "Jung MinGi (alsrl123488@gmail.com)",
     "Github" : "@mingi123",
-    "Role" : ["UI/UX"]
+    "Role" : ["UI/UX", "Video Editing"]
 }
 ```
 <br/>
 <br/>
 
-### 🏅 <strong>Product demonstration</strong>
-작성중
+### 🏅 <strong>Product demonstration(작성중, 이미지추가)</strong>
+* 회원가입, 로그인
+> 아이디, 이메일, 비밀번호를 입력받아 회원가입이 이루어집니다. <br>
+> 로그인시엔 이메일, 비밀번호를 입력받습니다. <br>
+> 로그아웃을 하지 않는다면 브라우저 종료 후 재접속해도 로그인이 유지됩니다.
+
+* 일기장 생성
+> 로그인한 유저는 '나의 공간'에서 일기장을 생성할 수 있습니다. <br>
+> 일기장 생성시엔 일기장 제목, 일기장 설명, 대표 이미지를 입력받습니다.<br>
+> 생성된 일기장은 입력한 내용을 바탕으로 카드형태로 렌더링됩니다.
+
+* 일기 작성
+> 유저는 자신이 생성한 일기장안에 일기를 생성할 수 있습니다.<br>
+> 일기장은 제목과 내용을 입력받습니다. 내용 입력창은 WYSIWIG 에디터로, 작성한 서식이 그대로 렌더링됩니다.
+
+* 팔로잉
+> 유저 팔로잉 기능을 구현하였습니다. <br>
+> 팔로워, 팔로잉 유저가 리스팅됩니다.
+
+* 나의 공간
+> 일종의 프로필공간으로 유저닉네임, 유저아이디, 프로필이미지, 배경이미지가 나타나며, <br>
+> 팔로잉한 유저와 유저의 팔로워수가 나타나는 공간, 생성한 일기장이 모여있는 공간으로 구성됩니다.
+> 우측엔 추천사용자가 리스팅됩니다. 프로필카드를 클릭해 해당 유저의 나의공간으로 이동할 수 있습니다.
+
+* 타임라인
+> 가입된 모든 유저들의 일기가 최신순으로 업데이트되어 리스팅됩니다. <br>
+> 추천일기장 공간엔 다른 사용자들의 일기장이 리스팅 됩니다.
+
 <br/>
 <br/>
 

@@ -158,6 +158,7 @@ $ cat 정민기.json
 5. [<strong>팔로우 구현</strong>](#5-팔로우-구현)
 6. [<strong>일기장 구현</strong>](#6-일기장-구현)
 7. [<strong>일기 구현</strong>](#7-일기-구현)
+7. [<strong>프로필 검색 구현</strong>](#8-프로필-검색-구현)
 <hr>
 <br>
 
@@ -413,10 +414,45 @@ class JWTAuthentication(authentication.BaseAuthentication):
 <br>
 
 ### <strong>5. 팔로우 구현</strong>
+```python
+1. 프로필 모델(팔로잉과 팔로워 핃드)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    username = models.CharField(max_length=20, unique=True, blank=False, null=True)
+    nickname = models.CharField(max_length=20, unique=True, blank=False)
+    slug = models.SlugField(null=True, unique=True)
+    self_intro = models.TextField(blank=True)
+    profile_image = models.ImageField(upload_to='profile/')
+    background_image = models.ImageField(upload_to='profile/', null=True, blank=True)
+    following = models.ManyToManyField('self', symmetrical=False, related_name='followings', blank=True, null=True)
+    follower = models.ManyToManyField('self', symmetrical=False, related_name='followers', blank=True, null=True)
+```
+> 프로필 모델안에 following과 follower 필드를 Profile모델에 대하여 M:N 관계를 설정하였다.
+<br>
+
+```python
+2. 팔로우 API
+class FollowAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = (UserJSONRenderer,)
+    serializer_class = ProfileSerializer
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        another_user = User.objects.get(id=request.data['id'])
+        another_profile = Profile.objects.get(user=another_user)
+        profile.following.add(another_profile)
+        another_profile.follower.add(profile)
+        serializer = self.serializer_class(Profile.objects.get(user=user))
+        return Response(serializer.data, status=status.HTTP_200_OK)
+```
+> 다음은 accountapp/views.py의 일부이다. 클라이언트에서 axios post요청을 통해 대상의 user_id를 요청받을 것이다.<br>
+> 이를 통해 본인(profile), 상대(another_profile)을 선언하고 필드에 add()함수를 이용해 본인의 following필드에 another_profile을, 상대의 follower필드에 profile을 add() 한다. 
 
 ### <strong>6. 일기장 구현</strong>
 ### <strong>7. 일기 구현</strong>
-
+### <strong>8. 프로필 검색 구현</strong>
 
 <br>
 

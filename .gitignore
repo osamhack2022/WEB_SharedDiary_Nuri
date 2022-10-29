@@ -2,7 +2,6 @@
 venv/
 .idea/
 __pycache__/
-media/
 staticfiles/
 migrations/
 

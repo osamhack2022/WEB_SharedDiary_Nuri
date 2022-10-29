@@ -52,6 +52,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://osamhack2022-v2-web-shareddiary-nuri-wxgq64q97jxf5j4r-8000.preview.app.github.dev',
     'https://osamhack2022-v2-web-shareddiary-nuri-v7g575rw752xp77-8000.preview.app.github.dev',
     'https://osamhack2022-v2-web-shareddiary-nuri-7wpjqxjr9jpfxp5v-8000.preview.app.github.dev',
+    'https://osamhack2022-v2-web-shareddiary-nuri-wvj4p96vvqj299q7-8000.preview.app.github.dev'
     ]
 
 # Application definition

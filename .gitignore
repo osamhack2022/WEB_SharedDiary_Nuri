@@ -1,6 +1,5 @@
 ### SERVER ###
 venv/
-db.sqlite3
 .idea/
 __pycache__/
 media/
@@ -13,6 +12,7 @@ migrations/
 ### REACT ###
 .DS_*
 *.log
+
 logs
 **/*.backup.*
 **/*.back.*

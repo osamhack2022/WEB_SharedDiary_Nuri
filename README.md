@@ -151,7 +151,7 @@ $ cat 정민기.json
 ### 📚 <strong>DevDocs</strong>
 <br>
 
-* DB Schema
+### <strong>1. DB Schema</strong>
 ```sql
 1. 계정관련 (유저, 프로필)
 
@@ -217,10 +217,10 @@ Note: 'One-to-One relation'
 ```
 <br>
 
-* ER-diagram
+### <strong>2. ER-diagram</strong>
 ![image](https://user-images.githubusercontent.com/67510613/198579841-423e44dd-6d43-4957-ae58-ec2de50f3e9e.png)
 
-* 회원가입 구현
+### <strong>3. 회원가입 구현</strong>
 > jwt(Json Web Token) 방식의 인증을 구현하였다. 아래는 구현과정에 대한 간략한 설명이다.
  ```python
  1. 토큰 생성
@@ -240,14 +240,172 @@ def _generated_jwt_token(self):
     return token
  ```
  > accountapp/models.py의 일부이다. token은 유저id, 60일로 설정한 만료시간(dt), 적용알고리즘(HS256)을 인코딩한 값을 합친뒤 SECRET_KEY로 hashing되어 만들어진다.
- 
-* 로그인, 상태유지 구현
 
-* 팔로우 구현
+ ```python
 
-* 일기장 구현
+1. 유저 생성
 
-* 일기 구현
+class RegistrationAPIView(APIView):
+    permission_classes = (AllowAny,)
+    serializer_class = RegistrationSerializer
+    renderer_classes = (UserJSONRenderer,)
+    
+    def post(self, request):
+        user = request.data
+        
+        serializer = self.serializer_class(data=user)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+ ```
+ > accountapp/views.py 의 일부이다. post 요청을 받게 되면 RegistrationSerializer에 요청받은 데이터를 넘기고 유효성검사를 통과하면 유저를 생성한다. RegistrationSerializer는 accountapp/serializers.py 참고.
+
+<br>
+<br>
+
+### <strong>4. 로그인& 상태유지 구현</strong>
+> 로그인기능, 그리고 로그인 이후 페이지가 새로고침되거나 리다이렉트되어도 로그인상태를 유지할 수 있도록 구현하였다.
+```python
+1. 로그인
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    username = serializers.CharField(max_length=20, read_only=True)
+    password = serializers.CharField(max_length=128, write_only=True)
+    last_login = serializers.CharField(max_length=255, read_only=True)
+    token = serializers.CharField(max_length=255, read_only=True)
+    id = serializers.ReadOnlyField()
+
+    def validate(self, data):
+        email = data.get('email', None)
+        password = data.get('password', None)
+
+        if email is None:
+            raise serializers.ValidationError(
+                'email address is required to Login'
+            )
+        if password is None:
+            raise serializers.ValidationError(
+                'password is required to Login'
+            )
+        
+        user = authenticate(username=email, password=password)
+
+        if user is None:
+            raise serializers.ValidationError(
+                'user with this email and password was not found'
+            )
+        
+        if not user.is_active:
+            raise serializers.ValidationError(
+                'This user has been deactivated'
+            )
+        
+        user.last_login = timezone.now()
+        user.save(update_fields=['last_login'])
+
+        return {
+            'id': user.pk,
+            'email':user.email,
+            'username': user.username,
+            'last_login': user.last_login,
+            'token': user.token,
+        }
+```
+> 다음은 accountapp/serializers.py의 일부이다. 로그인기능의 핵심은 유저가 올바른 인증정보를 입력했는지의 확인, 그리고 인증과정을 위한 토큰 및 유저정보 반환이다.<br> 
+> django의 authenticate 함수를 이용해 username필드로 설정한 email, 입력받은 password의 조합을 DB와 매칭해 확인한다.
+> accountapp/views.py의 LoginAPIView에서는 이 serializer에 요청받은 데이터를 담고 유효성검사를 거친뒤 리턴한다.
+
+<br>
+
+```python
+2. 상태유지 구현
+
+const onSubmit = async() => {
+    const url = "/accounts/login";
+    const userdata = {
+        'email': email,
+        'password': password
+    };
+    const config = {
+        "Content-Type": 'application/json'
+    };
+        
+    await axios 
+        .post(url, userdata, config)
+        .then(function (res) {
+            if (res.data.user.token) {
+                localStorage.setItem('userdata', JSON.stringify(res.data));
+                localStorage.setItem('token', res.data.user.token);
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+            setLoginError(true);
+        });
+};
+
+```
+> 위 코드는 frontend/src/account/Login.jsx의 일부이다.<br>
+> 로그인 버튼 클릭시 작동하는 함수로 로그인 입력정보를 담아 서버에 post 요청을 보낸다. 로그인을 유지한다는 것은 계속해 로그인한 유저의 정보를 가지고 있다는 것이다. 이를 위해 axios 요청이 성공했을때 반환받은 요청을 브라우저의 localStorage에 담았다. 클라이언트에서는 로그인 이후 저장된 해당 정보를 가지고 동작하게 될 것이다.
+<br>
+
+```python
+1. 인증구현
+
+class JWTAuthentication(authentication.BaseAuthentication):
+    authentication_header_prefix = 'Token'
+
+    def authenticate(self, request):
+        auth_header = authentication.get_authorization_header(request).split()
+        auth_header_prefix = self.authentication_header_prefix.lower()
+
+        if not auth_header:
+            return None    
+        if len(auth_header) == 1:
+            return None 
+        elif len(auth_header) > 2:
+            return None
+        
+        prefix = auth_header[0].decode('utf-8')
+        token = auth_header[1].decode('utf-8')
+
+        if prefix.lower() != auth_header_prefix:
+            return None
+
+        return self._authenticate_credentials(request, token)
+
+
+    def _authenticate_credentials(self, request, token):
+        try:
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+        except:
+            msg = 'Invalid authentication. Could not decode token.'
+            raise exceptions.AuthenticationFailed(msg)
+
+        try:
+            user = User.objects.get(pk=payload['id'])
+        except User.DoesNotExist:
+            msg = 'No user matching this token was found.'
+            raise exceptions.AuthenticationFailed(msg)
+
+        if not user.is_active:
+            msg = 'This user has been deactivated.'
+            raise exceptions.AuthenticationFailed(msg)
+
+        return (user, token)
+```
+> 다음은 backend/accountapp/backends.py의 일부이다.<br>
+> 일기의 내용은 로그인을 하지 않은 유저도 접근할 수 있다. 하지만 일기작성페이지에 로그인을 하지 않은 유저가 접근할 수 있어서는 안된다. Django나 DRF는 기본적으로 JWT 인증을 지원하지 않는다. 위의 코드는 이를 위한 JWT 인증 코드이다.<br>
+> authenticate 함수는 인증 필요여부와 관계없이 모든 요청에서 호출이 된다. 인증실패시 None을, 성공시 (user, token) 조합을 반환하여 인증을 처리한다. _authenticate_credentials 를 통해 token을 decode하고 payload에 담긴 id의 유효성을 확인해 최종적으로 인증을 마무리한다.
+
+<br>
+
+### <strong>5. 팔로우 구현</strong>
+
+### <strong>6. 일기장 구현</strong>
+### <strong>7. 일기 구현</strong>
 
 
 <br>

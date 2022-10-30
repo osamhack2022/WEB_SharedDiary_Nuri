@@ -121,7 +121,7 @@ $ cat 정민기.json
 <br/>
 <br/>
 
-### 🏅 <strong>Product demonstration</strong>
+### 🏅 <strong>Functions</strong>
 <br>
 
 * 회원가입, 로그인

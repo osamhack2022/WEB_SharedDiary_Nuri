@@ -23,8 +23,9 @@ WEB(BE) : Project/backend
 <br>
 <br>
 
-[![Video Label](http://img.youtube.com/vi/RkBohLPHE5U/0.jpg)](https://youtu.be/RkBohLPHE5U)
+![2022_10_30](https://user-images.githubusercontent.com/67510613/198862123-3687250a-f7d8-4350-bb41-13a658c61f5c.gif)
 
+* 설명영상링크: https://www.youtube.com/watch?v=RkBohLPHE5U
 
 <br>
 

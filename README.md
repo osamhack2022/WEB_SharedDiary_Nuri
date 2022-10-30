@@ -121,7 +121,7 @@ $ cat 정민기.json
 <br/>
 <br/>
 
-### 🏅 <strong>Product demonstration(작성중, 이미지추가)</strong>
+### 🏅 <strong>Product demonstration</strong>
 <br>
 
 * 회원가입, 로그인
@@ -151,6 +151,9 @@ $ cat 정민기.json
 > 가입된 모든 유저들의 일기가 최신순으로 업데이트되어 리스팅됩니다. <br>
 > 추천일기장 공간엔 다른 사용자들의 일기장이 리스팅 됩니다.
 
+<br>
+
+ * 설명영상링크: https://www.youtube.com/watch?v=RkBohLPHE5U
 <br/>
 <br/>
 

@@ -17,7 +17,7 @@ WEB(BE) : Project/backend
 3. [<strong>실행 주의사항?</strong> ❗](#-compatibility)
 4. [<strong>설치방법?</strong> ⚙️](#%EF%B8%8F-installation)
 5. [<strong>팀 구성원?</strong> 🔥](#-crew)
-6. [<strong>제품 설명?</strong> 🏅](#-product-demonstration)
+6. [<strong>기능 설명?</strong> 🏅](#-Functions)
 7. [<strong>개발 문서?</strong> 📚](#-devdocs)
 
 <br>
@@ -121,7 +121,7 @@ $ cat 정민기.json
 <br/>
 <br/>
 
-### 🏅 <strong>Product demonstration</strong>
+### 🏅 <strong>Functions</strong>
 <br>
 
 * 회원가입, 로그인

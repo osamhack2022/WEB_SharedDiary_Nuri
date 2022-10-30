@@ -9,6 +9,26 @@ WEB(BE) : Project/backend
 ```
 <br/>
 
+### <strong>Index</strong>
+<hr>
+
+1. [<strong>왜 만들었나?</strong> 🚀](#-service-needs)
+2. [<strong>뭘로 만들었나?</strong> 💻](#-technique-used)
+3. [<strong>실행 주의사항?</strong> ❗](#-compatibility)
+4. [<strong>설치방법?</strong> ⚙️](#%EF%B8%8F-installation)
+5. [<strong>팀 구성원?</strong> 🔥](#-crew)
+6. [<strong>제품 설명?</strong> 🏅](#-product-demonstration)
+7. [<strong>개발 문서?</strong> 📚](#-devdocs)
+
+<br>
+<br>
+
+![2022_10_30](https://user-images.githubusercontent.com/67510613/198862123-3687250a-f7d8-4350-bb41-13a658c61f5c.gif)
+
+* 설명영상링크: https://www.youtube.com/watch?v=RkBohLPHE5U
+
+<br>
+
 ### 🚀 <strong>Service Needs</strong>
 일기를 쓰면서 내가 아닌 다른 사람들은 어떤 글을 적을까. 나와 어떤 다른 생각을 가지고 있을까 고민한 경험이 많다. 스마트폰이 대중화되면서 많은 사람들이 어플에 일기를 적고 있고, 이런 고민을 반영해 공유 기능을 추가한 서비스도 이미 존재한다. 하지만 공유기능을 의도대로 살리고 유저 간에 커뮤니케이션을 활발하게 이끌어내는데 성공한 서비스는 아직까지 보이지 않는다. 비밀스러운 글이라는 일기의 특성 때문일지도 모르지만 나는 아직까지 '공유'에 초점을 둔 서비스가 없었기 때문이라고 파악한다. SNS가 어떻게 유저 간에 결속을 만들고 강한 확산력을 만들어내는지, 그럼에도 불구하고 SNS가 일기장을 대체할 수 없는 이유가 무엇인지 말이다. <br/>
 
@@ -24,24 +44,26 @@ WEB(BE) : Project/backend
   <img src="https://img.shields.io/badge/Javascript-orange?style=flat-square&logo=Javascript&logoColor=white"/></a>
   <img src="https://img.shields.io/badge/React-18.1.0-13BEF9?style=flat-square&logo=React&logoColor=white"/></a>
   <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/></a>
-  <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/></a>
+
 </div>
 <div align="center">
   <img src="https://img.shields.io/badge/Django-4.1.1-092E20?style=flat-square&logo=Django&logoColor=092E20"/></a>
-  <img src="https://img.shields.io/badge/Nginx-1.21.1-009639?style=flat-square&logo=Nginx&logoColor=009639"/></a>
-  <img src="https://img.shields.io/badge/PostgreSQL-13.3-4169E1?style=flat-square&logo=PostgreSQL&logoColor=4169E1"/></a>
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/SQLite-4169E1?style=flat-square&logo=SQLite&logoColor=white"/></a>
+    <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/></a>
 </div>
 <br/>
 
 * Server
-    * Django Rest Framework (DRF)
+    * Django
+    > Django RestFramework (DRF) 이용 
 * Frontend
-    * React.js + Redux
+    * React.js
+    > Create React App (CRA) 빌드<br>
+    > Redux Tool Kit (RTK) 이용 상태관리
 * Database
-    * PostgreSQL
-* CI/CD
-    * Docker-compose, Git
+    * SQLite
+    > Raw Query 없이 django ORM 이용
+    
 <br/>
 <br/>
 
@@ -52,6 +74,7 @@ WEB(BE) : Project/backend
 <br/>
 
 ### ⚙️ <strong>Installation</strong>
+
 ```bash
 $ git clone "https://github.com/osamhack2022/WEB_SharedDiary_Nuri.git"
 
@@ -83,7 +106,7 @@ $ cat 곽병혁.json
 {
     "name" : "Kwak Byeong Hyeok (jeff721@cnsh.hs.kr)",
     "Github" : "@Aiden-Kwak",
-    "Role" : ["FullStack", "UI/UX", 'Product design']
+    "Role" : ["FullStack", "UI/UX", "Product design"]
 }
 
 $ cd mingi123
@@ -92,16 +115,404 @@ $ cat 정민기.json
 {
     "name" : "Jung MinGi (alsrl123488@gmail.com)",
     "Github" : "@mingi123",
-    "Role" : ["UI/UX"]
+    "Role" : ["UI/UX", "Video Editing"]
 }
 ```
 <br/>
 <br/>
 
-### 🏅 <strong>Product demonstration</strong>
-작성중
+### 🏅 <strong>Product demonstration(작성중, 이미지추가)</strong>
+<br>
+
+* 회원가입, 로그인
+> 아이디, 이메일, 비밀번호를 입력받아 회원가입이 이루어집니다. <br>
+> 로그인시엔 이메일, 비밀번호를 입력받습니다. <br>
+> 로그아웃을 하지 않는다면 브라우저 종료 후 재접속해도 로그인이 유지됩니다.
+
+* 일기장 생성
+> 로그인한 유저는 '나의 공간'에서 일기장을 생성할 수 있습니다. <br>
+> 일기장 생성시엔 일기장 제목, 일기장 설명, 대표 이미지를 입력받습니다.<br>
+> 생성된 일기장은 입력한 내용을 바탕으로 카드형태로 렌더링됩니다.
+
+* 일기 작성
+> 유저는 자신이 생성한 일기장안에 일기를 생성할 수 있습니다.<br>
+> 일기장은 제목과 내용을 입력받습니다. 내용 입력창은 WYSIWIG 에디터로, 작성한 서식이 그대로 렌더링됩니다.
+
+* 팔로잉
+> 유저 팔로잉 기능을 구현하였습니다. <br>
+> 팔로워, 팔로잉 유저가 리스팅됩니다.
+
+* 나의 공간
+> 일종의 프로필공간으로 유저닉네임, 유저아이디, 프로필이미지, 배경이미지가 나타나며, <br>
+> 팔로잉한 유저와 유저의 팔로워수가 나타나는 공간, 생성한 일기장이 모여있는 공간으로 구성됩니다.
+> 우측엔 추천사용자가 리스팅됩니다. 프로필카드를 클릭해 해당 유저의 나의공간으로 이동할 수 있습니다.
+
+* 타임라인
+> 가입된 모든 유저들의 일기가 최신순으로 업데이트되어 리스팅됩니다. <br>
+> 추천일기장 공간엔 다른 사용자들의 일기장이 리스팅 됩니다.
+
 <br/>
 <br/>
 
 ### 📚 <strong>DevDocs</strong>
-<strong>[Backend 기술문서 바로가기](https://melodious-cornucopia-9b9.notion.site/Nuri-Backend-64f6886d357a458a87a20bedd5102936)</strong>
+<br>
+
+1. [<strong>DB Schema</strong>](#1-db-schema)
+2. [<strong>ER-diagram</strong>](#2-er-diagram)
+3. [<strong>회원가입 구현</strong>](#3-회원가입-구현)
+4. [<strong>로그인, 상태유지, 인증 구현</strong>](#4-로그인-상태유지-구현)
+5. [<strong>팔로우 구현</strong>](#5-팔로우-구현)
+6. [<strong>일기장 구현</strong>](#6-일기장-구현)
+7. [<strong>일기 구현</strong>](#7-일기-구현)
+7. [<strong>프로필 검색 구현</strong>](#8-프로필-검색-구현)
+<hr>
+<br>
+
+### <strong>1. DB Schema</strong>
+```sql
+1. 계정관련 (유저, 프로필)
+
+Table User {
+  id int [PK]
+  username char(20) [unique, not null]
+  email varchar [unique, not null]
+  created_at datetime
+  updated_at datetime
+}
+
+Table Profile {
+  user int [PK]
+  nickname char(20) [unique, not null]
+  self_intro char(250)
+  profile_image image
+  background_image image
+  following int
+  follower int
+  created_at datetime
+  updated_at datetime
+}
+
+Ref: Profile.user - User.id
+Note: 'One-to-One relation'
+Ref: Profile.following > Profile.user
+Note: 'Many-to-Many relation'
+Ref: Profile.follower > Profile.user
+Note: 'Many-to-Many relation'
+
+
+2. 일기관련(일기장, 일기)
+
+Table Diary {
+  id int [PK]
+  writer int
+  title char(45) [not null]
+  content varchar [not null]
+  note int
+  created_at datetime
+  updated_at datetime
+  to_open boolean
+} Note: '일기모델'
+
+Table Note {
+  id int [PK]
+  writer int
+  title char(45)
+  description char(150)
+  image image
+  diary int
+  created_at datetime
+  updated_at datetime
+  to_open boolean
+} Note: '일기장 모델'
+
+Ref: Diary.writer - User.id
+Note: 'One-to-One relation'
+Ref: Diary.note - Note.id
+Note: 'One-to-One relation'
+Ref: Note.diary > Diary.id
+Note: 'One-to-One relation'
+```
+<br>
+
+### <strong>2. ER-diagram</strong>
+![image](https://user-images.githubusercontent.com/67510613/198579841-423e44dd-6d43-4957-ae58-ec2de50f3e9e.png)
+
+### <strong>3. 회원가입 구현</strong>
+> jwt(Json Web Token) 방식의 인증을 구현하였다. 아래는 구현과정에 대한 간략한 설명이다.
+ ```python
+ 1. 토큰 생성
+
+ @property
+def token(self):
+    return self._generated_jwt_token()
+    
+def _generated_jwt_token(self):
+    dt = datetime.now()+timedelta(days=60)
+
+    token = jwt.encode({
+        'id':self.pk,
+        'exp':dt.utcfromtimestamp(dt.timestamp())
+    }, settings.SECRET_KEY, algorithm='HS256')
+
+    return token
+ ```
+ > accountapp/models.py의 일부이다. token은 유저id, 60일로 설정한 만료시간(dt), 적용알고리즘(HS256)을 인코딩한 값을 합친뒤 SECRET_KEY로 hashing되어 만들어진다.
+
+ ```python
+
+1. 유저 생성
+
+class RegistrationAPIView(APIView):
+    permission_classes = (AllowAny,)
+    serializer_class = RegistrationSerializer
+    renderer_classes = (UserJSONRenderer,)
+    
+    def post(self, request):
+        user = request.data
+        
+        serializer = self.serializer_class(data=user)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+ ```
+ > accountapp/views.py 의 일부이다. post 요청을 받게 되면 RegistrationSerializer에 요청받은 데이터를 넘기고 유효성검사를 통과하면 유저를 생성한다. RegistrationSerializer는 accountapp/serializers.py 참고.
+
+<br>
+<br>
+
+### <strong>4. 로그인& 상태유지 구현</strong>
+> 로그인기능, 그리고 로그인 이후 페이지가 새로고침되거나 리다이렉트되어도 로그인상태를 유지할 수 있도록 구현하였다.
+```python
+1. 로그인
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    username = serializers.CharField(max_length=20, read_only=True)
+    password = serializers.CharField(max_length=128, write_only=True)
+    last_login = serializers.CharField(max_length=255, read_only=True)
+    token = serializers.CharField(max_length=255, read_only=True)
+    id = serializers.ReadOnlyField()
+
+    def validate(self, data):
+        email = data.get('email', None)
+        password = data.get('password', None)
+
+        if email is None:
+            raise serializers.ValidationError(
+                'email address is required to Login'
+            )
+        if password is None:
+            raise serializers.ValidationError(
+                'password is required to Login'
+            )
+        
+        user = authenticate(username=email, password=password)
+
+        if user is None:
+            raise serializers.ValidationError(
+                'user with this email and password was not found'
+            )
+        
+        if not user.is_active:
+            raise serializers.ValidationError(
+                'This user has been deactivated'
+            )
+        
+        user.last_login = timezone.now()
+        user.save(update_fields=['last_login'])
+
+        return {
+            'id': user.pk,
+            'email':user.email,
+            'username': user.username,
+            'last_login': user.last_login,
+            'token': user.token,
+        }
+```
+> 다음은 accountapp/serializers.py의 일부이다. 로그인기능의 핵심은 유저가 올바른 인증정보를 입력했는지의 확인, 그리고 인증과정을 위한 토큰 및 유저정보 반환이다.<br> 
+> django의 authenticate 함수를 이용해 username필드로 설정한 email, 입력받은 password의 조합을 DB와 매칭해 확인한다.
+> accountapp/views.py의 LoginAPIView에서는 이 serializer에 요청받은 데이터를 담고 유효성검사를 거친뒤 리턴한다.
+
+<br>
+
+```python
+2. 상태유지 구현
+
+const onSubmit = async() => {
+    const url = "/accounts/login";
+    const userdata = {
+        'email': email,
+        'password': password
+    };
+    const config = {
+        "Content-Type": 'application/json'
+    };
+        
+    await axios 
+        .post(url, userdata, config)
+        .then(function (res) {
+            if (res.data.user.token) {
+                localStorage.setItem('userdata', JSON.stringify(res.data));
+                localStorage.setItem('token', res.data.user.token);
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+            setLoginError(true);
+        });
+};
+
+```
+> 위 코드는 frontend/src/account/Login.jsx의 일부이다.<br>
+> 로그인 버튼 클릭시 작동하는 함수로 로그인 입력정보를 담아 서버에 post 요청을 보낸다. 로그인을 유지한다는 것은 계속해 로그인한 유저의 정보를 가지고 있다는 것이다. 이를 위해 axios 요청이 성공했을때 반환받은 요청을 브라우저의 localStorage에 담았다. 클라이언트에서는 로그인 이후 저장된 해당 정보를 가지고 동작하게 될 것이다.
+<br>
+
+```python
+1. 인증구현
+
+class JWTAuthentication(authentication.BaseAuthentication):
+    authentication_header_prefix = 'Token'
+
+    def authenticate(self, request):
+        auth_header = authentication.get_authorization_header(request).split()
+        auth_header_prefix = self.authentication_header_prefix.lower()
+
+        if not auth_header:
+            return None    
+        if len(auth_header) == 1:
+            return None 
+        elif len(auth_header) > 2:
+            return None
+        
+        prefix = auth_header[0].decode('utf-8')
+        token = auth_header[1].decode('utf-8')
+
+        if prefix.lower() != auth_header_prefix:
+            return None
+
+        return self._authenticate_credentials(request, token)
+
+
+    def _authenticate_credentials(self, request, token):
+        try:
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+        except:
+            msg = 'Invalid authentication. Could not decode token.'
+            raise exceptions.AuthenticationFailed(msg)
+
+        try:
+            user = User.objects.get(pk=payload['id'])
+        except User.DoesNotExist:
+            msg = 'No user matching this token was found.'
+            raise exceptions.AuthenticationFailed(msg)
+
+        if not user.is_active:
+            msg = 'This user has been deactivated.'
+            raise exceptions.AuthenticationFailed(msg)
+
+        return (user, token)
+```
+> 다음은 backend/accountapp/backends.py의 일부이다.<br>
+> 일기의 내용은 로그인을 하지 않은 유저도 접근할 수 있다. 하지만 일기작성페이지에 로그인을 하지 않은 유저가 접근할 수 있어서는 안된다. Django나 DRF는 기본적으로 JWT 인증을 지원하지 않는다. 위의 코드는 이를 위한 JWT 인증 코드이다.<br>
+> authenticate 함수는 인증 필요여부와 관계없이 모든 요청에서 호출이 된다. 인증실패시 None을, 성공시 (user, token) 조합을 반환하여 인증을 처리한다. _authenticate_credentials 를 통해 token을 decode하고 payload에 담긴 id의 유효성을 확인해 최종적으로 인증을 마무리한다.
+
+<br>
+
+### <strong>5. 팔로우 구현</strong>
+```python
+1. 프로필 모델(팔로잉과 팔로워 핃드)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    username = models.CharField(max_length=20, unique=True, blank=False, null=True)
+    nickname = models.CharField(max_length=20, unique=True, blank=False)
+    slug = models.SlugField(null=True, unique=True)
+    self_intro = models.TextField(blank=True)
+    profile_image = models.ImageField(upload_to='profile/')
+    background_image = models.ImageField(upload_to='profile/', null=True, blank=True)
+    following = models.ManyToManyField('self', symmetrical=False, related_name='followings', blank=True, null=True)
+    follower = models.ManyToManyField('self', symmetrical=False, related_name='followers', blank=True, null=True)
+```
+> 프로필 모델안에 following과 follower 필드를 Profile모델에 대하여 M:N 관계를 설정하였다.
+<br>
+
+```python
+2. 팔로우 API
+class FollowAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = (UserJSONRenderer,)
+    serializer_class = ProfileSerializer
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        another_user = User.objects.get(id=request.data['id'])
+        another_profile = Profile.objects.get(user=another_user)
+        profile.following.add(another_profile)
+        another_profile.follower.add(profile)
+        serializer = self.serializer_class(Profile.objects.get(user=user))
+        return Response(serializer.data, status=status.HTTP_200_OK)
+```
+> 다음은 accountapp/views.py의 일부이다. 클라이언트에서 axios post요청을 통해 대상의 user_id를 요청받을 것이다.<br>
+> 이를 통해 본인(profile), 상대(another_profile)을 선언하고 필드에 add()함수를 이용해 본인의 following필드에 another_profile을, 상대의 follower필드에 profile을 add() 한다. 
+
+### <strong>6. 일기장 구현</strong>
+```python
+1. 일기장 모델
+
+class Note(TimestampedModel):
+    writer = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=45, null=True)
+    description = models.TextField(max_length=150, blank=False, null=True)
+    image = models.ImageField(upload_to='note/', null=True, blank=True)
+    diary = models.ManyToManyField('accountapp.Diary', related_name='note', blank=True, null=True)
+    to_open = models.BooleanField(default=True, choices=OPEN_CHOICES) #미구현
+
+    @property
+    def writer_pk(self):
+        return self.writer.id
+```
+> 일기장 모델은 작성자, 제목, 설명, 이미지, 일기로 구성된다.writer는 User의 외래키로, diary는 Note와의 다대다관계로 형성된다.
+
+### <strong>7. 일기 구현</strong>
+```python
+1. 일기 생성 API
+
+class DiaryCreateView(APIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = DiarySerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = DiarySerializer(data=request.data)
+        note_id = request.data['id']
+        note = Note.objects.get(id=note_id)
+        user=request.user 
+
+        if serializer.is_valid():
+            post = Diary.objects.create(
+                writer=user,
+                title=request.data['title'],
+                content=request.data['content'],
+                note=note,
+                image=request.data['image'],
+                to_open=request.data['to_open']
+            )
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+```
+> 일기장안에서 일기를 생성할때 사용되는 API다. 클라이언트로부터 요청받은 일기장의 id로 Note object를 찾고 serializer의 유효성감사를 거친뒤 Diary object를 생성한다.<br>
+> 이로써 사용자는 종류별로 일기장을 생성하고 일기장 안에 그에 맞는 일기들을 적을 수 있다.
+
+### <strong>8. 프로필 검색 구현</strong>
+```python
+1. 닉네임, 유저네임으로 프로필 검색하는 API
+
+class ProfileSearchAPIView(APIView):
+    serializer_class = ProfileSerializer
+    def get(self, request, *args, **kwargs):
+        input_data = request.query_params['inputData']
+        profile = Profile.objects.filter(Q(nickname__icontains=input_data) and Q(username__icontains=input_data))
+        serializer = self.serializer_class(profile, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+```
+> 클라이언트에서 Onchange event로 axios get요청을 받아 params로 전송된 input 데이터를 profile db와 대조한다. nickname과 username에 대하여 input의 문자열이 포함된 결과를 리턴한다.

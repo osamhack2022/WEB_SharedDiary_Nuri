@@ -22,6 +22,11 @@ WEB(BE) : Project/backend
 
 <br>
 <br>
+<p align="middle">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RkBohLPHE5U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+</p>
+
+<br>
 
 ### 🚀 <strong>Service Needs</strong>
 일기를 쓰면서 내가 아닌 다른 사람들은 어떤 글을 적을까. 나와 어떤 다른 생각을 가지고 있을까 고민한 경험이 많다. 스마트폰이 대중화되면서 많은 사람들이 어플에 일기를 적고 있고, 이런 고민을 반영해 공유 기능을 추가한 서비스도 이미 존재한다. 하지만 공유기능을 의도대로 살리고 유저 간에 커뮤니케이션을 활발하게 이끌어내는데 성공한 서비스는 아직까지 보이지 않는다. 비밀스러운 글이라는 일기의 특성 때문일지도 모르지만 나는 아직까지 '공유'에 초점을 둔 서비스가 없었기 때문이라고 파악한다. SNS가 어떻게 유저 간에 결속을 만들고 강한 확산력을 만들어내는지, 그럼에도 불구하고 SNS가 일기장을 대체할 수 없는 이유가 무엇인지 말이다. <br/>

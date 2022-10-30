@@ -451,9 +451,62 @@ class FollowAPIView(APIView):
 > 이를 통해 본인(profile), 상대(another_profile)을 선언하고 필드에 add()함수를 이용해 본인의 following필드에 another_profile을, 상대의 follower필드에 profile을 add() 한다. 
 
 ### <strong>6. 일기장 구현</strong>
+```python
+1. 일기장 모델
+
+class Note(TimestampedModel):
+    writer = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=45, null=True)
+    description = models.TextField(max_length=150, blank=False, null=True)
+    image = models.ImageField(upload_to='note/', null=True, blank=True)
+    diary = models.ManyToManyField('accountapp.Diary', related_name='note', blank=True, null=True)
+    to_open = models.BooleanField(default=True, choices=OPEN_CHOICES) #미구현
+
+    @property
+    def writer_pk(self):
+        return self.writer.id
+```
+> 일기장 모델은 작성자, 제목, 설명, 이미지, 일기로 구성된다.writer는 User의 외래키로, diary는 Note와의 다대다관계로 형성된다.
+
 ### <strong>7. 일기 구현</strong>
+```python
+1. 일기 생성 API
+
+class DiaryCreateView(APIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = DiarySerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = DiarySerializer(data=request.data)
+        note_id = request.data['id']
+        note = Note.objects.get(id=note_id)
+        user=request.user 
+
+        if serializer.is_valid():
+            post = Diary.objects.create(
+                writer=user,
+                title=request.data['title'],
+                content=request.data['content'],
+                note=note,
+                image=request.data['image'],
+                to_open=request.data['to_open']
+            )
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+```
+> 일기장안에서 일기를 생성할때 사용되는 API다. 클라이언트로부터 요청받은 일기장의 id로 Note object를 찾고 serializer의 유효성감사를 거친뒤 Diary object를 생성한다.<br>
+> 이로써 사용자는 종류별로 일기장을 생성하고 일기장 안에 그에 맞는 일기들을 적을 수 있다.
+
 ### <strong>8. 프로필 검색 구현</strong>
+```python
+1. 닉네임, 유저네임으로 프로필 검색하는 API
 
-<br>
-
-<strong>[Backend 기술문서 바로가기](https://melodious-cornucopia-9b9.notion.site/Nuri-Backend-64f6886d357a458a87a20bedd5102936)</strong>
+class ProfileSearchAPIView(APIView):
+    serializer_class = ProfileSerializer
+    def get(self, request, *args, **kwargs):
+        input_data = request.query_params['inputData']
+        profile = Profile.objects.filter(Q(nickname__icontains=input_data) and Q(username__icontains=input_data))
+        serializer = self.serializer_class(profile, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+```
+> 클라이언트에서 Onchange event로 axios get요청을 받아 params로 전송된 input 데이터를 profile db와 대조한다. nickname과 username에 대하여 input의 문자열이 포함된 결과를 리턴한다.

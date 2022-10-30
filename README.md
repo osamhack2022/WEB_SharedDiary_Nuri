@@ -22,9 +22,9 @@ WEB(BE) : Project/backend
 
 <br>
 <br>
-<div style="text-align:center;">
-    [![Video Label](http://img.youtube.com/vi/RkBohLPHE5U/0.jpg)](https://youtu.be/RkBohLPHE5U)
-</div>
+
+[![Video Label](http://img.youtube.com/vi/RkBohLPHE5U/0.jpg)](https://youtu.be/RkBohLPHE5U)
+
 
 <br>
 
